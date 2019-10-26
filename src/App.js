@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-function App (props) {
-  return <div className='App'>{props.children}</div>
+function App(props) {
+  return <div className="App">{props.children}</div>;
 }
 
-export default App
+export default App;
