@@ -7,7 +7,7 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
+    // "prettier/prettier": ["error"],
     "import/order": [
       "error",
       {
@@ -23,7 +23,10 @@
     ],
     "no-console": "warn",
     "no-var": "warn",
-    "arrow-body-style": ["error", "as-needed"],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
     "quotes": "warn"
   }
 }
