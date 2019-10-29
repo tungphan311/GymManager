@@ -8,7 +8,7 @@ export const AuthorizedRoute = ({ component: Component, isUser, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isUser ? (
+      !isUser ? (
         <Component {...props} {...rest} />
       ) : (
         <Redirect
@@ -29,7 +29,7 @@ class Routes extends Component {
       <Switch>
         <Route>
           <AuthorizedRoute exact path="/" component={Home} isUser={isUser} />
-          <AuthorizedRoute exact path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
         </Route>
       </Switch>
     );
