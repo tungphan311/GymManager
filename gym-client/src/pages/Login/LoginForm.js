@@ -1,35 +1,28 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import Input from "Components/Input/Input";
-import {
-  validEmail,
-  required,
-  alphaNumeric,
-  maxLength15,
-  minLength6
-} from "utils/validate";
+import { require, email, password } from "utils/FormValidate";
+import { FORM_KEY_LOGIN } from "state/reducers/formReducer";
 
-function LoginForm() {
+function LoginForm({ handleSubmit }) {
   return (
-    <form>
+    <form onSubmit={handleSubmit} noValidate>
       <Field
         name="email"
         type="email"
-        label="Email"
+        placeholder="Email"
         component={Input}
-        validate={[required, validEmail]}
-        warn={alphaNumeric}
+        validate={[require, email]}
       />
       <Field
         name="password"
         type="password"
-        label="Password"
+        placeholder="Password"
         component={Input}
-        validate={[required, maxLength15, minLength6]}
-        warn={alphaNumeric}
+        validate={[require, password]}
       />
-      <div class="form-group">
-        <button class="btn btn-primary btn-block" type="submit">
+      <div className="form-group">
+        <button className="btn btn-primary btn-block" type="submit">
           Log In
         </button>
       </div>
@@ -38,5 +31,6 @@ function LoginForm() {
 }
 
 export default reduxForm({
-  form: "loginForm" // a unique identifier for this form
+  form: FORM_KEY_LOGIN, // a unique identifier for this form
+  touchOnBlur: false
 })(LoginForm);
