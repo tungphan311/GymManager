@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import UserDropdown from "Components/UserDropdown/UserDropdown";
+import UserDropdown from "Components/Navbar/UserDropdown/UserDropdown";
 import SearchForm from "Components/Navbar/SearchForm/SearchForm";
 import Notification from "Components/Navbar/Notification/Notification";
 import Shortcuts from "Components/Navbar/Shortcuts/Shortcuts";

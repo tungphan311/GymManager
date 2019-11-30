@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React from "Components/Navbar/UserDropdown/react";
 
 function UserDropdown({ ava = "/assets/img/profile.jpg" }) {
   return (
