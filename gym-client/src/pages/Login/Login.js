@@ -10,12 +10,12 @@ class Login extends Component {
     return (
       <div className="loginpage">
         <div className="illustration">
-          <i className="icon ion-ios-locked-outline"></i>
+          <i className="fas fa-user-lock"></i>
         </div>
 
         <LoginForm onSubmit={this.handleSubmit} />
 
-        <a href="#" className="forgot">
+        <a href="forgot-password" className="forgot">
           Forgot your email or password?
         </a>
       </div>
