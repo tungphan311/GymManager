@@ -5,9 +5,9 @@ import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 import Staffs from "pages/Staffs/Staffs";
+import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import { getToken } from "../utils/utils";
 
 export const AuthorizedRoute = ({ component: Component, isUser, ...rest }) => (
   <Route
