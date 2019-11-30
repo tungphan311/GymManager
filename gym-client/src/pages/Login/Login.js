@@ -1,19 +1,21 @@
 import React, { Component, useState } from "react";
 import "./Login.scss";
-import Input from "Components/Input/Input";
 import LoginForm from "pages/Login/LoginForm";
 
 class Login extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+  };
   render() {
     return (
       <div className="loginpage">
-        <div class="illustration">
-          <i class="icon ion-ios-locked-outline"></i>
+        <div className="illustration">
+          <i className="icon ion-ios-locked-outline"></i>
         </div>
 
-        <LoginForm />
+        <LoginForm onSubmit={this.handleSubmit} />
 
-        <a href="#" class="forgot">
+        <a href="#" className="forgot">
           Forgot your email or password?
         </a>
       </div>
