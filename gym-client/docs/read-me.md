@@ -61,13 +61,12 @@ We strongly advise that you turn on the format on save setting in VsCode so that
 "editor.defaultFormatter": "esbenp.prettier-vscode"
 },
 "eslint.autoFixOnSave": true,
-"prettier.eslintIntegration": true,
 "editor.formatOnSave": true,
 "editor.formatOnPaste": true,
 "javascript.preferences.importModuleSpecifier": "non-relative",
 ```
 
-Create new file, name as "jsconfig.json" and paste those config below to it.
+Create new file, name as "jsconfig.json" (if it isn't exist) and paste those config below to it.
 
 ```shell
 {
