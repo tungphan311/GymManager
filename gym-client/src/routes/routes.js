@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import { getToken } from "../utils/utils";
+import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
+import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
+import AddStaff from "pages/AddStaff/AddStaff";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import { getToken } from "../utils/utils";
 
 export const AuthorizedRoute = ({ component: Component, isUser, ...rest }) => (
   <Route
@@ -27,9 +30,21 @@ class Routes extends Component {
 
     return (
       <Switch>
-        <Route>
-          <AuthorizedRoute exact path="/" component={Home} isUser={isUser} />
-          <Route exact path="/login" component={Login} />
+        <Route exact path={["/", "/staffs", "/staffs/add"]}>
+          <DefaultLayout>
+            <AuthorizedRoute exact path="/" component={Home} isUser={isUser} />
+            <AuthorizedRoute
+              exact
+              path="/staffs/add"
+              component={AddStaff}
+              isUser={isUser}
+            />
+          </DefaultLayout>
+        </Route>
+        <Route exact path={["/login"]}>
+          <EmptyLayout>
+            <Route exact path="/login" component={Login} />
+          </EmptyLayout>
         </Route>
       </Switch>
     );
