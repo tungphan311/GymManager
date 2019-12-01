@@ -24,6 +24,7 @@ Here are the commands you'll need to run to install the project:
 
 git clone https://github.com/tungphan311/GymManager.git
 cd /GymManager/gym-client
+code .
 
 Create new file, name as ".env" (if this file isn't created yet) and paste line below to this file.
 
