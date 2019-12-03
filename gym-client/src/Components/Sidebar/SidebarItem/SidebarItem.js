@@ -6,7 +6,6 @@ function SidebarItem({ item }) {
   const { id, icon, title, href, sub } = item;
 
   const pathname = getPathname(window.location.pathname);
-  console.log(pathname);
 
   return (
     <li className={`nav-item${pathname === href ? " active" : ""}`}>
