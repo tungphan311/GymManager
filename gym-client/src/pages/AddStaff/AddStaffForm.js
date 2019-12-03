@@ -16,13 +16,8 @@ function AddStaffForm({ handleSubmit }) {
           component={Input}
           //   validate={[require, email]}
         />
-        <DatePicker
-          // component={DatePicker}
-          startDate={startDate}
-          name="Birth"
-          color="blue"
-          setStartDate={setStartDate}
-        />
+
+        <DatePicker date={startDate} setDate={setStartDate} />
       </div>
     </form>
   );
