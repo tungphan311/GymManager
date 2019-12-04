@@ -4,10 +4,13 @@ import "./DatePicker.scss";
 
 class DatePicker extends Component {
   render() {
-    const { date, setDate } = this.props;
+    const { date, setDate, label } = this.props;
     return (
-      <div className="md__date--picker--container">
-        <ReactDatePicker value={date} onChange={setDate} />
+      <div>
+        <label>{label}</label>
+        <div className="md__date--picker--container">
+          <ReactDatePicker value={date} onChange={setDate} />
+        </div>
       </div>
     );
   }
