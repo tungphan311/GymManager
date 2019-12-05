@@ -2,95 +2,17 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./Staffs.scss";
 import TableItem from "Components/TableItem/TableItem";
-import { Divider, Button, Pagination } from "antd";
-import Highlighter from "react-highlight-words";
+import { Divider, Button } from "antd";
 
-const dataSource = [
-  {
-    key: "1",
-    name: "Mike",
-    age: 32,
-    address: "10 Downing Street"
-  },
-  {
-    key: "2",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "3",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "4",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "5",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "6",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "7",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "8",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "9",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "10",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "11",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "12",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "13",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  },
-  {
-    key: "14",
-    name: "John",
-    age: 42,
-    address: "10 Downing Street"
-  }
-];
+const dataSource = [];
+for (let i = 0; i < 100; i++) {
+  dataSource.push({
+    key: i,
+    name: `Merlin ${i}`,
+    age: 20 + i,
+    address: ` ${i} Hong Ha Str, Ward 2, Tan Binh Dist, HCMC, Vietnam`
+  });
+}
 
 class Staffs extends React.Component {
   state = {
@@ -99,10 +21,6 @@ class Staffs extends React.Component {
     filteredInfo: null,
     sortedInfo: null
   };
-
-  onShowSizeChange(current, pageSize) {
-    console.log(current, pageSize);
-  }
 
   handleChange = (pagination, filters, sorter) => {
     this.setState({
@@ -184,14 +102,16 @@ class Staffs extends React.Component {
         dataIndex: "address",
         key: "address",
         filters: [
-          { text: "London", value: "London" },
-          { text: "New York", value: "New York" }
+          { text: "Vietnam", value: "Vietnam" },
+          { text: "Ha Noi", value: "Ha Noi" },
+          { text: "HCMC", value: "HCMC" }
         ],
         filteredValue: filteredInfo.address || null,
         onFilter: (value, record) => record.address.includes(value),
         sorter: (a, b) => a.address.length - b.address.length,
         sortOrder: sortedInfo.columnKey === "address" && sortedInfo.order,
-        ellipsis: true
+        ellipsis: true,
+        width: "40%"
         // ...this.getColumnSearchProps("address")
       },
       {
