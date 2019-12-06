@@ -7,10 +7,10 @@ import (
 	pg "github.com/go-pg/pg"
 )
 
-func Connect() {
+func Connect() *pg.DB {
 	opt := &pg.Options{
-		User:     "vj",
-		Password: "vjvj",
+		User:     "postgres",
+		Password: "password",
 		Addr:     "localhost:5432",
 	}
 
@@ -23,12 +23,14 @@ func Connect() {
 
 	log.Printf("Connected to database! \n")
 
-	closeErr := db.Close()
-	if closeErr != nil {
-		log.Printf("Error while closing database, reason: %v\n", closeErr)
-		os.Exit(100)
-	}
+	CreateUserTable(db)
 
-	log.Printf("Close databse successfully. \n")
-	return
+	// closeErr := db.Close()
+	// if closeErr != nil {
+	// 	log.Printf("Error while closing database, reason: %v\n", closeErr)
+	// 	os.Exit(100)
+	// }
+
+	// log.Printf("Close databse successfully. \n")
+	return db
 }
