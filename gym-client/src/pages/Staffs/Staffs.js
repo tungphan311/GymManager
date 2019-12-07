@@ -16,13 +16,12 @@ for (let i = 0; i < 100; i++) {
 
 class Staffs extends React.Component {
   state = {
-    pagination: 10,
     selectedRowKeys: [],
     filteredInfo: null,
     sortedInfo: null
   };
 
-  handleChange = (pagination, filters, sorter) => {
+  handleChange = (filters, sorter) => {
     this.setState({
       filteredInfo: filters,
       sortedInfo: sorter
