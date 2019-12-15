@@ -1,7 +1,7 @@
 import React from "react";
 import "./Staffs.scss";
 import TableItem from "Components/TableItem/TableItem";
-import { MDBCard, MDBCardBody, MDBCardText, MDBCardTitle } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBCardTitle } from "mdbreact";
 import DropDownITem from "Components/Dropdown/Dropdown";
 
 const dataSource = [];
@@ -16,13 +16,13 @@ for (let i = 0; i < 100; i++) {
     action: (
       <div className="button">
         <button className="btn btn-link btn-dark">
-          <i class="fa fa-eye"></i>
+          <i className="fa fa-eye"></i>
         </button>
         <button className="btn btn-link btn-primary btn-lg">
-          <i class="fa fa-edit"></i>
+          <i className="fa fa-edit"></i>
         </button>
         <button className="btn btn-link btn-danger">
-          <i class="fa fa-times"></i>
+          <i className="fa fa-times"></i>
         </button>
       </div>
     )
@@ -86,9 +86,9 @@ class Staffs extends React.Component {
               <div className="title__container">
                 <div className="title">List Of Staff</div>
                 <div className="button_Add">
-                  <button class="btn btn-primary">
-                    <span class="btn-label">
-                      <i class="fa fa-plus mr-2"></i>
+                  <button className="btn btn-primary">
+                    <span className="btn-label">
+                      <i className="fa fa-plus mr-2"></i>
                     </span>
                     Add Staff
                   </button>
@@ -96,14 +96,34 @@ class Staffs extends React.Component {
               </div>
             </MDBCardTitle>
             <div className="filter__container">
-              <DropDownITem title="Filter" listItem={this.listFilterItem} />
-              <DropDownITem title="Filter" listItem={this.listFilterItem} />
-              <DropDownITem title="Filter" listItem={this.listFilterItem} />
-              <DropDownITem title="Filter" listItem={this.listFilterItem} />
+              <DropDownITem
+                key={1}
+                className="dropDownItem"
+                title="Filter"
+                listItem={this.listFilterItem}
+              />
+              <DropDownITem
+                key={2}
+                className="dropDownItem"
+                title="Filter"
+                listItem={this.listFilterItem}
+              />
+              <DropDownITem
+                key={3}
+                className="dropDownItem"
+                title="Filter"
+                listItem={this.listFilterItem}
+              />
+              <DropDownITem
+                key={4}
+                className="dropDownItem"
+                title="Filter"
+                listItem={this.listFilterItem}
+              />
             </div>
-            <MDBCardText>
-              <TableItem dataSource={data} />
-            </MDBCardText>
+            {/* <MDBCardText> */}
+            <TableItem dataSource={data} />
+            {/* </MDBCardText> */}
           </MDBCardBody>
         </MDBCard>
       </div>

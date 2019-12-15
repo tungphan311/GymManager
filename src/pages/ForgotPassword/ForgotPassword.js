@@ -8,11 +8,13 @@ class ForgotPassword extends Component {
   };
   render() {
     return (
-      <div className="forgotPasswordPage">
-        <div className="illustration">
-          <i className="fas fa-address-card"></i>
+      <div className="forgotPassword__container">
+        <div className="forgotPasswordPage">
+          <div className="illustration">
+            <i className="fas fa-address-card"></i>
+          </div>
+          <ForgotPasswordForm onSubmit={this.handleSubmit} />
         </div>
-        <ForgotPasswordForm onSubmit={this.handleSubmit} />
       </div>
     );
   }
