@@ -1,6 +1,7 @@
 .react-date-picker__wrapper {
-  border-color: $white;
+  border-color: $border;
   border-radius: 4px;
+
   height: 40px;
   padding: 0 10px;
 }
@@ -15,7 +16,7 @@ svg {
   justify-content: space-between;
 
   input {
-    color: $white;
+    color: $black;
   }
 }
 
@@ -25,4 +26,8 @@ svg {
 
 .react-calendar__month-view__weekdays {
   display: none !important;
+}
+
+.md__date--picker--container {
+  margin-top: 10px;
 }

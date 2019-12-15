@@ -1,16 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDatePicker from "react-date-picker";
 import "./DatePicker.scss";
 
-class DatePicker extends Component {
-  render() {
-    const { date, setDate } = this.props;
-    return (
+const DatePicker = ({
+  label = "",
+  type = "date",
+  date,
+  setDate,
+  meta = {}, // redux form
+  input // redux form
+}) => {
+  console.log(input);
+  return (
+    <div>
+      <label>{label}</label>
       <div className="md__date--picker--container">
-        <ReactDatePicker value={date} onChange={setDate} />
+        <ReactDatePicker
+          //{...input}
+          value={date}
+          onChange={date => console.log(date)}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default DatePicker;

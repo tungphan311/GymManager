@@ -3,7 +3,7 @@ import Logo from "Components/Logo/Logo";
 
 function CollapseNavBar() {
   return (
-    <div className="logo-header" data-background-color="dark2">
+    <div className="logo-header" data-background-color="blue">
       <Logo />
       <button
         className="navbar-toggler sidenav-toggler ml-auto"
