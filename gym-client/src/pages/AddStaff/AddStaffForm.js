@@ -5,14 +5,14 @@ import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
-import moment from "moment";
+
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 // import store from "./../../state/store";
 
 export const AddStaffForm = ({ handleSubmit }) => {
-  const today = new moment();
-  const [startDate, setStartDate] = useState(today);
+  const [startDate, setStartDate] = useState(new Date());
+  const state = {};
   // const submitForm = ({ event, formValues }) => {
   //   console.log("submitting Form: ", formValues);
   //   event.preventDefault();
@@ -50,8 +50,6 @@ export const AddStaffForm = ({ handleSubmit }) => {
             label="Ngày sinh: *"
             name="dateOfBirth"
             component={DatePicker}
-            date={startDate}
-            setDate={setStartDate}
           />
           <Field
             label="Giới tính: *"
