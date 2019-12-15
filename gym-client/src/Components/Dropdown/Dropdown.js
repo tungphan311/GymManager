@@ -23,8 +23,4 @@ const DropDownItem = ({ title, listItem }) => (
     </MDBDropdown>
   </div>
 );
-// const listItems = numbers.map((number) =>
-//     <li>{number}</li>
-// );
-
 export default DropDownItem;

@@ -49,7 +49,7 @@ class Routes extends Component {
             />
           </DefaultLayout>
         </Route>
-        <Route exact path={["/login"]}>
+        <Route exact path={["/login", "/forgot-password"]}>
           <EmptyLayout>
             <Route exact path="/login" component={Login} />
             <Route exact path="/forgot-password" component={ForgotPassword} />
