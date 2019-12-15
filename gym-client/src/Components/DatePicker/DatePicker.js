@@ -5,22 +5,21 @@ import "./DatePicker.scss";
 const DatePicker = ({
   label = "",
   type = "date",
-  date = "",
-  setDate = "",
+  date,
+  setDate,
   meta = {}, // redux form
   input // redux form
 }) => {
-  const { touched, error } = meta;
-
-  const showError = touched && error;
-  const { errCode } = error || {};
-  // const { date, setDate, label } = this.props;
-
+  console.log(input);
   return (
     <div>
       <label>{label}</label>
       <div className="md__date--picker--container">
-        <ReactDatePicker {...input} value={date} onChange={setDate} />
+        <ReactDatePicker
+          //{...input}
+          value={date}
+          onChange={date => console.log(date)}
+        />
       </div>
     </div>
   );

@@ -5,11 +5,13 @@ import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
+import moment from "moment";
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 
 export const AddStaffForm = ({ handleSubmit }) => {
-  const [startDate, setStartDate] = useState(null);
+  const today = new moment();
+  const [startDate, setStartDate] = useState(today);
   const state = {};
   // const submitForm = ({ event, formValues }) => {
   //   console.log("submitting Form: ", formValues);
@@ -37,7 +39,7 @@ export const AddStaffForm = ({ handleSubmit }) => {
           />
           <Field
             label="Date of birth"
-            name="gender"
+            name="dateOfBirth"
             component={DatePicker}
             date={startDate}
             setDate={setStartDate}
@@ -79,7 +81,7 @@ export const AddStaffForm = ({ handleSubmit }) => {
           />
         </div>
         {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
-        <button type="submit" class="btn btn-success btn-lg btn-block">
+        <button type="submit" className="btn btn-success btn-lg btn-block">
           Add Staff
         </button>
       </div>
