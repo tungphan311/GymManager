@@ -5,7 +5,7 @@ import SidebarItem from "Components/Sidebar/SidebarItem/SidebarItem";
 
 function Sidebar() {
   return (
-    <div className="sidebar sidebar-style-2" data-background-color="dark2">
+    <div className="sidebar sidebar-style-2">
       <div className="sidebar-wrapper scrollbar scrollbar-inner">
         <div className="sidebar-content">
           <ul className="nav nav-primary">
