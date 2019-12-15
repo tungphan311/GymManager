@@ -6,7 +6,7 @@ import "./TableItem.scss";
 
 const TableItem = ({ dataSource }) => (
   <div className="table__container">
-    <MDBDataTable striped hover data={dataSource} />
+    <MDBDataTable striped hover autowidth={false} data={dataSource} />
   </div>
 );
 
