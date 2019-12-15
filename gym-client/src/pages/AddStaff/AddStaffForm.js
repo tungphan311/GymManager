@@ -5,20 +5,18 @@ import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
-import moment from "moment";
+
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 
 export const AddStaffForm = ({ handleSubmit }) => {
-  const today = new moment();
-  const [startDate, setStartDate] = useState(today);
+  const [startDate, setStartDate] = useState(new Date());
   const state = {};
   // const submitForm = ({ event, formValues }) => {
   //   console.log("submitting Form: ", formValues);
   //   event.preventDefault();
   // };
   function onSubmit(e, props) {
-    console.log(props);
     e.preventDefault();
   }
 
@@ -41,8 +39,6 @@ export const AddStaffForm = ({ handleSubmit }) => {
             label="Date of birth"
             name="dateOfBirth"
             component={DatePicker}
-            date={startDate}
-            setDate={setStartDate}
           />
         </div>
         <Field
