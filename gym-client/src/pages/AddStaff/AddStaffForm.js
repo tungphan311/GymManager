@@ -8,17 +8,17 @@ import DatePicker from "Components/DatePicker/DatePicker";
 import moment from "moment";
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
+// import store from "./../../state/store";
 
 export const AddStaffForm = ({ handleSubmit }) => {
   const today = new moment();
   const [startDate, setStartDate] = useState(today);
-  const state = {};
   // const submitForm = ({ event, formValues }) => {
   //   console.log("submitting Form: ", formValues);
   //   event.preventDefault();
   // };
   function onSubmit(e, props) {
-    console.log(props);
+    // console.log(getFormValues("form/FORM_KEY_ADDSTAFF"));
     e.preventDefault();
   }
 
@@ -29,61 +29,81 @@ export const AddStaffForm = ({ handleSubmit }) => {
       noValidate
     >
       <div className="container">
-        <Field label="Name" name="name" placeholder="Name" component={Input} />
         <div className="displayRow">
           <Field
-            label="Gender"
-            name="gender"
-            component={Select}
-            selectlist={["Female", "Male", "Other"]}
+            label="Họ và tên: *"
+            name="name"
+            placeholder="Họ và tên"
+            component={Input}
           />
           <Field
-            label="Date of birth"
+            label="Số điện thoại: *"
+            name="phoneNumber"
+            placeholder="Số điện thoại"
+            component={Input}
+            //   validate={[require, email]}
+          />
+        </div>
+
+        <div className="displayRow">
+          <Field
+            label="Ngày sinh: *"
             name="dateOfBirth"
             component={DatePicker}
             date={startDate}
             setDate={setStartDate}
           />
+          <Field
+            label="Giới tính: *"
+            name="gender"
+            component={Select}
+            selectlist={["Female", "Male", "Other"]}
+          />
         </div>
         <Field
-          label="Address"
+          label="Địa chỉ: *"
           name="address"
-          placeholder="Address"
+          placeholder="Địa chỉ: *"
           component={Input}
-          //   validate={[require, email]}
-        />
-        <Field
-          label="Phone number"
-          name="phoneNumber"
-          placeholder="Phone number"
-          component={Input}
-          //   validate={[require, email]}
         />
         <div className="displayRow">
           <Field
-            label="Role"
-            name="role"
-            component={Select}
-            selectlist={["Manager", "Trainer", "Staff"]}
+            label="Email: *"
+            name="email"
+            placeholder="Email"
+            component={Input}
           />
           <Field
-            label="Date start"
+            label="Số CMND: *"
+            name="ID"
+            placeholder="Số CMND"
+            component={Input}
+          />
+        </div>
+        <div className="displayRow">
+          <Field
+            label="Ngày vào làm: *"
             name="dateStart"
             component={DatePicker}
             date={startDate}
             setDate={setStartDate}
           />
           <Field
-            label="Contract valid time"
-            name="validTime"
+            label="Loại nhân viên: *"
+            name="role"
             component={Select}
-            selectlist={["3 months", "6 months", "9 months"]}
+            selectlist={["Manager", "Trainer", "Staff"]}
           />
         </div>
         {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
-        <button type="submit" className="btn btn-success btn-lg btn-block">
-          Add Staff
-        </button>
+        <div className="group">
+          <button type="button" className="groupBtn btn-lg">
+            Trở về
+          </button>
+          <button type="submit" className="groupBtn btn-success btn-lg mr-0">
+            Thêm nhân viên
+          </button>
+        </div>
       </div>
     </form>
   );

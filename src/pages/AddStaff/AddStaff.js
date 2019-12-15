@@ -13,7 +13,7 @@ class AddStaff extends Component {
     return (
       <Provider store={store}>
         <div className="addstaff">
-          <h1 className="text-center">Add new Staff</h1>
+          <h1 className="text-center">THÊM NHÂN VIÊN MỚI</h1>
           <AddStaffForm />
         </div>
       </Provider>
