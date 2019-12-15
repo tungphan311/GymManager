@@ -1,7 +1,7 @@
-.loginpage {
+.loginForm {
   max-width: 320px;
   width: 90%;
-  background-color: #1e2833;
+  background-color: #242424;
   padding: 40px;
   border-radius: 4px;
   transform: translate(-50%, -50%);
@@ -10,6 +10,14 @@
   left: 50%;
   color: #fff;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login__container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/assets/img/login-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .illustration {
