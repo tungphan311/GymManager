@@ -1,24 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Field, reduxForm } from "redux-form";
 import "./AddStaffForm.scss";
 import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
-import moment from "moment";
+
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 // import store from "./../../state/store";
 
 export const AddStaffForm = ({ handleSubmit }) => {
-  const today = new moment();
-  const [startDate, setStartDate] = useState(today);
   // const submitForm = ({ event, formValues }) => {
   //   console.log("submitting Form: ", formValues);
   //   event.preventDefault();
   // };
   function onSubmit(e, props) {
-    // console.log(getFormValues("form/FORM_KEY_ADDSTAFF"));
     e.preventDefault();
   }
 
@@ -50,8 +47,6 @@ export const AddStaffForm = ({ handleSubmit }) => {
             label="Ngày sinh: *"
             name="dateOfBirth"
             component={DatePicker}
-            date={startDate}
-            setDate={setStartDate}
           />
           <Field
             label="Giới tính: *"
@@ -85,8 +80,6 @@ export const AddStaffForm = ({ handleSubmit }) => {
             label="Ngày vào làm: *"
             name="dateStart"
             component={DatePicker}
-            date={startDate}
-            setDate={setStartDate}
           />
           <Field
             label="Loại nhân viên: *"
