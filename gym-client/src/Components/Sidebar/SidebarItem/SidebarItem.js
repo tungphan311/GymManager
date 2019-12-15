@@ -6,23 +6,29 @@ function SidebarItem({ item }) {
   const { id, icon, title, href, sub } = item;
 
   const pathname = getPathname(window.location.pathname);
-  console.log(pathname);
 
   return (
     <li className={`nav-item${pathname === href ? " active" : ""}`}>
-      <a data-toggle="collapse" href={`#${id}`}>
-        <i className={icon}></i>
-        <p>{title}</p>
-        {sub.length > 0 && <span className="caret"></span>}
-      </a>
-      {sub.length > 0 && (
-        <div className="collapse" id={id}>
-          <ul className="nav nav-collapse">
-            {sub.map(({ href, title }) => (
-              <SubItem key={href} href={href} title={title} />
-            ))}
-          </ul>
-        </div>
+      {sub ? (
+        <>
+          <a data-toggle="collapse" href={`#${id}`}>
+            <i className={icon}></i>
+            <p>{title}</p>
+            <span className="caret"></span>
+          </a>
+          <div className="collapse" id={id}>
+            <ul className="nav nav-collapse">
+              {sub.map(({ href, title }) => (
+                <SubItem key={href} href={href} title={title} />
+              ))}
+            </ul>
+          </div>
+        </>
+      ) : (
+        <a href={href}>
+          <i className={icon}></i>
+          <p>{title}</p>
+        </a>
       )}
     </li>
   );

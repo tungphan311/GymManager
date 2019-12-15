@@ -9,7 +9,7 @@ function ExpandNavBar() {
   return (
     <nav
       className="navbar navbar-header navbar-expand-lg"
-      data-background-color="dark"
+      data-background-color="blue2"
     >
       <div className="container-fluid">
         <div className="collapse" id="search-nav">

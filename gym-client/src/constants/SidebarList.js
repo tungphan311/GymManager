@@ -3,8 +3,7 @@ export const SIDEBAR_LIST = [
     id: "dashboard",
     icon: "fas fa-home",
     title: "Dashboard",
-    href: "/",
-    sub: []
+    href: "/"
   },
   {
     id: "staff",
