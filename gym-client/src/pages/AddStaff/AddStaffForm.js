@@ -5,20 +5,29 @@ import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
+// import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 
-function AddStaffForm({ handleSubmit }) {
+export const AddStaffForm = ({ handleSubmit }) => {
   const [startDate, setStartDate] = useState(null);
+  const state = {};
+  // const submitForm = ({ event, formValues }) => {
+  //   console.log("submitting Form: ", formValues);
+  //   event.preventDefault();
+  // };
+  function onSubmit(e, props) {
+    console.log(props);
+    e.preventDefault();
+  }
+
   return (
-    <form className="addStaffForm" onSubmit={handleSubmit} noValidate>
+    <form
+      className="addStaffForm"
+      onSubmit={(e, props) => onSubmit(e, props)}
+      noValidate
+    >
       <div className="container">
-        <Field
-          label="Name"
-          name="name"
-          placeholder="Name"
-          component={Input}
-          //   validate={[require, email]}
-        />
+        <Field label="Name" name="name" placeholder="Name" component={Input} />
         <div className="displayRow">
           <Field
             label="Gender"
@@ -70,13 +79,13 @@ function AddStaffForm({ handleSubmit }) {
           />
         </div>
         {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
-        <button type="button" class="btn btn-success btn-lg btn-block">
+        <button type="submit" class="btn btn-success btn-lg btn-block">
           Add Staff
         </button>
       </div>
     </form>
   );
-}
+};
 
 export default reduxForm({
   form: FORM_KEY_ADDSTAFF, // a unique identifier for this form

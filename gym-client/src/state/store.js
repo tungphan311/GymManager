@@ -19,6 +19,11 @@ const store = createStore(
   {},
   composeEnhancers(applyMiddleware(...middlewares))
 );
+
+export function configureStore() {
+  return store;
+}
+
 sagaMiddleware.run(sagas);
 
 export default store;

@@ -15,7 +15,7 @@ const Select = ({
   <div>
     <label>{label}</label>
     <div>
-      <select className="select">
+      <select {...input} className="select">
         {selectlist.map(ele => (
           <option>{ele}</option>
         ))}
