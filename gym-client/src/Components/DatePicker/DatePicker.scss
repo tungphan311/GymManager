@@ -1,20 +1,19 @@
 .react-date-picker__wrapper {
   border-color: $border;
   border-radius: 4px;
-
   height: 40px;
   padding: 0 10px;
 }
 
 svg {
-  stroke: $white;
+  stroke: $black;
 }
 
 .react-date-picker__inputGroup {
-  width: 100px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
 
+  color: $black;
   input {
     color: $black;
   }
@@ -30,4 +29,5 @@ svg {
 
 .md__date--picker--container {
   margin-top: 10px;
+  width: 200%;
 }
