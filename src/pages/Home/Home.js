@@ -3,11 +3,13 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
+import { toast } from "utils/utils";
 
 class Home extends Component {
   render() {
     return (
       <>
+        <button onClick={() => toast({ message: "Test" })}>Toast</button>
         <div className="mt-2 mb-4">
           <h2 className="pb-2">Welcome back, Hizrian!</h2>
           <h5 className="op-7 mb-4">

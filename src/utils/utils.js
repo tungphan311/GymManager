@@ -1,3 +1,7 @@
+import Toaster from "Components/Toastify/Toaster";
+import { toast as toaster } from "react-toastify";
+import React from "react";
+
 export function getToken(key) {
   return localStorage.getItem(key);
 }
@@ -20,4 +24,8 @@ export function getPathname(pathname) {
   }
 
   return path;
+}
+
+export function toast({ type = "success", message = "" }) {
+  return toaster(<Toaster type={type} message={message} />);
 }
