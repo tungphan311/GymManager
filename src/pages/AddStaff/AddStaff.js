@@ -6,7 +6,8 @@ import store from "./../../state/store";
 
 class AddStaff extends Component {
   handleSubmit = e => {
-    e.preventDefault();
+    console.log(e);
+    // e.preventDefault();
   };
 
   render() {
@@ -14,7 +15,7 @@ class AddStaff extends Component {
       <Provider store={store}>
         <div className="addstaff">
           <h1 className="text-center">THÊM NHÂN VIÊN MỚI</h1>
-          <AddStaffForm />
+          <AddStaffForm onSubmit={this.handleSubmit} />
         </div>
       </Provider>
     );

@@ -25,3 +25,12 @@ export const validEmail = email =>
   /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     email
   );
+
+export const validString = string => /^[a-zA-Z]+$/.test(string);
+export const validNumber = string => /^[0-9]+$/.test(string);
+export const validDob = string => {
+  const today = new Date().getFullYear();
+  return (
+    today - string.getFullYear() >= 18 && today - string.getFullYear() <= 50
+  );
+};
