@@ -1,3 +1,4 @@
+import { GENDERS, ROLE, TYPE } from "constants/index";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import "./AddStaffForm.scss";
@@ -5,26 +6,21 @@ import Input from "Components/Input/Input";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import Select from "Components/Select/Select";
 import DatePicker from "Components/DatePicker/DatePicker";
+import {
+  require,
+  validName,
+  validPhone,
+  validD,
+  email
+} from "utils/FormValidate";
 
 // import { getFormValues } from "state/selectors/formSelector";
 // import { checkServerIdentity } from "tls";
 // import store from "./../../state/store";
 
-export const AddStaffForm = ({ handleSubmit }) => {
-  // const submitForm = ({ event, formValues }) => {
-  //   console.log("submitting Form: ", formValues);
-  //   event.preventDefault();
-  // };
-  function onSubmit(e, props) {
-    e.preventDefault();
-  }
-
+function AddStaffForm({ handleSubmit }) {
   return (
-    <form
-      className="addStaffForm"
-      onSubmit={(e, props) => onSubmit(e, props)}
-      noValidate
-    >
+    <form className="addStaffForm" onSubmit={handleSubmit} noValidate>
       <div className="container">
         <div className="displayRow">
           <Field
@@ -32,34 +28,39 @@ export const AddStaffForm = ({ handleSubmit }) => {
             name="name"
             placeholder="Họ và tên"
             component={Input}
+            validate={[require, validName]}
           />
           <Field
             label="Số điện thoại: *"
             name="phoneNumber"
             placeholder="Số điện thoại"
             component={Input}
-            //   validate={[require, email]}
+            validate={[require, validPhone]}
           />
         </div>
 
         <div className="displayRow">
           <Field
             label="Ngày sinh: *"
+            placeholder="Chọn ngày sinh"
             name="dateOfBirth"
             component={DatePicker}
+            validate={[require, validD]}
           />
           <Field
             label="Giới tính: *"
             name="gender"
             component={Select}
-            selectlist={["Female", "Male", "Other"]}
+            selectlist={GENDERS}
+            validate={require}
           />
         </div>
         <Field
           label="Địa chỉ: *"
           name="address"
-          placeholder="Địa chỉ: *"
+          placeholder="Địa chỉ:"
           component={Input}
+          validate={require}
         />
         <div className="displayRow">
           <Field
@@ -67,25 +68,30 @@ export const AddStaffForm = ({ handleSubmit }) => {
             name="email"
             placeholder="Email"
             component={Input}
+            validate={[require, email]}
           />
           <Field
-            label="Số CMND: *"
-            name="ID"
-            placeholder="Số CMND"
-            component={Input}
+            label="Vai trò: *"
+            name="role"
+            component={Select}
+            selectlist={ROLE}
+            validate={require}
           />
         </div>
         <div className="displayRow">
           <Field
             label="Ngày vào làm: *"
             name="dateStart"
+            placeholder="Chọn ngày vào làm"
             component={DatePicker}
+            validate={require}
           />
           <Field
             label="Loại nhân viên: *"
-            name="role"
+            name="type"
             component={Select}
-            selectlist={["Manager", "Trainer", "Staff"]}
+            selectlist={TYPE}
+            validate={require}
           />
         </div>
         {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
@@ -93,14 +99,14 @@ export const AddStaffForm = ({ handleSubmit }) => {
           <button type="button" className="groupBtn btn-lg">
             Trở về
           </button>
-          <button type="submit" className="groupBtn btn-success btn-lg mr-0">
+          <button type="submit" className="groupBtn btn-primary btn-lg mr-0">
             Thêm nhân viên
           </button>
         </div>
       </div>
     </form>
   );
-};
+}
 
 export default reduxForm({
   form: FORM_KEY_ADDSTAFF, // a unique identifier for this form

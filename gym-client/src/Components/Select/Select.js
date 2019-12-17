@@ -11,17 +11,24 @@ const Select = ({
   meta = {}, //redux form
   input, //redux form
   selectlist = []
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <select {...input} className="select">
-        {selectlist.map(ele => (
-          <option>{ele}</option>
-        ))}
-      </select>
+}) => {
+  const { touched, error } = meta;
+
+  const showError = touched && error;
+  const { errCode } = error || {};
+  return (
+    <div className="input__container">
+      <label>{label}</label>
+      <div>
+        <select {...input} className="select">
+          {selectlist.map(({ value, label }) => (
+            <option value={value}>{label}</option>
+          ))}
+        </select>
+        <div>{showError && <span className="error">{errCode}</span>}</div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Select;

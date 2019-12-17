@@ -1,27 +1,45 @@
 import React, { Component } from "react";
 import ReactDatePicker from "react-datepicker";
 import "./DatePicker.scss";
-import moment from "moment";
 
 const CustomInput = React.forwardRef((props, ref) => {
-  const { onClick, value } = props;
+  const { onClick, value, placeholder } = props;
   return (
-    <input onClick={onClick} value={value} type="text" readOnly ref={ref} />
+    <input
+      onClick={onClick}
+      value={value}
+      type="text"
+      readOnly
+      ref={ref}
+      placeholder={placeholder}
+    />
   );
 });
 
 class DatePicker extends Component {
   render() {
-    const { color = "blue", meta, input } = this.props;
+    const { color = "blue", meta, input, label, placeholder } = this.props;
+    const { touched, error } = meta;
+    const showError = touched && error;
+    const { errCode } = error || {};
 
     return (
-      <div className={`md__date--picker--container ${color}`}>
-        <ReactDatePicker
-          customInput={<CustomInput />}
-          selected={input.value || new Date()}
-          onChange={input.onChange}
-          dateFormat="dd/MM/yyyy"
-        />
+      <div className={`md__date--picker--container input__container ${color}`}>
+        <label>{label}</label>
+        <div>
+          <ReactDatePicker
+            className="datePicker"
+            placeholderText={placeholder}
+            customInput={<CustomInput />}
+            selected={input.value}
+            onChange={input.onChange}
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            dateFormat="dd/MM/yyyy"
+          />
+          {showError && <span className="error">{errCode}</span>}
+        </div>
       </div>
     );
   }
