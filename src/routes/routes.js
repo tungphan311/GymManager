@@ -4,6 +4,7 @@ import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
 import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
+import ChangePassword from "pages/ChangePassword/ChangePassword";
 import Staffs from "pages/Staffs/Staffs";
 import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
@@ -49,10 +50,11 @@ class Routes extends Component {
             />
           </DefaultLayout>
         </Route>
-        <Route exact path={["/login", "/forgot-password"]}>
+        <Route exact path={["/login", "/forgot-password", "/change-password"]}>
           <EmptyLayout>
             <Route exact path="/login" component={Login} />
             <Route exact path="/forgot-password" component={ForgotPassword} />
+            <Route exact path="/change-password" component={ChangePassword} />
           </EmptyLayout>
         </Route>
       </Switch>
