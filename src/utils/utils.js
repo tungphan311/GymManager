@@ -44,3 +44,15 @@ export function formatDate(date) {
 export function toast({ type = "success", message = "" }) {
   return toaster(<Toaster type={type} message={message} />);
 }
+
+export function setStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
+export function getItemFromStorage(key) {
+  return localStorage.getItem(key);
+}
+
+export function setSessionStorage(key, value) {
+  sessionStorage.setItem(key, value);
+}
