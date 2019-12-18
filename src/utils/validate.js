@@ -26,7 +26,7 @@ export const validEmail = email =>
     email
   );
 
-export const validString = string => /^[a-zA-Z]+$/.test(string);
+export const validString = string => /^[a-zA-Z ]+$/.test(string);
 export const validNumber = string => /^[0-9]+$/.test(string);
 export const validDob = string => {
   const today = new Date().getFullYear();

@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import AddStaffForm from "pages/AddStaff/AddStaffForm";
 import "./AddStaff.scss";
+import { connect } from "react-redux";
+import { ADD_STAFF } from "state/reducers/staffReducer";
 
+const mapDispatchToProps = dispatch => ({
+  addStaff: () => dispatch({ type: ADD_STAFF })
+});
 class AddStaff extends Component {
-  handleSubmit = e => {
-    // e.preventDefault();
-  };
-
   render() {
     return (
       <div className="addstaff">
         <h1 className="text-center">THÊM NHÂN VIÊN MỚI</h1>
-        <AddStaffForm onSubmit={this.handleSubmit} />
+        <AddStaffForm onSubmit={this.props.addStaff} />
       </div>
     );
   }
 }
 
-export default AddStaff;
+export default connect(null, mapDispatchToProps)(AddStaff);

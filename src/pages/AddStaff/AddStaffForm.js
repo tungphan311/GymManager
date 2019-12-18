@@ -21,14 +21,14 @@ function AddStaffForm({ handleSubmit }) {
         <div className="displayRow">
           <Field
             label="Họ và tên: *"
-            name="name"
+            name="fullname"
             placeholder="Họ và tên"
             component={Input}
             validate={[require, validName]}
           />
           <Field
             label="Số điện thoại: *"
-            name="phoneNumber"
+            name="phone"
             placeholder="Số điện thoại"
             component={Input}
             validate={[require, validPhone]}
@@ -39,7 +39,7 @@ function AddStaffForm({ handleSubmit }) {
           <Field
             label="Ngày sinh: *"
             placeholder="Chọn ngày sinh"
-            name="dateOfBirth"
+            name="birthdate"
             component={DatePicker}
             validate={[require, validD]}
           />
@@ -68,7 +68,7 @@ function AddStaffForm({ handleSubmit }) {
           />
           <Field
             label="Vai trò: *"
-            name="role"
+            name="roleid"
             component={Select}
             selectlist={ROLE}
             validate={require}
@@ -77,14 +77,14 @@ function AddStaffForm({ handleSubmit }) {
         <div className="displayRow">
           <Field
             label="Ngày vào làm: *"
-            name="dateStart"
+            name="beginday"
             placeholder="Chọn ngày vào làm"
             component={DatePicker}
             validate={require}
           />
           <Field
             label="Loại nhân viên: *"
-            name="type"
+            name="stafftypeid"
             component={Select}
             selectlist={TYPE}
             validate={require}

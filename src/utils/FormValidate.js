@@ -5,8 +5,7 @@ import {
   maxLength15,
   validString,
   validNumber,
-  validDob,
-  requiredSelect
+  validDob
 } from "utils/validate";
 import { buildErr } from "utils/utils";
 
