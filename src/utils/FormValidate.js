@@ -32,7 +32,7 @@ export const validName = value =>
 export const validPhone = value =>
   validNumber(value)
     ? undefined
-    : buildErr("Đây là trường bắt buộc, vui lòng không bỏ trống");
+    : buildErr("Vui lòng nhập số điện thoại hợp lệ");
 
 export const validD = value =>
   validDob(value) ? undefined : buildErr("Vui lòng nhập ngày sinh hợp lệ");

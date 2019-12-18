@@ -4,9 +4,11 @@ import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
 import { addStaff } from "services/staffServices";
 import { formatDate } from "utils/utils";
+import { SET_LOADING } from "state/reducers/loadingReducer";
 
 export function* addStaffSaga() {
   try {
+    yield put({ type: SET_LOADING });
     const {
       fullname,
       phone,
@@ -40,6 +42,8 @@ export function* addStaffSaga() {
     console.log(results);
   } catch (error) {
     console.log(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
   }
 }
 
