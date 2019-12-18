@@ -14,10 +14,6 @@ import {
   email
 } from "utils/FormValidate";
 
-// import { getFormValues } from "state/selectors/formSelector";
-// import { checkServerIdentity } from "tls";
-// import store from "./../../state/store";
-
 function AddStaffForm({ handleSubmit }) {
   return (
     <form className="addStaffForm" onSubmit={handleSubmit} noValidate>
@@ -94,7 +90,6 @@ function AddStaffForm({ handleSubmit }) {
             validate={require}
           />
         </div>
-        {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
         <div className="group">
           <button type="button" className="groupBtn btn btn-primary btn-border">
             Trở về
