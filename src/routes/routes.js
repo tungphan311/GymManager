@@ -13,7 +13,7 @@ export const AuthorizedRoute = ({ component: Component, isUser, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      !isUser ? (
+      isUser ? (
         <Component {...props} {...rest} />
       ) : (
         <Redirect
@@ -28,7 +28,7 @@ export const AuthorizedRoute = ({ component: Component, isUser, ...rest }) => (
 
 class Routes extends Component {
   render() {
-    const isUser = getToken("token");
+    const isUser = getToken("identity");
 
     return (
       <Switch>
