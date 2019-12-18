@@ -3,25 +3,40 @@ import { login } from "services/LoginServices";
 import { takeEvery, put, call, select } from "redux-saga/effects";
 import { getFormValues } from "state/selectors/formSelector";
 import { FORM_KEY_LOGIN } from "state/reducers/formReducer";
+import { SET_LOADING } from "state/reducers/loadingReducer";
+import jwt_decode from "jwt-decode";
 import history from "../history";
-import { setStorage } from "../../utils/utils";
+import { setStorage, toast } from "../../utils/utils";
 
 export function* loginSaga() {
   try {
-    const { email, password } = yield select(state =>
+    yield put({ type: SET_LOADING });
+
+    const { username, password } = yield select(state =>
       getFormValues(state, FORM_KEY_LOGIN)
     );
 
-    const result = yield call(login, { email, password });
+    const result = yield call(login, { username, password });
     const response = result.data;
 
     yield put({ type: LOGIN_SUCCESS, payload: response });
 
-    yield setStorage("identity", JSON.stringify(response[0]));
+    yield setStorage("identity", JSON.stringify(response.token));
 
-    yield history.push("/");
+    yield toast({ message: "Đăng nhập thành công" });
+
+    let decoded = yield jwt_decode(response.token);
+    const { is_new, name, roleid, username: user_name } = decoded;
+
+    if (is_new) {
+      yield history.push("/change-password");
+    } else {
+      yield history.push("/");
+    }
   } catch (err) {
-    // console.log(err);
+    yield toast({ type: "error", message: "Không thành công" });
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
   }
 }
 

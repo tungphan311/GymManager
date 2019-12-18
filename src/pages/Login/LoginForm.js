@@ -8,7 +8,7 @@ function LoginForm({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit} noValidate>
       <Field
-        name="email"
+        name="username"
         type="email"
         placeholder="Email"
         component={Input}
