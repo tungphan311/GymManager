@@ -3,7 +3,7 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
-import { toast } from "utils/utils";
+// import { toast } from "utils/utils";
 
 class Home extends Component {
   render() {

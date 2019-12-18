@@ -1,26 +1,31 @@
 import React, { Component } from "react";
 import "./Login.scss";
 import LoginForm from "pages/Login/LoginForm";
+import { connect } from "react-redux";
+import { LOGIN } from "state/reducers/authReducer";
+
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch({ type: LOGIN })
+});
 
 class Login extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-  };
   render() {
     return (
-      <div className="loginpage">
-        <div className="illustration">
-          <i className="fas fa-user-lock"></i>
+      <div className="login__container">
+        <div className="loginForm">
+          <div className="illustration">
+            <i className="fas fa-user-lock"></i>
+          </div>
+
+          <LoginForm onSubmit={this.props.login} />
+
+          <a href="forgot-password" className="forgot">
+            Forgot your email or password?
+          </a>
         </div>
-
-        <LoginForm onSubmit={this.handleSubmit} />
-
-        <a href="forgot-password" className="forgot">
-          Forgot your email or password?
-        </a>
       </div>
     );
   }
 }
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

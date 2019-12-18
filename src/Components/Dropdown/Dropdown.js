@@ -16,7 +16,9 @@ const DropDownItem = ({ title, listItem }) => (
       <MDBDropdownMenu basic>
         <ul>
           {listItem.map(item => (
-            <MDBDropdownItem href="#">{item}</MDBDropdownItem>
+            <MDBDropdownItem key={item} className="dropDownItem" href="#">
+              {item}
+            </MDBDropdownItem>
           ))}
         </ul>
       </MDBDropdownMenu>
