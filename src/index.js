@@ -9,6 +9,7 @@ import "./styles/index.scss";
 import * as serviceWorker from "./serviceWorker";
 import Routes from "./routes/routes";
 import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 ReactDOM.render(
   <Provider store={store}>
