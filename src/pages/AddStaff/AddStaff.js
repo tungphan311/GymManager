@@ -3,6 +3,7 @@ import AddStaffForm from "pages/AddStaff/AddStaffForm";
 import "./AddStaff.scss";
 import { connect } from "react-redux";
 import { ADD_STAFF } from "state/reducers/staffReducer";
+// import LoadingScreen from "Components/LoadingScreen/LoadingScreen";
 
 const mapDispatchToProps = dispatch => ({
   addStaff: () => dispatch({ type: ADD_STAFF })

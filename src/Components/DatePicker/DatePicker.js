@@ -38,7 +38,7 @@ class DatePicker extends Component {
             dropdownMode="select"
             dateFormat="dd/MM/yyyy"
           />
-          {showError && <span className="error">{errCode}</span>}
+          <div>{showError && <span className="error">{errCode}</span>}</div>
         </div>
       </div>
     );
