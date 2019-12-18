@@ -22,7 +22,9 @@ const Select = ({
       <div>
         <select {...input} className="select">
           {selectlist.map(({ value, label }) => (
-            <option value={value}>{label}</option>
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </select>
         <div>{showError && <span className="error">{errCode}</span>}</div>

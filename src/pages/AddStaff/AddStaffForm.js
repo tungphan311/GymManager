@@ -96,10 +96,10 @@ function AddStaffForm({ handleSubmit }) {
         </div>
         {/* <DatePicker  date={startDate} setDate={setStartDate} /> */}
         <div className="group">
-          <button type="button" className="groupBtn btn-lg">
+          <button type="button" className="groupBtn btn btn-primary btn-border">
             Trở về
           </button>
-          <button type="submit" className="groupBtn btn-primary btn-lg mr-0">
+          <button type="submit" className="groupBtn btn btn-primary mr-0">
             Thêm nhân viên
           </button>
         </div>
