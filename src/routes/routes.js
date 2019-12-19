@@ -3,12 +3,14 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
 import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
+import AddMember from "pages/AddMember/AddMember";
 import AddEquipment from "pages/AddEquipment/AddEquipment";
 import AddCourse from "pages/AddCourse/AddCourse";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "pages/ChangePassword/ChangePassword";
 import Staffs from "pages/Staffs/Staffs";
 import SellCourses from "pages/SellCourses/SellCourses";
+import EditStaff from "pages/EditStaff/EditStaff";
 import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -44,7 +46,9 @@ class Routes extends Component {
             "/staffs/add",
             "/sell-courses",
             "/courses/add",
-            "/equipments/add"
+            "/equipments/add",
+            "/members/add",
+            "/staffs/:id"
           ]}
         >
           <DefaultLayout>
@@ -77,6 +81,18 @@ class Routes extends Component {
               exact
               path="/equipments/add"
               component={AddEquipment}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/members/add"
+              component={AddMember}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/staffs/:id"
+              component={EditStaff}
               isUser={isUser}
             />
           </DefaultLayout>

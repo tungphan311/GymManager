@@ -5,7 +5,8 @@ import {
   maxLength15,
   validString,
   validNumber,
-  validDob
+  validDob,
+  validID
 } from "utils/validate";
 import { buildErr } from "utils/utils";
 
@@ -41,3 +42,6 @@ export const matchPassword = (value, allValues) =>
   value !== allValues.password
     ? buildErr("Mật khẩu không trùng khớp. Vui lòng nhập lại")
     : undefined;
+
+export const idValid = value =>
+  validID(value) ? undefined : buildErr("Vui lòng nhập số CMND hợp lệ");

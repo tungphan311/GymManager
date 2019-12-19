@@ -1,8 +1,8 @@
-import React, { Component } from "pages/AddMember/react";
-import AddMemberForm from "pages/AddMember/pages/AddMember/AddMemberForm";
+import React, { Component } from "react";
+import AddMemberForm from "pages/AddMember/AddMemberForm";
 import "./AddMember.scss";
-import { connect } from "pages/AddMember/react-redux";
-import { ADD_MEMBER } from "pages/AddMember/state/reducers/memberReducer";
+import { connect } from "react-redux";
+import { ADD_MEMBER } from "state/reducers/memberReducer";
 // import LoadingScreen from "Components/LoadingScreen/LoadingScreen";
 
 const mapDispatchToProps = dispatch => ({

@@ -1,3 +1,3 @@
 import { get } from "lodash";
 
-export const getTrainers = state => get(state, "staff.trainer") || [];
+export const getTrainersSelector = state => get(state, "staff.trainer") || [];

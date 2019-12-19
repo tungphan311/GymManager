@@ -8,7 +8,8 @@ import {
   DELETE_STAFF,
   DELETE_STAFF_SUCCESS,
   FILTER_STAFF,
-  FILTER_STAFF_SUCCESS
+  FILTER_STAFF_SUCCESS,
+  EDIT_STAFF
 } from "state/reducers/staffReducer";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
@@ -17,8 +18,10 @@ import {
   getMentor,
   getAllStaff,
   deleteStaff,
-  filterStaff
+  filterStaff,
+  getStaff
 } from "services/staffServices";
+
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
@@ -65,11 +68,30 @@ export function* addStaffSaga() {
     yield put({ type: SET_LOADING, status: false });
   }
 }
+
+export function* getStaffSaga({ id }) {
+  try {
+    const results = yield call(getStaff, { id });
+
+    yield put({ type: GET_STAFF_SUCCESS, results });
+  } catch (error) {
+    toastErr(error);
+  } finally {
+  }
+}
+
 export function* getMentorSaga() {
   try {
     const results = yield call(getMentor, {
       roleid: 1
     });
+  } catch (error) {
+    toastErr(error);
+  }
+}
+
+export function* editStaffSaga() {
+  try {
   } catch (error) {}
 }
 export function* getAllStaffSaga() {
@@ -118,4 +140,6 @@ export default function* staffSaga() {
   yield takeEvery(GET_MENTOR, getMentorSaga);
   yield takeEvery(DELETE_STAFF, deleteStaffSaga);
   yield takeEvery(FILTER_STAFF, filterStaffs);
+  yield takeEvery(GET_STAFF, getStaffSaga);
+  yield takeEvery(EDIT_STAFF, editStaffSaga);
 }

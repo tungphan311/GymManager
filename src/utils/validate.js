@@ -37,3 +37,5 @@ export const validDob = string => {
     today - string.getFullYear() >= 18 && today - string.getFullYear() <= 50
   );
 };
+
+export const validID = value => /([0-0]{9})/.test(value);
