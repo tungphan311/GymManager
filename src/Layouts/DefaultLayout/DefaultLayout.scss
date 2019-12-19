@@ -1,16 +1,18 @@
-.content {
-  min-height: calc(100% - 62px) !important;
-  margin-top: 62px;
-  overflow: hidden;
-  display: flex;
-  flex-flow: column;
-}
+.wrapper {
+  .content {
+    min-height: calc(100% - 62px) !important;
+    margin-top: 62px;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+  }
 
-.page-inner {
-  flex-grow: 1;
-  background-color: #e9ecef;
-}
+  .page-inner {
+    flex-grow: 1;
+    background-color: #e9ecef;
+  }
 
-.footer {
-  position: relative;
+  .footer {
+    position: relative;
+  }
 }

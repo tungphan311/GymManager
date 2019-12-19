@@ -1,35 +1,39 @@
 .staff__container {
   margin-bottom: 16px;
-}
 
-.staff__container > button {
-  margin: 10px;
-  display: flex;
-}
+  .staff__container > button {
+    margin: 10px;
+    display: flex;
+  }
 
-.filter__container {
-  display: flex;
-  justify-content: center;
-}
-.title__container {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.title {
-  display: flex;
-  margin: 1px;
-  padding: 5px;
-}
-.button_Add {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.btn .btn-label i {
-  vertical-align: baseline;
+  .filter__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .title__container {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    display: flex;
+    margin: 1px;
+    padding: 5px;
+  }
+
+  .button_Add {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .btn .btn-label i {
+    vertical-align: baseline;
+  }
 }
