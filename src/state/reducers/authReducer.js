@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 export const LOGIN = "auth/LOGIN";
 export const LOGIN_SUCCESS = "auth/LOGIN_SUCCESS";
 export const LOGIN_FAIL = "auth/LOGIN_FAIL";
@@ -8,7 +10,8 @@ export const LOGOUT_SUCCESS = "auth/LOGOUT_SUCCESS";
 export const GET_SESSION = "auth/GET_SESSION";
 
 const initState = {
-  token: null
+  token: null,
+  identity: {}
 };
 
 export function authReducer(state = initState, action = {}) {
@@ -16,7 +19,12 @@ export function authReducer(state = initState, action = {}) {
 
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      newState.token = action.payload.token;
+      const { token } = action.payload;
+
+      const decoded = jwt_decode(token);
+      newState.identity = decoded;
+
+      newState.token = token;
       return newState;
     }
     case LOGIN_FAIL: {

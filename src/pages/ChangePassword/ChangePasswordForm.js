@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import Input from "Components/Input/Input";
-import { require, password } from "utils/FormValidate";
+import { require, password, matchPassword } from "utils/FormValidate";
 import { FORM_KEY_CHANGE_PASSWORD } from "state/reducers/formReducer";
 
 function changePassword({ handleSubmit }) {
@@ -14,12 +14,13 @@ function changePassword({ handleSubmit }) {
         component={Input}
         validate={[require, password]}
       />
+
       <Field
         name="password_confirm"
         type="password"
         placeholder="Confirm your passord"
         component={Input}
-        validate={[require, password]}
+        validate={[require, password, matchPassword]}
       />
       <div className="form-group">
         <button className="btn btn-primary btn-block" type="submit">

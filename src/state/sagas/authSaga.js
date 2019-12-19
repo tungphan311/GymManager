@@ -25,10 +25,10 @@ export function* loginSaga() {
 
     yield toast({ message: "Đăng nhập thành công" });
 
-    let decoded = yield jwt_decode(response.token);
-    const { is_new, name, roleid, username: user_name } = decoded;
+    const decoded = yield jwt_decode(response.token);
+    const { isnew } = decoded;
 
-    if (is_new) {
+    if (isnew) {
       yield history.push("/change-password");
     } else {
       yield history.push("/");
