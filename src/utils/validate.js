@@ -31,6 +31,7 @@ export const validNumber = string =>
   /[0]+(86|32|33|34|35|36|37|38|39|70|76|78|79|77|81|82|83|85|84|56|59|58|97|96|98|90|93|89|88|91|94|92)([0-9]{7})\b/g.test(
     string
   );
+
 export const validDob = string => {
   const today = new Date().getFullYear();
   return (
