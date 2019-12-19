@@ -5,6 +5,7 @@ import { staffReducer } from "state/reducers/staffReducer";
 import { loadingReducer } from "state/reducers/loadingReducer";
 import { memberReducer } from "state/reducers/memberReducer";
 import { courseReducer } from "state/reducers/courseReducer";
+import { modalReducer } from "state/reducers/modalReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   staff: staffReducer,
   loading: loadingReducer,
   member: memberReducer,
-  course: courseReducer
+  course: courseReducer,
+  modal: modalReducer
 });

@@ -2,8 +2,20 @@
 import React from "react";
 import "./SellCourses.scss";
 import Section from "Components/Section/Section";
+import { connect } from "react-redux";
+import { TOGGLE_MODAL } from "state/reducers/modalReducer";
+import { getModalSelector } from "state/selectors/modalSelector";
+import SellCourseModal from "pages/SellCourses/SellCourseModal";
 
-function SellCourses() {
+const mapDispatchToProps = dispatch => ({
+  toggleModal: () => dispatch({ type: TOGGLE_MODAL })
+});
+
+const mapStateToProps = state => ({
+  isOpen: getModalSelector(state)
+});
+
+function SellCourses({ isOpen, toggleModal }) {
   return (
     <div className="sellcourses__container">
       <div className="page-header">
@@ -21,8 +33,10 @@ function SellCourses() {
       </div>
 
       <Section />
+
+      <SellCourseModal isOpen={isOpen} toggleModal={toggleModal} />
     </div>
   );
 }
 
-export default SellCourses;
+export default connect(mapStateToProps, mapDispatchToProps)(SellCourses);
