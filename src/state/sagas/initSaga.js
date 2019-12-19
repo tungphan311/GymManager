@@ -1,4 +1,4 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import { INIT_DATA } from "state/reducers/initReducer";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { getMentor } from "services/staffServices";
@@ -18,7 +18,7 @@ export function* initDataSaga() {
       };
       return Obj;
     });
-    console.log(response);
+
     yield put({ type: GET_MENTOR_SUCCESS, response });
   } catch (error) {
   } finally {

@@ -4,7 +4,7 @@ import { formReducer } from "state/reducers/formReducer";
 import { staffReducer } from "state/reducers/staffReducer";
 import { loadingReducer } from "state/reducers/loadingReducer";
 import { memberReducer } from "state/reducers/memberReducer";
-import { classReducer } from "state/reducers/classReducer";
+import { courseReducer } from "state/reducers/courseReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -12,5 +12,5 @@ export default combineReducers({
   staff: staffReducer,
   loading: loadingReducer,
   member: memberReducer,
-  class: classReducer
+  course: courseReducer
 });

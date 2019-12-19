@@ -18,12 +18,12 @@ export function staffReducer(state = initState, action = {}) {
   switch (action.type) {
     case GET_MENTOR_SUCCESS: {
       const { response } = action;
-      // newState.trainer.push(response);
+
       response.map(ele => {
         newState.trainer.push(ele);
         return null;
       });
-      console.log(newState);
+
       return newState;
     }
     default:
