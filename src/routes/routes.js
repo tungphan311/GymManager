@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
 import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
+import AddCourse from "pages/AddCourse/AddCourse";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "pages/ChangePassword/ChangePassword";
 import Staffs from "pages/Staffs/Staffs";
@@ -34,7 +35,16 @@ class Routes extends Component {
 
     return (
       <Switch>
-        <Route exact path={["/", "/staffs", "/staffs/add", "/sell-courses"]}>
+        <Route
+          exact
+          path={[
+            "/",
+            "/staffs",
+            "/staffs/add",
+            "/sell-courses",
+            "/courses/add"
+          ]}
+        >
           <DefaultLayout>
             <AuthorizedRoute exact path="/" component={Home} isUser={isUser} />
             <AuthorizedRoute
@@ -53,6 +63,12 @@ class Routes extends Component {
               exact
               path="/sell-courses"
               component={SellCourses}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/courses/add"
+              component={AddCourse}
               isUser={isUser}
             />
           </DefaultLayout>

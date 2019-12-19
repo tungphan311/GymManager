@@ -1,4 +1,5 @@
 import API from "utils/Axios";
+const queryString = require("query-string");
 
 export async function addStaff({
   fullname,
@@ -22,4 +23,9 @@ export async function addStaff({
     beginday,
     birthdate
   });
+}
+
+export async function getMentor(param) {
+  const url = "/staffs?" + queryString.stringify(param);
+  return await API.get(url);
 }

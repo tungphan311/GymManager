@@ -3,10 +3,12 @@ import { authReducer } from "state/reducers/authReducer";
 import { formReducer } from "state/reducers/formReducer";
 import { staffReducer } from "state/reducers/staffReducer";
 import { loadingReducer } from "state/reducers/loadingReducer";
+import { memberReducer } from "state/reducers/memberReducer";
 
 export default combineReducers({
   auth: authReducer,
   form: formReducer,
   staff: staffReducer,
-  loading: loadingReducer
+  loading: loadingReducer,
+  member: memberReducer
 });
