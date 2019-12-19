@@ -33,12 +33,22 @@ export const SIDEBAR_LIST = [
   },
   {
     id: "courses",
-    icon: "fas fa-user",
+    icon: "fas fa-layer-group",
     title: "Gói tập",
     href: "/courses",
     sub: [
       { href: "/courses/add", title: "Thêm gói tập mới" },
       { href: "/courses", title: "Danh sách gói tập" }
+    ]
+  },
+  {
+    id: "equipment",
+    icon: "fas fa-dumbbell",
+    title: "Thiết bị",
+    href: "/equipments",
+    sub: [
+      { href: "/equipments/add", title: "Thêm thiế bị mới" },
+      { href: "/equipments", title: "Danh sách thiết bị" }
     ]
   }
 ];

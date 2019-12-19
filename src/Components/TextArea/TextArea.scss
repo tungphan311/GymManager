@@ -1,11 +1,10 @@
-.input__field {
+.text__field {
   background: transparent;
   border: none;
   border: 1px solid #434a52;
   color: $black;
   width: 100%;
   display: block;
-  height: auto;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -13,7 +12,7 @@
   border-radius: 5px;
 }
 
-.input__container {
+.text__container {
   margin-top: 30px;
 }
 
