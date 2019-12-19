@@ -4,9 +4,10 @@
   justify-content: space-between;
   display: flex;
   width: 80%;
+  height: auto !important;
 
   background-color: $white;
-  box-shadow: 2px 2px 8px 1px #888888;
+  box-shadow: 2px 2px 8px 1px #888888 !important;
   flex-direction: column;
 }
 
@@ -25,7 +26,7 @@
 .groupBtn {
   border: none;
   font-size: 20px;
-  margin-top: 40px;
+  margin-top: 40px !important;
   margin-right: 20px;
   width: 250px;
 }
