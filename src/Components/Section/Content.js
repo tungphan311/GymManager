@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { GET_CLASS } from "state/reducers/courseReducer";
 import { getClassesWithId } from "state/selectors/courseSelector";
 import { formatCurrenccy } from "utils/utils";
+import { TOGGLE_MODAL } from "state/reducers/modalReducer";
 
 const mapDispatchToProps = dispatch => ({
-  getClasses: id => dispatch({ type: GET_CLASS, id })
+  getClasses: id => dispatch({ type: GET_CLASS, id }),
+  toggleModal: id => dispatch({ type: TOGGLE_MODAL, status: true, id })
 });
 
 const mapStateToProps = state => ({
@@ -30,7 +32,7 @@ const Duration = ({ time, href, active }) => (
   </a>
 );
 
-const Info = ({ time, href, active, Price }) => (
+const Info = ({ time, href, active, Price, toggleModal, id }) => (
   <ul className={`tab-pane fade ${active ? "active show" : ""}`} id={href}>
     <li>
       <div className="label-text">Thời gian tập luyện:</div>
@@ -57,7 +59,11 @@ const Info = ({ time, href, active, Price }) => (
       )} VNĐ`}</div>
     </li>
     <li style={{ display: "flex", justifyContent: "center" }}>
-      <button type="submit" className="btn btn-brand btn-sm">
+      <button
+        type="submit"
+        className="btn btn-brand btn-sm"
+        onClick={() => toggleModal(id)}
+      >
         Đăng ký ngay
       </button>
     </li>
@@ -72,7 +78,7 @@ class Content extends Component {
   };
 
   render() {
-    const { href, active, id } = this.props;
+    const { href, active, id, toggleModal } = this.props;
     let classes = this.props.classes(id);
 
     if (classes.length === 0) return null;
@@ -106,10 +112,12 @@ class Content extends Component {
               {classes.map(item => (
                 <Info
                   key={item.href}
+                  id={item.ID}
                   href={item.href}
                   time={item.DurationDays}
                   Price={item.Price}
                   active={classes.indexOf(item) === 0}
+                  toggleModal={toggleModal}
                 />
               ))}
             </div>
