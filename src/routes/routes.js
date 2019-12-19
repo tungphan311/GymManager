@@ -6,6 +6,7 @@ import AddStaff from "pages/AddStaff/AddStaff";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "pages/ChangePassword/ChangePassword";
 import Staffs from "pages/Staffs/Staffs";
+import SellCourses from "pages/SellCourses/SellCourses";
 import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -33,7 +34,7 @@ class Routes extends Component {
 
     return (
       <Switch>
-        <Route exact path={["/", "/staffs", "/staffs/add"]}>
+        <Route exact path={["/", "/staffs", "/staffs/add", "/sell-courses"]}>
           <DefaultLayout>
             <AuthorizedRoute exact path="/" component={Home} isUser={isUser} />
             <AuthorizedRoute
@@ -46,6 +47,12 @@ class Routes extends Component {
               exact
               path="/staffs"
               component={Staffs}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/sell-courses"
+              component={SellCourses}
               isUser={isUser}
             />
           </DefaultLayout>

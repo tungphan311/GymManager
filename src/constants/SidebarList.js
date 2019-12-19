@@ -6,6 +6,12 @@ export const SIDEBAR_LIST = [
     href: "/"
   },
   {
+    id: "seller",
+    icon: "fas fa-coins",
+    title: "Đăng ký gói tập",
+    href: "/sell-courses"
+  },
+  {
     id: "staff",
     icon: "fas fa-users",
     title: "Nhân viên",
