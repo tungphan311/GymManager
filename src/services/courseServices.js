@@ -9,5 +9,5 @@ export async function deleteCourse({ courseID }) {
 }
 
 export async function getClassesService({ id }) {
-  return await API.post(`/classes/classtype/${id}`);
+  return await API.get(`/classes/classtype/${id}`);
 }

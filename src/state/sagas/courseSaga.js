@@ -3,12 +3,18 @@ import {
   GET_COURSE_SUCCESS,
   GET_COURSE,
   DELETE_COURSE,
-  DELETE_COURSE_SUCCESS
+  DELETE_COURSE_SUCCESS,
+  GET_CLASS,
+  GET_CLASS_SUCCESS
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
-import { getAllCourse, deleteCourse } from "services/courseServices";
+import {
+  getAllCourse,
+  deleteCourse,
+  getClassesService
+} from "services/courseServices";
 
 export function* getAllCourseSaga() {
   try {
@@ -38,7 +44,22 @@ export function* deleteCourseSaga({ courseID }) {
   }
 }
 
+export function* getClassesSaga({ id }) {
+  try {
+    yield put({ type: SET_LOADING });
+
+    const result = yield call(getClassesService, { id });
+
+    yield put({ type: GET_CLASS_SUCCESS, payload: result.data, id });
+  } catch (err) {
+    yield toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* courseSaga() {
   yield takeEvery(GET_COURSE, getAllCourseSaga);
   yield takeEvery(DELETE_COURSE, deleteCourseSaga);
+  yield takeEvery(GET_CLASS, getClassesSaga);
 }
