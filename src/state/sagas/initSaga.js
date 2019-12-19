@@ -11,6 +11,7 @@ export function* initDataSaga() {
     const result = yield call(getMentor, {
       roleid: 1
     });
+
     const response = result.data.map(ele => {
       const Obj = {
         value: ele.ID,
@@ -18,7 +19,7 @@ export function* initDataSaga() {
       };
       return Obj;
     });
-    console.log(response);
+
     yield put({ type: GET_MENTOR_SUCCESS, response });
   } catch (error) {
   } finally {

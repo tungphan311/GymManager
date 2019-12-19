@@ -1,82 +1,139 @@
+import { ROLE } from "constants/role";
+import { GENDERS, TYPE } from "constants/index";
+
 import React from "react";
 import "./Staffs.scss";
 import TableItem from "Components/TableItem/TableItem";
 import { MDBCard, MDBCardBody, MDBCardTitle } from "mdbreact";
-import DropDownITem from "Components/Dropdown/Dropdown";
+import {
+  GET_STAFF,
+  DELETE_STAFF,
+  FILTER_STAFF
+} from "state/reducers/staffReducer";
+import { getStaffsSelector } from "state/selectors/staffSelector";
+import { connect } from "react-redux";
+import { formatGender, setStaffType, setRole, formatDate } from "utils/utils";
+import history from "state/history";
+import Select from "Components/Select/Select";
 
-const dataSource = [];
-for (let i = 0; i < 100; i++) {
-  dataSource.push({
-    name: "Tiger Nixon " + i,
-    position: "System Architect " + i,
-    office: "Edinburgh " + i,
-    age: "30" + i,
-    date: "2011/04/25",
-    salary: 30 * i,
-    action: (
-      <div className="button">
-        <button className="btn btn-link btn-dark">
-          <i className="fa fa-eye"></i>
-        </button>
-        <button className="btn btn-link btn-primary btn-lg">
-          <i className="fa fa-edit"></i>
-        </button>
-        <button className="btn btn-link btn-danger">
-          <i className="fa fa-times"></i>
-        </button>
-      </div>
-    )
-  });
-}
+const mapDispatchToProps = dispatch => ({
+  getAllStaff: () => dispatch({ type: GET_STAFF }),
+  deleteStaff: staffID => dispatch({ type: DELETE_STAFF, staffID }),
+  filterStaff: (gender, roleid, stafftypeid) =>
+    dispatch({ type: FILTER_STAFF, gender, roleid, stafftypeid })
+});
+
+const mapStatetoProps = state => ({
+  staffs: getStaffsSelector(state)
+});
+
 class Staffs extends React.Component {
-  state = {};
-  listFilterItem = ["a", "b", "c", "d"];
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      gender: 0,
+      roleid: 0,
+      stafftypeid: 0
+    };
+  }
+
+  componentDidMount = () => {
+    this.props.getAllStaff();
+  };
+
+  formatStaff(listOfStaffs) {
+    const NewList = listOfStaffs.map(item => {
+      const newStaffItems = {
+        ...item,
+        Gender: formatGender(item.Gender),
+        RoleID: setRole(item.RoleID),
+        StaffTypeID: setStaffType(item.StaffTypeID),
+        BeginDay: formatDate(item.BeginDay),
+        Action: (
+          <div className="button">
+            <button className="btn btn-link btn-dark">
+              <i className="fa fa-eye"></i>
+            </button>
+            <button
+              className="btn btn-link btn-primary btn-lg"
+              onClick={() => history.push("/" + item.ID)}
+            >
+              <i className="fa fa-edit"></i>
+            </button>
+            <button
+              className="btn btn-link btn-danger"
+              onClick={() => this.deleteStaff(item.ID)}
+            >
+              <i className="fa fa-times"></i>
+            </button>
+          </div>
+        )
+      };
+      return newStaffItems;
+    });
+    return NewList;
+  }
+
+  deleteStaff(staffID) {
+    this.props.deleteStaff(staffID);
+  }
+  _handleChange = event => {
+    let { name, value } = event.target;
+
+    this.setState(
+      {
+        [name]: parseInt(value)
+      },
+      () => {
+        const { gender, roleid, stafftypeid } = this.state;
+        this.props.filterStaff(gender, roleid, stafftypeid);
+      }
+    );
+  };
+
   render() {
+    let staffs = this.props.staffs;
+    if (staffs.length > 0) {
+      staffs = this.formatStaff(staffs);
+    }
+
     const data = {
       columns: [
         {
-          label: "Name",
-          field: "name",
-          sort: "asc",
-          width: 150
+          label: "Họ và tên",
+          field: "FullName",
+          sort: "asc"
+          // width: 600
         },
         {
-          label: "Position",
-          field: "position",
-          sort: "asc",
-          width: 270
+          label: "Vai trò",
+          field: "RoleID",
+          sort: "asc"
+          // width: 150
         },
         {
-          label: "Office",
-          field: "office",
-          sort: "asc",
-          width: 200
+          label: "Loại nhân viên",
+          field: "StaffTypeID"
+          // width: 200
         },
         {
-          label: "Age",
-          field: "age",
-          sort: "asc",
-          width: 100
+          label: "Ngày vào làm",
+          field: "BeginDay"
+          // width: 100
         },
         {
-          label: "Start date",
-          field: "date",
-          sort: "asc",
-          width: 150
+          label: "Giới tính",
+          field: "Gender"
+          // width: 100
         },
         {
-          label: "Salary",
-          field: "salary",
-          sort: "asc",
-          width: 100
-        },
-        {
-          label: "Action",
-          field: "action",
-          width: 300
+          label: "Công cụ",
+          field: "Action"
+          // width: 100
         }
       ],
-      rows: dataSource
+      rows: staffs
     };
     return (
       <div className="staff__container">
@@ -96,30 +153,24 @@ class Staffs extends React.Component {
               </div>
             </MDBCardTitle>
             <div className="filter__container">
-              <DropDownITem
-                key={1}
-                className="dropDownItem"
-                title="Filter"
-                listItem={this.listFilterItem}
+              <Select
+                className="selectRole"
+                selectlist={ROLE}
+                selectName="roleid"
+                onChange={this._handleChange}
               />
-              <DropDownITem
-                key={2}
-                className="dropDownItem"
-                title="Filter"
-                listItem={this.listFilterItem}
-              />
-              <DropDownITem
-                key={3}
-                className="dropDownItem"
-                title="Filter"
-                listItem={this.listFilterItem}
-              />
-              <DropDownITem
-                key={4}
-                className="dropDownItem"
-                title="Filter"
-                listItem={this.listFilterItem}
-              />
+              <Select
+                className="selectGender"
+                selectName="gender"
+                selectlist={GENDERS}
+                onChange={this._handleChange}
+              ></Select>
+              <Select
+                className="selectType"
+                selectlist={TYPE}
+                selectName="stafftypeid"
+                onChange={this._handleChange}
+              ></Select>
             </div>
             {/* <MDBCardText> */}
             <TableItem dataSource={data} />
@@ -131,4 +182,4 @@ class Staffs extends React.Component {
   }
 }
 
-export default Staffs;
+export default connect(mapStatetoProps, mapDispatchToProps)(Staffs);

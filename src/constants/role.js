@@ -1,26 +1,26 @@
 export const ROLE = [
   {
-    value: "",
+    value: 0,
     label: "Vui lòng chọn vai trò"
   },
   {
-    value: 0,
+    value: 1,
     label: "Quản lý"
   },
   {
-    value: 1,
+    value: 2,
     label: "Huấn luyện viên"
   },
   {
-    value: 2,
+    value: 3,
     label: "Lễ tân"
   },
   {
-    value: 3,
+    value: 4,
     label: "Kế toán"
   },
   {
-    value: 4,
+    value: 5,
     label: "Nhân viên quản lý thiết bị"
   }
 ];

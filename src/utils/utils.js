@@ -35,7 +35,8 @@ export function getPathname(pathname) {
   return path;
 }
 
-export function formatDate(date) {
+export function formatDate(datestr) {
+  const date = new Date(datestr);
   const d = date.getDate();
   const m = date.getMonth() + 1;
   const y = date.getFullYear();
@@ -66,4 +67,36 @@ export function toastErr(error) {
   }
 
   toast({ type: "error", message: errMsg });
+}
+
+export function formatGender(id) {
+  if (id == 1) return "Nam";
+  else if (id == 2) return "Nữ";
+  else if (id == 3) return "Khác";
+}
+
+export function setStaffType(id) {
+  if (id == 1) return "Toàn thời gian";
+  else if (id == 2) return "Bán thời gian";
+}
+export function setRole(id) {
+  switch (id) {
+    case 1:
+      return "Quản lý";
+
+    case 2:
+      return "Huấn luyện viên";
+
+    case 3:
+      return "Lễ tân";
+
+    case 4:
+      return "Kế toán";
+
+    case 5:
+      return "Quản lý thiết bị";
+
+    default:
+      break;
+  }
 }

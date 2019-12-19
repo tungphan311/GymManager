@@ -1,18 +1,18 @@
 export const GENDERS = [
   {
-    value: "",
+    value: 0,
     label: "Vui lòng chọn giới tính"
   },
   {
-    value: 0,
+    value: 1,
     label: "Nam"
   },
   {
-    value: 1,
+    value: 2,
     label: "Nữ"
   },
   {
-    value: 2,
+    value: 3,
     label: "Khác"
   }
 ];
