@@ -45,6 +45,7 @@
     transform: translateY(1px);
   }
 }
+
 .forgot {
   display: block;
   text-align: center;
@@ -57,4 +58,8 @@
     opacity: 1;
     text-decoration: none;
   }
+}
+
+input {
+  height: 45px;
 }

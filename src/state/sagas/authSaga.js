@@ -64,6 +64,8 @@ export function* changePasswordSaga() {
     const response = result.data;
 
     yield toast({ message: response });
+
+    history.push("/");
   } catch (err) {
     yield toast({ type: "error", message: "Không thành công" });
   } finally {

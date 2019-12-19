@@ -12,7 +12,12 @@ class AddStaff extends Component {
   render() {
     return (
       <div className="addstaff">
-        <h1 className="text-center">THÊM NHÂN VIÊN MỚI</h1>
+        <h1
+          className="text-center"
+          style={{ padding: "20px 0", marginBottom: "24px" }}
+        >
+          THÊM NHÂN VIÊN MỚI
+        </h1>
         <AddStaffForm onSubmit={this.props.addStaff} />
       </div>
     );
