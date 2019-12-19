@@ -1,6 +1,7 @@
 import Toaster from "Components/Toastify/Toaster";
 import { toast as toaster } from "react-toastify";
 import React from "react";
+import { get } from "lodash";
 
 export function getToken(key) {
   return localStorage.getItem(key);
@@ -55,4 +56,14 @@ export function getItemFromStorage(key) {
 
 export function setSessionStorage(key, value) {
   sessionStorage.setItem(key, value);
+}
+
+export function toastErr(error) {
+  let errMsg = get(error, "response.data.Message");
+
+  if (!errMsg) {
+    errMsg = "Có lỗi xảy ra";
+  }
+
+  toast({ type: "error", message: errMsg });
 }
