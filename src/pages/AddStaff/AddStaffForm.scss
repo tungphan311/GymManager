@@ -1,41 +1,43 @@
-.container {
-  padding-top: 30px !important;
-  padding-bottom: 60px !important;
-  justify-content: space-between;
-  display: flex;
-  width: 80%;
-  height: auto !important;
+.addStaffForm {
+  .container {
+    padding-top: 30px !important;
+    padding-bottom: 60px !important;
+    justify-content: space-between;
+    display: flex;
+    width: 80%;
+    height: auto !important;
 
-  background-color: $white;
-  box-shadow: 2px 2px 8px 1px #888888 !important;
-  flex-direction: column;
-}
+    background-color: $white;
+    box-shadow: 2px 2px 8px 1px #888888 !important;
+    flex-direction: column;
+  }
 
-.input__container {
-  width: 100%;
-  padding-left: 5px;
-  padding-right: 5px;
-}
+  .input__container {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 
-.displayRow {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
+  .displayRow {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 
-.groupBtn {
-  border: none;
-  font-size: 20px;
-  margin-top: 40px !important;
-  margin-right: 20px;
-  width: 250px;
-}
+  .groupBtn {
+    border: none;
+    font-size: 20px;
+    margin-top: 40px !important;
+    margin-right: 20px;
+    width: 250px;
+  }
 
-.group {
-  display: flex;
-  justify-content: flex-end;
-}
+  .group {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-label {
-  margin: 0 !important;
+  label {
+    margin: 0 !important;
+  }
 }
