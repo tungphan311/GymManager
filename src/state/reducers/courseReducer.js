@@ -6,6 +6,7 @@ export const DELETE_COURSE_SUCCESS = "cours/DELETE_COURSE_SUCCESS";
 
 export const GET_CLASS = "course/GET_CLASS";
 export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
+
 const initState = {
   courses: [],
   1: [],
@@ -37,6 +38,7 @@ export function courseReducer(state = initState, action = {}) {
 
       return newState;
     }
+
     default:
       return newState;
   }
