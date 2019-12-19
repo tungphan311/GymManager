@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
 import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
+import AddEquipment from "pages/AddEquipment/AddEquipment";
 import AddCourse from "pages/AddCourse/AddCourse";
 import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "pages/ChangePassword/ChangePassword";
@@ -42,7 +43,8 @@ class Routes extends Component {
             "/staffs",
             "/staffs/add",
             "/sell-courses",
-            "/courses/add"
+            "/courses/add",
+            "/equipments/add"
           ]}
         >
           <DefaultLayout>
@@ -69,6 +71,12 @@ class Routes extends Component {
               exact
               path="/courses/add"
               component={AddCourse}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/equipments/add"
+              component={AddEquipment}
               isUser={isUser}
             />
           </DefaultLayout>
