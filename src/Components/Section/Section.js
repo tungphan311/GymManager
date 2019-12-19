@@ -1,6 +1,7 @@
 import { NAV_LIST } from "constants/index";
 import React from "react";
 import HeaderItem from "Components/Section/HeaderItem";
+import Content from "Components/Section/Content";
 
 function Section() {
   return (
@@ -9,18 +10,22 @@ function Section() {
         <div className="row align-items-center">
           <div className="col-lg-7 content-text m-b-md-3">
             <ul className="tag-inline tag-col-3 nav nav-tabs m-b-24px m-t-md-3 d-block text-center">
-              {NAV_LIST.map(({ title, href, data, active }) => (
+              {NAV_LIST.map(({ title, href, data, active, id }) => (
                 <HeaderItem
-                  key={title}
+                  key={id}
+                  id={id}
                   title={title}
-                  href={href}
+                  href={`#${href}`}
                   data={data}
                   active={active}
                 />
               ))}
             </ul>
             <div className="tab-content">
-              <div className="tab-pane fade active show" id="package-list-0">
+              {NAV_LIST.map(({ id, href, active }) => (
+                <Content key={id} id={id} href={href} active={active} />
+              ))}
+              {/* <div className="tab-pane fade active show" id="package-list-0">
                 <div className="row align-items-center">
                   <div className="col-md-6 item-selection-wrapper">
                     <div className="item-selection nav nav-tabs border-bottom-0">
@@ -357,7 +362,7 @@ function Section() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-lg-5 content-bg stripe-section">
