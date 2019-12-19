@@ -4,7 +4,7 @@ import Input from "Components/Input/Input";
 import { require, password, matchPassword } from "utils/FormValidate";
 import { FORM_KEY_CHANGE_PASSWORD } from "state/reducers/formReducer";
 
-function changePassword({ handleSubmit }) {
+function ChangePasswordForm({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit} noValidate>
       <Field
@@ -34,4 +34,4 @@ function changePassword({ handleSubmit }) {
 export default reduxForm({
   form: FORM_KEY_CHANGE_PASSWORD, // a unique identifier for this form
   touchOnBlur: false
-})(changePassword);
+})(ChangePasswordForm);

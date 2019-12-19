@@ -3,7 +3,6 @@ import "./Login.scss";
 import LoginForm from "pages/Login/LoginForm";
 import { connect } from "react-redux";
 import { LOGIN } from "state/reducers/authReducer";
-import { Redirect } from "react-router-dom";
 import { getToken } from "utils/utils";
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +15,7 @@ class Login extends Component {
       this.props.history.push("/");
     }
   };
+
   render() {
     return (
       <div className="login__container">

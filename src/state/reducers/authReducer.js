@@ -7,7 +7,7 @@ export const LOGIN_FAIL = "auth/LOGIN_FAIL";
 export const LOGOUT = "auth/LOGOUT";
 export const LOGOUT_SUCCESS = "auth/LOGOUT_SUCCESS";
 
-export const GET_SESSION = "auth/GET_SESSION";
+export const CHANGE_PASSWORD = "auth/CHANGE_PASSWORD";
 
 const initState = {
   token: null,
