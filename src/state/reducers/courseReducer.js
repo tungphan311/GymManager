@@ -9,10 +9,13 @@ export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
 
 const initState = {
   courses: [],
-  1: [],
-  2: [],
-  3: [],
-  4: []
+  false1: [],
+  false2: [],
+  false3: [],
+  false4: [],
+  true2: [],
+  true3: [],
+  true4: []
 };
 
 export function courseReducer(state = initState, action = {}) {
@@ -32,9 +35,9 @@ export function courseReducer(state = initState, action = {}) {
       return newState;
     }
     case GET_CLASS_SUCCESS: {
-      const { payload, id } = action;
+      const { payload, id, haspt } = action;
 
-      newState[id] = payload;
+      newState[`${haspt}${id}`] = payload;
 
       return newState;
     }

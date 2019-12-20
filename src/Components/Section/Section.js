@@ -1,16 +1,17 @@
-import { NAV_LIST } from "constants/index";
+import { NAV_LIST, NAV_LIST_WITH_HLV } from "constants/index";
 import React from "react";
 import HeaderItem from "Components/Section/HeaderItem";
 import Content from "Components/Section/Content";
 
 function Section({ haspt }) {
+  const navs = haspt ? NAV_LIST_WITH_HLV : NAV_LIST;
   return (
     <section className="section section-pricing-detail mb-0">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-8 content-text m-b-md-3">
             <ul className="tag-inline tag-col-3 nav nav-tabs m-b-24px m-t-md-3 d-block text-center">
-              {NAV_LIST.map(({ title, href, data, active, id }) => (
+              {navs.map(({ title, href, data, active, id }) => (
                 <HeaderItem
                   key={id}
                   id={id}
@@ -22,7 +23,7 @@ function Section({ haspt }) {
               ))}
             </ul>
             <div className="tab-content">
-              {NAV_LIST.map(({ id, href, active }) => (
+              {navs.map(({ id, href, active }) => (
                 <Content
                   key={id}
                   id={id}

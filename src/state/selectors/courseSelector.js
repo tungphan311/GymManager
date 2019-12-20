@@ -2,8 +2,8 @@ import { get } from "lodash";
 
 export const getCoursesSelector = state => get(state, "course.courses") || [];
 
-export const getClassesWithId = (state, id) => {
+export const getClassesWithId = (state, id, haspt) => {
   const course = get(state, "course") || {};
 
-  return course[id];
+  return course[`${haspt}${id}`];
 };

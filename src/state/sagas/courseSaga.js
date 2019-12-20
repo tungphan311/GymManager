@@ -44,13 +44,13 @@ export function* deleteCourseSaga({ courseID }) {
   }
 }
 
-export function* getClassesSaga({ id }) {
+export function* getClassesSaga({ id, haspt }) {
   try {
     yield put({ type: SET_LOADING });
 
-    const result = yield call(getClassesService, { id });
+    const result = yield call(getClassesService, { id, haspt });
 
-    yield put({ type: GET_CLASS_SUCCESS, payload: result.data, id });
+    yield put({ type: GET_CLASS_SUCCESS, payload: result.data, id, haspt });
   } catch (err) {
     yield toastErr(err);
   } finally {

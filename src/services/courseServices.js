@@ -8,6 +8,6 @@ export async function deleteCourse({ courseID }) {
   return await API.get(url);
 }
 
-export async function getClassesService({ id }) {
-  return await API.get(`/classes/classtype/${id}`);
+export async function getClassesService({ id, haspt }) {
+  return await API.get(`/classes/classtype/${id}/${haspt}`);
 }

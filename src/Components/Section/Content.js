@@ -6,12 +6,12 @@ import { formatCurrenccy } from "utils/utils";
 import { TOGGLE_MODAL } from "state/reducers/modalReducer";
 
 const mapDispatchToProps = dispatch => ({
-  getClasses: id => dispatch({ type: GET_CLASS, id }),
+  getClasses: (id, haspt) => dispatch({ type: GET_CLASS, id, haspt }),
   toggleModal: id => dispatch({ type: TOGGLE_MODAL, status: true, id })
 });
 
 const mapStateToProps = state => ({
-  classes: id => getClassesWithId(state, id)
+  classes: (id, haspt) => getClassesWithId(state, id, haspt)
 });
 
 const Duration = ({ time, href, active }) => (
@@ -72,14 +72,14 @@ const Info = ({ time, href, active, Price, toggleModal, id }) => (
 
 class Content extends Component {
   componentDidMount = () => {
-    const { id, getClasses } = this.props;
+    const { id, haspt, getClasses } = this.props;
 
-    getClasses(id);
+    getClasses(id, haspt);
   };
 
   render() {
-    const { href, active, id, toggleModal } = this.props;
-    let classes = this.props.classes(id);
+    const { href, active, id, toggleModal, haspt } = this.props;
+    let classes = this.props.classes(id, haspt);
 
     if (classes.length === 0) return null;
 

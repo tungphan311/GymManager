@@ -1,9 +1,13 @@
 import { takeEvery, put, call, select } from "redux-saga/effects";
-import { ADD_MEMBER, ADD_MEMBER_SUCCESS } from "state/reducers/memberReducer";
+import {
+  ADD_MEMBER,
+  ADD_MEMBER_SUCCESS,
+  GET_MEMBER
+} from "state/reducers/memberReducer";
 import { FORM_KEY_ADDMEMBER } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
-import { addMember } from "services/memberServices";
-import { formatDate, toast } from "utils/utils";
+import { addMember, getMemberService } from "services/memberServices";
+import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
 
@@ -44,8 +48,19 @@ export function* addMemberSaga() {
     yield put({ type: ADD_MEMBER_SUCCESS });
     yield put(reset(FORM_KEY_ADDMEMBER));
   } catch (error) {
-    console.log(error);
-    // toast({ type: "error", message: error.r });
+    yield toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
+export function* getMemberSaga() {
+  try {
+    const result = yield call(getMemberService);
+
+    console.log(result.data);
+  } catch (error) {
+    yield toastErr(error);
   } finally {
     yield put({ type: SET_LOADING, status: false });
   }
@@ -53,4 +68,5 @@ export function* addMemberSaga() {
 
 export default function* memberSaga() {
   yield takeEvery(ADD_MEMBER, addMemberSaga);
+  yield takeEvery(GET_MEMBER, getMemberSaga);
 }

@@ -23,3 +23,7 @@ export async function addMember({
     birthdate
   });
 }
+
+export async function getMemberService() {
+  return await API.get("/members");
+}
