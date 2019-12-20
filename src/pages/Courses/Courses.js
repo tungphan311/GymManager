@@ -91,11 +91,6 @@ class Courses extends React.Component {
           // width: 100
         },
         {
-          label: "Thời gian biểu",
-          field: "ScheduleString"
-          // width: 100
-        },
-        {
           label: "Hạn khoá học",
           field: "DurationDays"
           // width: 100

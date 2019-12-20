@@ -5,3 +5,4 @@ export * from "./type";
 export * from "./courseType";
 export * from "./section";
 export * from "./hasPT";
+export * from "./chart";
