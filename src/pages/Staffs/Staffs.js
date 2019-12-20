@@ -172,9 +172,7 @@ class Staffs extends React.Component {
                 onChange={this._handleChange}
               ></Select>
             </div>
-            {/* <MDBCardText> */}
             <TableItem dataSource={data} />
-            {/* </MDBCardText> */}
           </MDBCardBody>
         </MDBCard>
       </div>

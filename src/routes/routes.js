@@ -13,6 +13,7 @@ import SellCourses from "pages/SellCourses/SellCourses";
 import EditStaff from "pages/EditStaff/EditStaff";
 import Courses from "pages/Courses/Courses";
 import EditMember from "pages/EditMember/EditMember";
+import Invoices from "pages/Invoices/Invoices";
 import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -52,7 +53,8 @@ class Routes extends Component {
             "/members/add",
             "/staffs/edit/:id",
             "/courses",
-            "/members/edit/:id"
+            "/members/edit/:id",
+            "/invoices"
           ]}
         >
           <DefaultLayout>
@@ -109,6 +111,12 @@ class Routes extends Component {
               exact
               path="/members/edit/:id"
               component={EditMember}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/invoices"
+              component={Invoices}
               isUser={isUser}
             />
           </DefaultLayout>

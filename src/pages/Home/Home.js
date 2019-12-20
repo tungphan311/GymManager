@@ -9,13 +9,6 @@ class Home extends Component {
   render() {
     return (
       <>
-        <div className="mt-2 mb-4">
-          <h2 className="pb-2">Welcome back, Hizrian!</h2>
-          <h5 className="op-7 mb-4">
-            Yesterday I was clever, so I wanted to change the world. Today I am
-            wise, so I am changing myself.
-          </h5>
-        </div>
         <div className="row">
           <div className="col-md-4">
             <div className="card card-dark bg-primary-gradient">

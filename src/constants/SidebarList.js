@@ -14,6 +14,13 @@ export const SIDEBAR_LIST = [
     roleids: [1, 3]
   },
   {
+    id: "bills",
+    icon: "fas fa-file-invoice-dollar",
+    title: "Tra cứu hoá đơn",
+    href: "/invoices",
+    roleids: [1, 4]
+  },
+  {
     id: "staff",
     icon: "fas fa-users",
     title: "Nhân viên",
