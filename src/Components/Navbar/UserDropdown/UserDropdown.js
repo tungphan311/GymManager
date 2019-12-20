@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { LOGOUT } from "state/reducers/authReducer";
+import { connect } from "react-redux";
 
-function UserDropdown({ ava = "/assets/img/profile.jpg" }) {
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch({ type: LOGOUT })
+});
+
+function UserDropdown({ ava = "/assets/img/profile.jpg", logout }) {
   return (
     <li className="nav-item dropdown hidden-caret">
       <a
@@ -47,7 +53,7 @@ function UserDropdown({ ava = "/assets/img/profile.jpg" }) {
               Account Setting
             </a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
+            <a className="dropdown-item" href="#" onClick={logout}>
               Logout
             </a>
           </li>
@@ -57,4 +63,4 @@ function UserDropdown({ ava = "/assets/img/profile.jpg" }) {
   );
 }
 
-export default UserDropdown;
+export default connect(null, mapDispatchToProps)(UserDropdown);
