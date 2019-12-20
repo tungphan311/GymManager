@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import AddStaffForm from "pages/AddStaff/AddStaffForm";
 import "./EditStaff.scss";
 import { connect } from "react-redux";
-import { EDIT_STAFF, GET_STAFF_BY_ID } from "state/reducers/staffReducer";
+import {
+  EDIT_STAFF,
+  GET_STAFF_BY_ID,
+  RESET_STAFF_DATA
+} from "state/reducers/staffReducer";
 import { getStaffSelector } from "state/selectors/index";
 
 const mapStateToProps = state => ({
@@ -11,10 +15,19 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   editStaff: id => dispatch({ type: EDIT_STAFF, id }),
-  getStaff: id => dispatch({ type: GET_STAFF_BY_ID, id })
+  getStaff: id => dispatch({ type: GET_STAFF_BY_ID, id }),
+  resetStaffData: () => dispatch({ type: RESET_STAFF_DATA })
 });
 
 class EditStaff extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      id: 0
+    };
+  }
+
   componentDidMount = () => {
     const {
       getStaff,
@@ -25,8 +38,22 @@ class EditStaff extends Component {
 
     getStaff(id);
   };
+
+  componentWillUnmount = () => {
+    this.props.resetStaffData();
+  };
+
   render() {
-    const { staffdata } = this.props;
+    const {
+      staffdata,
+      match: {
+        params: { id }
+      }
+    } = this.props;
+
+    if (id !== this.state.id) {
+      this.setState({ id });
+    }
 
     return (
       <div className="addstaff">
@@ -38,7 +65,8 @@ class EditStaff extends Component {
         </h1>
         <AddStaffForm
           type="edit"
-          onSubmit={this.props.editStaff}
+          id={id}
+          onSubmit={() => this.props.editStaff(id)}
           staffdata={staffdata}
         />
       </div>

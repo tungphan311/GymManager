@@ -7,7 +7,8 @@ import Input from "Components/Input/Input";
 import Select from "Components/Select/Select";
 import {
   require,
-  validName
+  validName,
+  validClassType
   // validPhone,
   // validD,
   // email
@@ -21,7 +22,7 @@ const mapStateToProps = state => ({
   trainer: getTrainersSelector(state)
 });
 
-function AddCourseForm({ handleSubmit, trainer }) {
+function AddCourseForm({ handleSubmit }) {
   return (
     <form className="addCourseForm" onSubmit={handleSubmit} noValidate>
       <div className="container">
@@ -47,7 +48,7 @@ function AddCourseForm({ handleSubmit, trainer }) {
             name="classtypeid"
             component={Select}
             selectlist={COURSETYPE}
-            validate={require}
+            validate={[require]}
           />
           <Field
             label="Hạn khóa học: *"

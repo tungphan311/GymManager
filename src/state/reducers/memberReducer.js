@@ -14,10 +14,13 @@ export const GET_MEMBER_RECENTLY = "member/GET_MEMBER_RECENTLY";
 export const DELETE_MEMBER_SUCCESS = "member/DELETE_MEMBER_SUCCESS";
 export const DELETE_MEMBER = "member/DELETE_MEMBER";
 
+export const RESET_MEMBER_DATA = "staff/RESET_MEMBER_DATA";
+
 const initState = {
   members: [{ value: 0, label: "Chọn hội viên" }],
   recently: [],
-  fullmember: []
+  fullmember: [],
+  memberData: {}
 };
 
 export function memberReducer(state = initState, action = {}) {
@@ -53,6 +56,11 @@ export function memberReducer(state = initState, action = {}) {
 
     case GET_MEMBER_RECENTLY: {
       newState.recently = action.payload;
+      return newState;
+    }
+
+    case RESET_MEMBER_DATA: {
+      newState.memberData = {};
       return newState;
     }
 

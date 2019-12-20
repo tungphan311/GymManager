@@ -18,7 +18,7 @@ class AddMember extends Component {
     return (
       <div className="addmember">
         <h1 className="text-center">THÊM HỘI VIÊN MỚI</h1>
-        <AddMemberForm tyep="add" onSubmit={this.props.addMember} />
+        <AddMemberForm type="add" onSubmit={this.props.addMember} />
       </div>
     );
   }
