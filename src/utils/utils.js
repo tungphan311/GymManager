@@ -100,3 +100,13 @@ export function setRole(id) {
       break;
   }
 }
+
+export function formatDuration(duration) {
+  if (duration < 30) return `${duration} ngày`;
+  else if (duration >= 30) return `${duration / 30} tháng`;
+}
+
+export function setCourseType(id) {
+  if (id == 0) return "Cá nhân";
+  else if (id == 1) return "Theo lớp";
+}
