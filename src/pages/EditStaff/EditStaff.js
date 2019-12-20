@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AddStaffForm from "pages/AddStaff/AddStaffForm";
 import "./EditStaff.scss";
 import { connect } from "react-redux";
-import { EDIT_STAFF, GET_STAFF } from "state/reducers/staffReducer";
+import { EDIT_STAFF, GET_STAFF_BY_ID } from "state/reducers/staffReducer";
 import { getStaffSelector } from "state/selectors/index";
 
 const mapStateToProps = state => ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   editStaff: id => dispatch({ type: EDIT_STAFF, id }),
-  getStaff: id => dispatch({ type: GET_STAFF, id })
+  getStaff: id => dispatch({ type: GET_STAFF_BY_ID, id })
 });
 
 class EditStaff extends Component {

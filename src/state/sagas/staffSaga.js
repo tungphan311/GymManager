@@ -10,7 +10,9 @@ import {
   FILTER_STAFF,
   FILTER_STAFF_SUCCESS,
   EDIT_STAFF,
-  EDIT_STAFF_SUCCESS
+  EDIT_STAFF_SUCCESS,
+  GET_STAFF_BY_ID,
+  GET_STAFF_BY_ID_SUCCESS
 } from "state/reducers/staffReducer";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
@@ -75,10 +77,9 @@ export function* getStaffSaga({ id }) {
   try {
     const results = yield call(getStaff, { id });
 
-    yield put({ type: GET_STAFF_SUCCESS, results });
+    yield put({ type: GET_STAFF_BY_ID_SUCCESS, results });
   } catch (error) {
     toastErr(error);
-  } finally {
   }
 }
 
@@ -179,6 +180,6 @@ export default function* staffSaga() {
   yield takeEvery(GET_MENTOR, getMentorSaga);
   yield takeEvery(DELETE_STAFF, deleteStaffSaga);
   yield takeEvery(FILTER_STAFF, filterStaffs);
-  yield takeEvery(GET_STAFF, getStaffSaga);
+  yield takeEvery(GET_STAFF_BY_ID, getStaffSaga);
   yield takeEvery(EDIT_STAFF, editStaffSaga);
 }
