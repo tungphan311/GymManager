@@ -1,4 +1,4 @@
-import { COURSETYPE } from "constants/index";
+import { COURSETYPE, HASPT } from "constants/index";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import "./AddCourseForm.scss";
@@ -7,14 +7,15 @@ import Input from "Components/Input/Input";
 import Select from "Components/Select/Select";
 import {
   require,
-  validName,
-  validPhone,
-  validD,
-  email
+  validName
+  // validPhone,
+  // validD,
+  // email
 } from "utils/FormValidate";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { getTrainersSelector } from "state/selectors/trainerSelector";
+import InputWithLabel from "Components/InputWithLabel/InputWithLabel";
 
 const mapStateToProps = state => ({
   trainer: getTrainersSelector(state)
@@ -27,49 +28,41 @@ function AddCourseForm({ handleSubmit, trainer }) {
         <div className="displayRow">
           <Field
             label="Tên gói tập: *"
-            name="fullname"
+            name="name"
             placeholder="Tên gói tập"
             component={Input}
             validate={[require, validName]}
           />
           <Field
-            label="Huấn luyện viên: *"
-            name="gender"
+            label="Hình thức tập: *"
+            name="haspt"
             component={Select}
-            selectlist={trainer}
+            selectlist={HASPT}
             validate={require}
           />
         </div>
         <div className="displayRow">
           <Field
             label="Loại gói tập: *"
-            name="gender"
+            name="classtypeid"
             component={Select}
             selectlist={COURSETYPE}
             validate={require}
           />
           <Field
             label="Hạn khóa học: *"
-            name="gender"
-            component={Select}
-            // selectlist={GENDERS}
+            name="durationdays"
+            component={Input}
             validate={require}
           />
         </div>
         <div className="displayRow">
           <Field
             label="Trị giá: *"
-            name="fullname"
+            name="price"
             placeholder="Trị giá"
-            component={Input}
-            validate={[require, validName]}
-          />
-          <Field
-            label="Thời khóa biểu: *"
-            name="gender"
-            component={Select}
-            // selectlist={GENDERS}
-            validate={require}
+            component={InputWithLabel}
+            validate={[require]}
           />
         </div>
         <div className="group">

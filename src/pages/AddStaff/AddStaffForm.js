@@ -23,12 +23,13 @@ class AddStaffForm extends Component {
     super(props);
 
     this.state = {
-      defaultFN: ""
+      defaultF: ""
     };
   }
 
   componentDidUpdate = () => {
     if (this.props.type === "edit") {
+      console.log("ss");
       const {
         initialize,
         staffdata: {
@@ -38,15 +39,16 @@ class AddStaffForm extends Component {
           Phone,
           Gender,
           Email,
-          BegiDay,
+          BeginDay,
           RoleID,
           StaffTypeID
-        },
-        dispatch
+        }
       } = this.props;
-      const { defaultFN } = this.state;
+      const { defaultF } = this.state;
+      const dob = new Date(BirthDate);
+      const bgd = new Date(BeginDay);
 
-      if (!defaultFN && FullName) {
+      if (!defaultF && FullName) {
         initialize({
           fullname: FullName,
           phone: Phone,
@@ -54,12 +56,12 @@ class AddStaffForm extends Component {
           gender: Gender,
           email: Email,
           roleid: RoleID,
-          stafftypeid: StaffTypeID
-          // beginday: BegiDay,
-          // birthdate: BirthDate
+          stafftypeid: StaffTypeID,
+          beginday: bgd,
+          birthdate: dob
         });
 
-        this.setState({ defaultFN: FullName });
+        this.setState({ defaultF: FullName });
       }
     }
   };

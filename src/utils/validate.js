@@ -38,6 +38,6 @@ export const validDob = string => {
   return today - temp.getFullYear() >= 18 && today - temp.getFullYear() <= 50;
 };
 
-export const validID = value => /([0-0]{9})/.test(value);
+export const validID = value => /([0-9]{9})/.test(value);
 
 export const requiredSelect = value => (value === "0" ? false : true);

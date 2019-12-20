@@ -25,7 +25,7 @@ export const SIDEBAR_LIST = [
     id: "member",
     icon: "fas fa-user",
     title: "Hội viên",
-    href: "/member",
+    href: "/members",
     sub: [
       { href: "/members/add", title: "Thêm hội viên mới" },
       { href: "/members", title: "Danh sách hội viên" }
