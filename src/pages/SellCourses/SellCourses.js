@@ -32,7 +32,28 @@ function SellCourses({ isOpen, toggleModal }) {
         </ul>
       </div>
 
-      <Section />
+      <div className="row">
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-header">
+              <h4>Gói tập cá nhân (Không có HLV)</h4>
+            </div>
+            <div className="card-body">
+              <Section haspt={false} />
+            </div>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-header">
+              <h4>Gói tập với HLV (1 kèm 1)</h4>
+            </div>
+            <div className="card-body">
+              <Section haspt={true} />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <SellCourseModal isOpen={isOpen} toggleModal={toggleModal} />
     </div>
