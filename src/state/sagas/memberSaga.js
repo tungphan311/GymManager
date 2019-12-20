@@ -2,7 +2,8 @@ import { takeEvery, put, call, select } from "redux-saga/effects";
 import {
   ADD_MEMBER,
   ADD_MEMBER_SUCCESS,
-  GET_MEMBER
+  GET_MEMBER,
+  GET_MEMBER_SUCCESS
 } from "state/reducers/memberReducer";
 import { FORM_KEY_ADDMEMBER } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
@@ -58,7 +59,7 @@ export function* getMemberSaga() {
   try {
     const result = yield call(getMemberService);
 
-    console.log(result.data);
+    yield put({ type: GET_MEMBER_SUCCESS, payload: result.data });
   } catch (error) {
     yield toastErr(error);
   } finally {
