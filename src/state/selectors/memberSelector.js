@@ -1,5 +1,7 @@
 import { get } from "lodash";
 
+export const getAllMemberSelector = state =>
+  get(state, "member.fullmember") || [];
 export const getMembersSelector = state => get(state, "member.members") || [];
 
 export const getRecentMembersSelector = state =>

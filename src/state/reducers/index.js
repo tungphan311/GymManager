@@ -8,6 +8,7 @@ import { equipmentReducer } from "state/reducers/equipmentReducer";
 import { courseReducer } from "state/reducers/courseReducer";
 import { modalReducer } from "state/reducers/modalReducer";
 import { billReducer } from "state/reducers/billReducer";
+import { equipmentTypeReducer } from "state/reducers/equipmentTypeReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   equipment: equipmentReducer,
   course: courseReducer,
   modal: modalReducer,
-  bill: billReducer
+  bill: billReducer,
+  equipmentType: equipmentTypeReducer
 });

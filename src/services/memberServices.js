@@ -32,3 +32,7 @@ export async function getRecentMemberService() {
 export async function getMember({ id }) {
   return await API.get(`/members/${id}`);
 }
+export async function deleteMember({ memberID }) {
+  const url = "/members/delete/" + memberID;
+  return await API.get(url);
+}

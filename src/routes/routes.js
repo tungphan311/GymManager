@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import DefaultLayout from "Layouts/DefaultLayout/DefaultLayout";
+import Members from "pages/Members/Members";
 import EmptyLayout from "Layouts/EmptyLayout/EmptyLayout";
 import AddStaff from "pages/AddStaff/AddStaff";
 import AddMember from "pages/AddMember/AddMember";
@@ -14,6 +15,7 @@ import EditStaff from "pages/EditStaff/EditStaff";
 import Courses from "pages/Courses/Courses";
 import EditMember from "pages/EditMember/EditMember";
 import Invoices from "pages/Invoices/Invoices";
+import Equipments from "pages/Equipments/Equipments";
 import { getToken } from "../utils/utils";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -50,11 +52,13 @@ class Routes extends Component {
             "/sell-courses",
             "/courses/add",
             "/equipments/add",
+            "/equipments",
             "/members/add",
             "/staffs/edit/:id",
             "/courses",
             "/members/edit/:id",
-            "/invoices"
+            "/invoices",
+            "/members"
           ]}
         >
           <DefaultLayout>
@@ -111,6 +115,18 @@ class Routes extends Component {
               exact
               path="/members/edit/:id"
               component={EditMember}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/equipments"
+              component={Equipments}
+              isUser={isUser}
+            />
+            <AuthorizedRoute
+              exact
+              path="/members"
+              component={Members}
               isUser={isUser}
             />
             <AuthorizedRoute

@@ -3,6 +3,7 @@ export const ADD_MEMBER_SUCCESS = "member/ADD_MEMBER_SUCCESS";
 
 export const GET_MEMBER = "member/GET_MEMBER";
 export const GET_MEMBER_SUCCESS = "member/GET_MEMBER_SUCCESS";
+
 export const EDIT_MEMBER = "member/EDIT_MEMBER";
 export const EDIT_MEMBER_SUCCESS = "member/EDIT_MEMBER_SUCCESS";
 
@@ -10,10 +11,13 @@ export const GET_MEMBER_BY_ID = "member/GET_MEMBER_BY_ID";
 export const GET_MEMBER_BY_ID_SUCCESS = "GET_MEMBER_BY_ID_SUCCESS";
 
 export const GET_MEMBER_RECENTLY = "member/GET_MEMBER_RECENTLY";
+export const DELETE_MEMBER_SUCCESS = "member/DELETE_MEMBER_SUCCESS";
+export const DELETE_MEMBER = "member/DELETE_MEMBER";
 
 const initState = {
   members: [{ value: 0, label: "Chọn hội viên" }],
-  recently: []
+  recently: [],
+  fullmember: []
 };
 
 export function memberReducer(state = initState, action = {}) {
@@ -34,7 +38,16 @@ export function memberReducer(state = initState, action = {}) {
         value: parseInt(item.ID),
         label: item.FullName
       }));
+      newState.fullmember = action.payload;
       newState.members = [...newState.members, ...members];
+      return newState;
+    }
+    case DELETE_MEMBER_SUCCESS: {
+      const { memberID } = action;
+
+      newState.fullmember = newState.fullmember.filter(
+        member => member.ID !== memberID
+      );
       return newState;
     }
 

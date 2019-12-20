@@ -112,8 +112,17 @@ export function setCourseType(id) {
   else if (id == 1) return "Theo lớp";
 }
 
-export function getStaffByID(id) {
-  console.log(getStaff(id));
+export function setEquipmentStatus(id) {
+  switch (id) {
+    case 1:
+      return "Mới";
+    case 2:
+      return "Cũ";
+    case 3:
+      return "Đã hỏng";
+    default:
+      break;
+  }
 }
 
 export function formatCurrenccy(n) {

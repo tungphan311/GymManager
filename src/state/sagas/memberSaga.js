@@ -5,13 +5,16 @@ import {
   GET_MEMBER,
   GET_MEMBER_SUCCESS,
   GET_MEMBER_BY_ID,
-  GET_MEMBER_BY_ID_SUCCESS
+  GET_MEMBER_BY_ID_SUCCESS,
+  DELETE_MEMBER_SUCCESS,
+  DELETE_MEMBER
 } from "state/reducers/memberReducer";
 import { FORM_KEY_ADDMEMBER } from "state/reducers/formReducer";
 import {
   addMember,
   getMemberService,
-  getMember
+  getMember,
+  deleteMember
 } from "services/memberServices";
 
 import { getFormValues, getStaffId } from "state/selectors/index";
@@ -79,8 +82,22 @@ export function* getMemberByIdSaga({ id }) {
   }
 }
 
+export function* deleteMemberSaga({ memberID }) {
+  try {
+    yield put({ type: SET_LOADING });
+    yield call(deleteMember, { memberID });
+    yield toast({ message: "Xoá hội viên thành công" });
+    yield put({ type: DELETE_MEMBER_SUCCESS, memberID });
+  } catch (err) {
+    toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* memberSaga() {
   yield takeEvery(ADD_MEMBER, addMemberSaga);
   yield takeEvery(GET_MEMBER, getMemberSaga);
   yield takeEvery(GET_MEMBER_BY_ID, getMemberByIdSaga);
+  yield takeEvery(DELETE_MEMBER, deleteMemberSaga);
 }

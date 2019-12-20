@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { formatGender, setStaffType, setRole, formatDate } from "utils/utils";
 import history from "state/history";
 import Select from "Components/Select/Select";
+import FilterSelector from "Components/FilterSelector/FilterSelector";
 
 const mapDispatchToProps = dispatch => ({
   getAllStaff: () => dispatch({ type: GET_STAFF }),
@@ -141,36 +142,39 @@ class Staffs extends React.Component {
           <MDBCardBody>
             <MDBCardTitle>
               <div className="title__container">
-                <div className="title">List Of Staff</div>
+                <div className="title">Danh sách nhân viên</div>
                 <div className="button_Add">
-                  <button className="btn btn-primary">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => history.push("/staffs/add")}
+                  >
                     <span className="btn-label">
                       <i className="fa fa-plus mr-2"></i>
                     </span>
-                    Add Staff
+                    Thêm nhân viên
                   </button>
                 </div>
               </div>
             </MDBCardTitle>
             <div className="filter__container">
-              <Select
+              <FilterSelector
                 className="selectRole"
                 selectlist={ROLE}
                 selectName="roleid"
                 onChange={this._handleChange}
               />
-              <Select
+              <FilterSelector
                 className="selectGender"
                 selectName="gender"
                 selectlist={GENDERS}
                 onChange={this._handleChange}
-              ></Select>
-              <Select
+              />
+              <FilterSelector
                 className="selectType"
                 selectlist={TYPE}
                 selectName="stafftypeid"
                 onChange={this._handleChange}
-              ></Select>
+              />
             </div>
             <TableItem dataSource={data} />
           </MDBCardBody>
