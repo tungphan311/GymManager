@@ -4,6 +4,7 @@ import { SET_LOADING } from "state/reducers/loadingReducer";
 import { getMentor } from "services/staffServices";
 import { GET_MENTOR_SUCCESS } from "state/reducers/staffReducer";
 import { toastErr } from "utils/utils";
+import { LOGIN_SUCCESS } from "state/reducers/authReducer";
 
 export function* initDataSaga() {
   try {
@@ -22,6 +23,10 @@ export function* initDataSaga() {
     });
 
     yield put({ type: GET_MENTOR_SUCCESS, response });
+
+    const token = yield JSON.parse(localStorage.getItem("identity"));
+
+    yield put({ type: LOGIN_SUCCESS, payload: { token } });
   } catch (error) {
     toastErr(error);
   } finally {

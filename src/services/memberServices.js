@@ -5,10 +5,9 @@ export async function addMember({
   phone,
   gender,
   address,
-  roleid,
-  membertypeid,
   email,
-  beginday,
+  identitycard,
+  staffid,
   birthdate
 }) {
   return await API.post("/members", {
@@ -16,10 +15,14 @@ export async function addMember({
     phone,
     gender,
     address,
-    roleid,
-    membertypeid,
     email,
-    beginday,
+    staffid,
+    identitycard,
     birthdate
   });
+}
+
+export async function getMember({ id }) {
+  console.log(id);
+  return await API.get(`/members/${id}`);
 }

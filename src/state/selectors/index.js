@@ -3,3 +3,4 @@ export * from "./loadingSelector";
 export * from "./authSelector";
 export * from "./staffSelector";
 export * from "./trainerSelector";
+export * from "./memberSelector";

@@ -11,13 +11,14 @@ const Select = ({
   meta = {}, //redux form
   input, //redux form
   selectlist = [],
-  onChange = {},
+  onChange,
   selectName
 }) => {
   const { touched, error } = meta;
 
   const showError = touched && error;
   const { errCode } = error || {};
+
   return (
     <div className="input__container">
       <label>{label}</label>
@@ -26,7 +27,7 @@ const Select = ({
           {...input}
           className="select"
           name={selectName}
-          onChange={onChange}
+          // onChange={onChange}
         >
           {selectlist.map(({ value, label }) => (
             <option key={value} value={value}>

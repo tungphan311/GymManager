@@ -27,14 +27,14 @@ function AddCourseForm({ handleSubmit, trainer }) {
         <div className="displayRow">
           <Field
             label="Tên gói tập: *"
-            name="fullname"
+            name="name"
             placeholder="Tên gói tập"
             component={Input}
             validate={[require, validName]}
           />
           <Field
-            label="Huấn luyện viên: *"
-            name="gender"
+            label="Hình thức tập: *"
+            name="haspt"
             component={Select}
             selectlist={trainer}
             validate={require}
@@ -43,14 +43,14 @@ function AddCourseForm({ handleSubmit, trainer }) {
         <div className="displayRow">
           <Field
             label="Loại gói tập: *"
-            name="gender"
+            name="classtypeid"
             component={Select}
             selectlist={COURSETYPE}
             validate={require}
           />
           <Field
             label="Hạn khóa học: *"
-            name="gender"
+            name="durationdays"
             component={Select}
             // selectlist={GENDERS}
             validate={require}
@@ -59,18 +59,18 @@ function AddCourseForm({ handleSubmit, trainer }) {
         <div className="displayRow">
           <Field
             label="Trị giá: *"
-            name="fullname"
+            name="price"
             placeholder="Trị giá"
             component={Input}
             validate={[require, validName]}
           />
-          <Field
+          {/* <Field
             label="Thời khóa biểu: *"
             name="gender"
             component={Select}
             // selectlist={GENDERS}
             validate={require}
-          />
+          /> */}
         </div>
         <div className="group">
           <button type="button" className="groupBtn btn btn-primary btn-border">
