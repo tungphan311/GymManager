@@ -54,6 +54,7 @@ class EditMember extends Component {
     if (id !== this.state.id) {
       this.setState({ id });
     }
+    console.log(this.props);
     return (
       <div className="addmember">
         <h1

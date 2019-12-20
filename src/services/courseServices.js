@@ -31,3 +31,33 @@ export async function addCourse({
 export async function getClassById({ id }) {
   return await API.get(`/classes/${id}`);
 }
+
+export async function editCourse({
+  name,
+  haspt,
+  classtypeid,
+  durationdays,
+  price,
+  id
+}) {
+  return await API.put("/classes", {
+    name,
+    haspt,
+    classtypeid,
+    durationdays,
+    price,
+    id: parseInt(id)
+  });
+}
+
+//  }) {
+//    return await API.put("/classes", {
+//     name,
+//    haspt,
+// classtypeid,
+// durationdays,
+// price,
+//      id: parseInt(id)
+//    }
+//   })
+// }

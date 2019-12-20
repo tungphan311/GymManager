@@ -8,4 +8,8 @@ export const getClassesWithId = (state, id, haspt) => {
   return course[`${haspt}${id}`];
 };
 
-export const getClasseByIdSelector = state => get(state, "course.coursedata");
+export const getClasseByIdSelector = state =>
+  get(state, "course.courseData") || {};
+
+export const getCourseNameSelector = state =>
+  get(state, "course.courseData.Name") || "";

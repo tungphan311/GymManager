@@ -8,7 +8,8 @@ import {
   GET_CLASS_SUCCESS,
   ADD_COURSE,
   GET_CLASS_BY_ID_SUCCESS,
-  GET_CLASS_BY_ID
+  GET_CLASS_BY_ID,
+  EDIT_COURSE
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
@@ -18,10 +19,12 @@ import {
   deleteCourse,
   getClassesService,
   addCourse,
-  getClassById
+  getClassById,
+  editCourse
 } from "services/courseServices";
 import { FORM_KEY_ADDCOURSE } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
+import history from "state/history";
 
 export function* getAllCourseSaga() {
   try {
@@ -80,8 +83,7 @@ export function* addCourseSaga() {
     const reqhaspt = haspt === "true" ? true : false;
     const reqprice = parseFloat(price);
     const reqdurationdays = parseFloat(durationdays);
-    // console.log(reqhaspt);
-    // console.log(reqclasstypeid === 1);
+
     if (!reqhaspt && reqclasstypeid === 1) {
       console.log("aa");
       toast({
@@ -118,10 +120,50 @@ export function* getClassByIdSaga({ id }) {
   }
 }
 
+export function* editCourseSaga({ id }) {
+  try {
+    yield put({ type: SET_LOADING });
+    const {
+      name,
+      haspt,
+      classtypeid,
+      durationdays,
+      price
+    } = yield select(state => getFormValues(state, FORM_KEY_ADDCOURSE));
+    const reqclasstypeid = parseInt(classtypeid);
+    const reqhaspt = haspt === "true" ? true : false;
+    const reqprice = parseFloat(price);
+    const reqdurationdays = parseFloat(durationdays);
+    if (!reqhaspt && reqclasstypeid === 1) {
+      toast({
+        type: "error",
+        message: "Gói tập theo ngày không khả dụng với hình thức tập cá nhân"
+      });
+      return null;
+    } else {
+      const results = yield call(editCourse, {
+        name,
+        haspt: reqhaspt,
+        classtypeid: reqclasstypeid,
+        durationdays: reqdurationdays,
+        price: reqprice,
+        id
+      });
+      toast({ message: results.data });
+    }
+    history.push("/courses");
+  } catch (error) {
+    toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* courseSaga() {
   yield takeEvery(GET_COURSE, getAllCourseSaga);
   yield takeEvery(DELETE_COURSE, deleteCourseSaga);
   yield takeEvery(GET_CLASS, getClassesSaga);
   yield takeEvery(ADD_COURSE, addCourseSaga);
   yield takeEvery(GET_CLASS_BY_ID, getClassByIdSaga);
+  yield takeEvery(EDIT_COURSE, editCourseSaga);
 }
