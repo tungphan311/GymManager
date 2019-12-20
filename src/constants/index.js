@@ -6,3 +6,5 @@ export * from "./courseType";
 export * from "./section";
 export * from "./hasPT";
 export * from "./chart";
+export * from "./devicesStatus";
+export * from "./devicesType";

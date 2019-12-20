@@ -19,3 +19,53 @@ export async function buyClasses({ classid, memberid, staffid }) {
 export async function getTopClassesService() {
   return await API.get("/stats/topclasses");
 }
+
+export async function addCourse({
+  name,
+  haspt,
+  classtypeid,
+  durationdays,
+  price
+}) {
+  return await API.post("/classes", {
+    name,
+    haspt,
+    classtypeid,
+    durationdays,
+    price
+  });
+}
+
+export async function getClassById({ id }) {
+  return await API.get(`/classes/${id}`);
+}
+
+export async function editCourse({
+  name,
+  haspt,
+  classtypeid,
+  durationdays,
+  price,
+  id
+}) {
+  return await API.put("/classes", {
+    name,
+    haspt,
+    classtypeid,
+    durationdays,
+    price,
+    id: parseInt(id)
+  });
+}
+
+//  }) {
+//    return await API.put("/classes", {
+//     name,
+//    haspt,
+// classtypeid,
+// durationdays,
+// price,
+//      id: parseInt(id)
+//    }
+//   })
+// }

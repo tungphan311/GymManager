@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import AddEquipmentForm from "pages/AddEquipment/AddEquipmentForm";
 import "./AddEquipment.scss";
 import { connect } from "react-redux";
-// import { ADD_EQUIPMENT } from "state/reducers/equipmentReducer";
-// import LoadingScreen from "Components/LoadingScreen/LoadingScreen";
+import { ADD_EQUIPMENT } from "state/reducers/equipmentReducer";
 
-// const mapDispatchToProps = dispatch => ({
-//   addEquipment: () => dispatch({ type: ADD_EQUIPMENT })
-// });
+const mapDispatchToProps = dispatch => ({
+  addEquipment: () => dispatch({ type: ADD_EQUIPMENT })
+});
+
 class AddEquipment extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="addequipment">
         <h1
@@ -18,10 +19,14 @@ class AddEquipment extends Component {
         >
           THÊM THIẾT BỊ MỚI
         </h1>
-        <AddEquipmentForm onSubmit={this.props.addEquipment} />
+        <AddEquipmentForm
+          type="add"
+          history={history}
+          onSubmit={this.props.addEquipment}
+        />
       </div>
     );
   }
 }
 
-export default connect(null, null)(AddEquipment);
+export default connect(null, mapDispatchToProps)(AddEquipment);

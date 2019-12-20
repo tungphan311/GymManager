@@ -15,10 +15,15 @@ const mapStateToProps = state => ({
 });
 class AddMember extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="addmember">
         <h1 className="text-center">THÊM HỘI VIÊN MỚI</h1>
-        <AddMemberForm tyep="add" onSubmit={this.props.addMember} />
+        <AddMemberForm
+          type="add"
+          history={history}
+          onSubmit={this.props.addMember}
+        />
       </div>
     );
   }

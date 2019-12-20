@@ -12,6 +12,8 @@ export const FILTER_STAFF_SUCCESS = "staff/FILTER_STAFF_SUCCESS";
 export const GET_STAFF_BY_ID = "staff/GET_STAFF_BY_ID";
 export const GET_STAFF_BY_ID_SUCCESS = "staff/GET_STAFF_BY_ID_SUCCESS";
 
+export const RESET_STAFF_DATA = "staff/RESET_STAFF_DATA";
+
 export const EDIT_STAFF = "staff/EDIT_STAFF";
 const initState = {
   trainer: [
@@ -20,7 +22,8 @@ const initState = {
       label: "Chọn huấn luyện viên"
     }
   ],
-  staffs: []
+  staffs: [],
+  staffData: {}
 };
 
 export function staffReducer(state = initState, action = {}) {
@@ -55,6 +58,11 @@ export function staffReducer(state = initState, action = {}) {
     case GET_STAFF_BY_ID_SUCCESS: {
       const { results } = action;
       newState.staffData = results.data;
+      return newState;
+    }
+
+    case RESET_STAFF_DATA: {
+      newState.staffData = {};
       return newState;
     }
     default:

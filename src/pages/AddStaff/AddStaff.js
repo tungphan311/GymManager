@@ -10,6 +10,7 @@ const mapDispatchToProps = dispatch => ({
 });
 class AddStaff extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="addstaff">
         <h1
@@ -18,7 +19,11 @@ class AddStaff extends Component {
         >
           THÊM NHÂN VIÊN MỚI
         </h1>
-        <AddStaffForm type="add" onSubmit={this.props.addStaff} />
+        <AddStaffForm
+          type="add"
+          history={history}
+          onSubmit={this.props.addStaff}
+        />
       </div>
     );
   }

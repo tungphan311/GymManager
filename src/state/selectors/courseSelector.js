@@ -13,3 +13,9 @@ export const getTopClassesSelector = state =>
 
 export const getDashboardSelector = state =>
   get(state, "course.dashboard") || {};
+
+export const getClasseByIdSelector = state =>
+  get(state, "course.courseData") || {};
+
+export const getCourseNameSelector = state =>
+  get(state, "course.courseData.Name") || "";

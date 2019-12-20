@@ -59,7 +59,7 @@ export const SIDEBAR_LIST = [
     title: "Thiết bị",
     href: "/equipments",
     sub: [
-      { href: "/equipments/add", title: "Thêm thiế bị mới" },
+      { href: "/equipments/add", title: "Thêm thiết bị mới" },
       { href: "/equipments", title: "Danh sách thiết bị" }
     ],
     roleids: [1, 5]

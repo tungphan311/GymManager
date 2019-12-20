@@ -23,51 +23,58 @@ class AddStaffForm extends Component {
     super(props);
 
     this.state = {
-      defaultF: ""
+      init: false
     };
   }
 
-  componentDidUpdate = () => {
-    if (this.props.type === "edit") {
-      console.log("ss");
-      const {
-        initialize,
-        staffdata: {
-          FullName,
-          BirthDate,
-          Address,
-          Phone,
-          Gender,
-          Email,
-          BeginDay,
-          RoleID,
-          StaffTypeID
-        }
-      } = this.props;
-      const { defaultF } = this.state;
-      const dob = new Date(BirthDate);
-      const bgd = new Date(BeginDay);
-
-      if (!defaultF && FullName) {
-        initialize({
-          fullname: FullName,
-          phone: Phone,
-          address: Address,
-          gender: Gender,
-          email: Email,
-          roleid: RoleID,
-          stafftypeid: StaffTypeID,
-          beginday: bgd,
-          birthdate: dob
-        });
-
-        this.setState({ defaultF: FullName });
-      }
+  isEmpty = obj => {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
     }
+    return true;
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, staffdata, initialize, type, history } = this.props;
+
+    console.log(history);
+
+    if (type === "edit") {
+      const { init } = this.state;
+
+      if (this.isEmpty(staffdata)) return null;
+
+      if (!init && !this.isEmpty(staffdata)) {
+        this.setState({ init: true }, () => {
+          const {
+            FullName,
+            BirthDate,
+            Address,
+            Phone,
+            Gender,
+            Email,
+            BeginDay,
+            RoleID,
+            StaffTypeID
+          } = staffdata;
+
+          const dob = new Date(BirthDate);
+          const bgd = new Date(BeginDay);
+
+          initialize({
+            fullname: FullName,
+            phone: Phone,
+            address: Address,
+            gender: Gender,
+            email: Email,
+            roleid: RoleID,
+            stafftypeid: StaffTypeID,
+            beginday: bgd,
+            birthdate: dob
+          });
+        });
+      }
+    }
 
     return (
       <form className="addStaffForm" onSubmit={handleSubmit} noValidate>
@@ -147,12 +154,13 @@ class AddStaffForm extends Component {
           <div className="group">
             <button
               type="button"
+              onClick={() => history.goBack()}
               className="groupBtn btn btn-primary btn-border"
             >
               Trở về
             </button>
             <button type="submit" className="groupBtn btn btn-primary mr-0">
-              {this.props.type === "edit" ? "Cập nhật" : "Thêm nhân viên"}
+              Câp nhật
             </button>
           </div>
         </div>

@@ -10,7 +10,11 @@ import {
   BUY_CLASS_SUCCESS,
   GET_TOP_CLASSES,
   GET_TOP_CLASSES_SUCCESS,
-  GET_DASHBOARD
+  GET_DASHBOARD,
+  ADD_COURSE,
+  GET_CLASS_BY_ID_SUCCESS,
+  GET_CLASS_BY_ID,
+  EDIT_COURSE
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
@@ -20,7 +24,10 @@ import {
   deleteCourse,
   getClassesService,
   buyClasses,
-  getTopClassesService
+  getTopClassesService,
+  addCourse,
+  getClassById,
+  editCourse
 } from "services/courseServices";
 import { getStaffId } from "state/selectors/index";
 import { getClassIdSelector } from "state/selectors/modalSelector";
@@ -28,6 +35,9 @@ import { TOGGLE_MODAL } from "state/reducers/modalReducer";
 import { getRecentMemberService } from "services/memberServices";
 import { GET_MEMBER_RECENTLY } from "state/reducers/memberReducer";
 import { getDashboard } from "services/billServices";
+import { FORM_KEY_ADDCOURSE } from "state/reducers/formReducer";
+import { getFormValues } from "state/selectors/index";
+import history from "state/history";
 
 export function* getAllCourseSaga() {
   try {
@@ -93,6 +103,48 @@ export function* buyClassesSaga({ memberid }) {
   }
 }
 
+export function* addCourseSaga() {
+  try {
+    yield put({ type: SET_LOADING });
+    const {
+      name,
+      haspt,
+      classtypeid,
+      durationdays,
+      price
+    } = yield select(state => getFormValues(state, FORM_KEY_ADDCOURSE));
+
+    const reqclasstypeid = parseInt(classtypeid);
+    const reqhaspt = haspt === "true" ? true : false;
+    const reqprice = parseFloat(price);
+    const reqdurationdays = parseFloat(durationdays);
+
+    if (!reqhaspt && reqclasstypeid === 1) {
+      console.log("aa");
+      toast({
+        type: "error",
+        message: "Gói tập theo ngày không khả dụng với hình thức tập cá nhân"
+      });
+      return null;
+    } else {
+      const results = yield call(addCourse, {
+        name,
+        haspt: reqhaspt,
+        classtypeid: reqclasstypeid,
+        durationdaysL: reqdurationdays,
+        price: reqprice
+      });
+
+      toast({ message: results.data });
+      yield put(reset(FORM_KEY_ADDCOURSE));
+    }
+  } catch (error) {
+    toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export function* getTopClassSaga() {
   try {
     const result = yield call(getTopClassesService);
@@ -111,10 +163,62 @@ export function* getTopClassSaga() {
   }
 }
 
+export function* getClassByIdSaga({ id }) {
+  try {
+    const results = yield call(getClassById, { id });
+
+    yield put({ type: GET_CLASS_BY_ID_SUCCESS, results });
+  } catch (error) {
+    toastErr(error);
+  }
+}
+
+export function* editCourseSaga({ id }) {
+  try {
+    yield put({ type: SET_LOADING });
+    const {
+      name,
+      haspt,
+      classtypeid,
+      durationdays,
+      price
+    } = yield select(state => getFormValues(state, FORM_KEY_ADDCOURSE));
+    const reqclasstypeid = parseInt(classtypeid);
+    const reqhaspt = haspt === "true" ? true : false;
+    const reqprice = parseFloat(price);
+    const reqdurationdays = parseFloat(durationdays);
+    if (!reqhaspt && reqclasstypeid === 1) {
+      toast({
+        type: "error",
+        message: "Gói tập theo ngày không khả dụng với hình thức tập cá nhân"
+      });
+      return null;
+    } else {
+      const results = yield call(editCourse, {
+        name,
+        haspt: reqhaspt,
+        classtypeid: reqclasstypeid,
+        durationdays: reqdurationdays,
+        price: reqprice,
+        id
+      });
+      toast({ message: results.data });
+    }
+    history.push("/courses");
+  } catch (error) {
+    toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* courseSaga() {
   yield takeEvery(GET_COURSE, getAllCourseSaga);
   yield takeEvery(DELETE_COURSE, deleteCourseSaga);
   yield takeEvery(GET_CLASS, getClassesSaga);
   yield takeEvery(BUY_CLASS, buyClassesSaga);
   yield takeEvery(GET_TOP_CLASSES, getTopClassSaga);
+  yield takeEvery(ADD_COURSE, addCourseSaga);
+  yield takeEvery(GET_CLASS_BY_ID, getClassByIdSaga);
+  yield takeEvery(EDIT_COURSE, editCourseSaga);
 }

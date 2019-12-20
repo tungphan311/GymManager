@@ -1,3 +1,7 @@
+import { getFormValues } from "redux-form";
+import { FORM_KEY_ADDCOURSE } from "state/reducers/formReducer";
+import history from "state/history";
+
 export const required = value => value;
 
 export const maxLength = max => value => value && value.length <= max;
