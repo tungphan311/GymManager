@@ -107,6 +107,7 @@ export function* editStaffSaga({ id }) {
       beginday,
       birthdate
     } = yield select(state => getFormValues(state, FORM_KEY_ADDSTAFF));
+    console.log(id);
     const reqGender = parseInt(gender);
     const reqRoleid = parseInt(roleid);
     const reqstafftypei = parseInt(stafftypeid);

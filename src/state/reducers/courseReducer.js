@@ -7,6 +7,10 @@ export const DELETE_COURSE_SUCCESS = "cours/DELETE_COURSE_SUCCESS";
 export const GET_CLASS = "course/GET_CLASS";
 export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
 
+export const ADD_COURSE = "course/ADD_COURSE";
+
+export const GET_CLASS_BY_ID = "course/GET_CLASS_BY_ID";
+export const GET_CLASS_BY_ID_SUCCESS = "course/GET_CLASS_BY_ID_SUCCESS";
 const initState = {
   courses: [],
   false1: [],
@@ -39,6 +43,12 @@ export function courseReducer(state = initState, action = {}) {
 
       newState[`${haspt}${id}`] = payload;
 
+      return newState;
+    }
+
+    case GET_CLASS_BY_ID_SUCCESS: {
+      const { results } = action;
+      newState.courseData = results.data;
       return newState;
     }
 

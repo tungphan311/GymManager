@@ -23,16 +23,66 @@ class AddStaffForm extends Component {
     super(props);
 
     this.state = {
-      defaultF: ""
+      init: false
     };
   }
 
-  componentDidUpdate = () => {
-    if (this.props.type === "edit") {
-      console.log("ss");
-      const {
-        initialize,
-        staffdata: {
+  // componentDidUpdate = () => {
+  //   if (this.props.type === "edit") {
+  //     const {
+  //       initialize,
+  //       staffdata: {
+  //         FullName,
+  //         BirthDate,
+  //         Address,
+  //         Phone,
+  //         Gender,
+  //         Email,
+  //         BeginDay,
+  //         RoleID,
+  //         StaffTypeID
+  //       }
+  //     } = this.props;
+  //     const { defaultF } = this.state;
+  //     const dob = new Date(BirthDate);
+  //     const bgd = new Date(BeginDay);
+
+  //     if (!defaultF && FullName) {
+  //       initialize({
+  //         fullname: FullName,
+  //         phone: Phone,
+  //         address: Address,
+  //         gender: Gender,
+  //         email: Email,
+  //         roleid: RoleID,
+  //         stafftypeid: StaffTypeID,
+  //         beginday: bgd,
+  //         birthdate: dob
+  //       });
+
+  //       this.setState({ defaultF: FullName });
+  //     }
+  //   }
+  // };
+
+  isEmpty = obj => {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  };
+
+  render() {
+    const { handleSubmit, staffdata, initialize } = this.props;
+    const { init } = this.state;
+
+    console.log(staffdata);
+
+    if (this.isEmpty(staffdata)) return null;
+
+    if (!init && !this.isEmpty(staffdata)) {
+      this.setState({ init: true }, () => {
+        const {
           FullName,
           BirthDate,
           Address,
@@ -42,13 +92,11 @@ class AddStaffForm extends Component {
           BeginDay,
           RoleID,
           StaffTypeID
-        }
-      } = this.props;
-      const { defaultF } = this.state;
-      const dob = new Date(BirthDate);
-      const bgd = new Date(BeginDay);
+        } = staffdata;
 
-      if (!defaultF && FullName) {
+        const dob = new Date(BirthDate);
+        const bgd = new Date(BeginDay);
+
         initialize({
           fullname: FullName,
           phone: Phone,
@@ -60,14 +108,8 @@ class AddStaffForm extends Component {
           beginday: bgd,
           birthdate: dob
         });
-
-        this.setState({ defaultF: FullName });
-      }
+      });
     }
-  };
-
-  render() {
-    const { handleSubmit } = this.props;
 
     return (
       <form className="addStaffForm" onSubmit={handleSubmit} noValidate>

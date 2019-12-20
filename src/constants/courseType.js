@@ -5,10 +5,18 @@ export const COURSETYPE = [
   },
   {
     value: 1,
-    label: "Cá nhân"
+    label: "Theo ngày"
   },
   {
     value: 2,
-    label: "Theo lớp"
+    label: "Cơ bản"
+  },
+  {
+    value: 3,
+    label: "Nâng cao"
+  },
+  {
+    value: 4,
+    label: "Cao cấp"
   }
 ];

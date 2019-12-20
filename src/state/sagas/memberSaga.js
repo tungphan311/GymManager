@@ -4,13 +4,15 @@ import {
   ADD_MEMBER_SUCCESS,
   GET_MEMBER,
   GET_MEMBER_BY_ID,
-  GET_MEMBER_BY_ID_SUCCESS
+  GET_MEMBER_BY_ID_SUCCESS,
+  EDIT_MEMBER
 } from "state/reducers/memberReducer";
 import { FORM_KEY_ADDMEMBER } from "state/reducers/formReducer";
 import {
   addMember,
   getMemberService,
-  getMember
+  getMember,
+  editMember
 } from "services/memberServices";
 
 import { getFormValues, getStaffId } from "state/selectors/index";
@@ -18,6 +20,7 @@ import { getFormValues, getStaffId } from "state/selectors/index";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
+import history from "state/history";
 
 export function* addMemberSaga() {
   try {
@@ -78,8 +81,46 @@ export function* getMemberByIdSaga({ id }) {
   }
 }
 
+export function* editMemberSaga({ id }) {
+  try {
+    yield put({ type: SET_LOADING });
+    const {
+      fullname,
+      phone,
+      gender,
+      address,
+      email,
+      identitycard,
+      birthdate
+    } = yield select(state => getFormValues(state, FORM_KEY_ADDMEMBER));
+    const reqGender = parseInt(gender);
+
+    const reqBirthdate = formatDate(birthdate);
+    const staffidNew = getStaffId();
+    console.log(id);
+    const results = yield call(editMember, {
+      fullname,
+      phone,
+      gender: reqGender,
+      address,
+      email,
+      identitycard,
+      staffidNew,
+      birthdate: reqBirthdate,
+      id
+    });
+    toast({ message: results.data });
+    history.push("/members");
+  } catch (error) {
+    toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* memberSaga() {
   yield takeEvery(ADD_MEMBER, addMemberSaga);
   yield takeEvery(GET_MEMBER, getMemberSaga);
   yield takeEvery(GET_MEMBER_BY_ID, getMemberByIdSaga);
+  yield takeEvery(EDIT_MEMBER, editMemberSaga);
 }

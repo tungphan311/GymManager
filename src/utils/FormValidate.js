@@ -7,9 +7,12 @@ import {
   validNumber,
   validDob,
   validID,
-  requiredSelect
+  requiredSelect,
+  checkClassTypeId
 } from "utils/validate";
 import { buildErr } from "utils/utils";
+import history from "state/history";
+import store from "state/store";
 
 export const require = value =>
   required(value)

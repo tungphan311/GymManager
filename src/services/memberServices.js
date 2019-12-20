@@ -28,3 +28,27 @@ export async function getMemberService() {
 export async function getMember({ id }) {
   return await API.get(`/members/${id}`);
 }
+
+export async function editMember({
+  fullname,
+  phone,
+  gender,
+  address,
+  email,
+  identitycard,
+  staffid,
+  birthdate,
+  id
+}) {
+  return await API.put("/members", {
+    fullname,
+    phone,
+    gender,
+    address,
+    email,
+    identitycard,
+    staffid,
+    birthdate,
+    id: parseInt(id)
+  });
+}
