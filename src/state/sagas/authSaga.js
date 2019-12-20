@@ -14,7 +14,7 @@ import { SET_LOADING } from "state/reducers/loadingReducer";
 import jwt_decode from "jwt-decode";
 import { getInfoToChangePassword } from "state/selectors/authSelector";
 import history from "../history";
-import { setStorage, toast } from "../../utils/utils";
+import { setStorage, toast, toastErr } from "../../utils/utils";
 
 export function* loginSaga() {
   try {
@@ -67,7 +67,7 @@ export function* changePasswordSaga() {
 
     history.push("/");
   } catch (err) {
-    yield toast({ type: "error", message: "Không thành công" });
+    yield toastErr(err);
   } finally {
     yield put({ type: SET_LOADING, status: false });
   }
