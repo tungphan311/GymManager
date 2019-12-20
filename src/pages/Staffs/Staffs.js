@@ -142,13 +142,16 @@ class Staffs extends React.Component {
           <MDBCardBody>
             <MDBCardTitle>
               <div className="title__container">
-                <div className="title">List Of Staff</div>
+                <div className="title">Danh sách nhân viên</div>
                 <div className="button_Add">
-                  <button className="btn btn-primary">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => history.push("/staffs/add")}
+                  >
                     <span className="btn-label">
                       <i className="fa fa-plus mr-2"></i>
                     </span>
-                    Add Staff
+                    Thêm nhân viên
                   </button>
                 </div>
               </div>

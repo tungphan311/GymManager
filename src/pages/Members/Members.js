@@ -1,25 +1,23 @@
-import "./Courses.scss";
+import "./Members.scss";
 import React from "react";
 import TableItem from "Components/TableItem/TableItem";
 import { MDBCard, MDBCardBody, MDBCardTitle } from "mdbreact";
 import { connect } from "react-redux";
 import history from "state/history";
-import { GET_COURSE, DELETE_COURSE } from "state/reducers/courseReducer";
-import { getCoursesSelector } from "state/selectors/courseSelector";
-import { formatDuration, setCourseType } from "utils/utils";
+import { GET_MEMBER, DELETE_MEMBER } from "state/reducers/memberReducer";
+import { getAllMemberSelector } from "state/selectors/index";
+import { formatGender, formatDate } from "utils/utils";
 
-const mapDispatchToProps = dispatch => ({
-  getAllCourse: () => dispatch({ type: GET_COURSE }),
-  deleteCourse: courseID => dispatch({ type: DELETE_COURSE, courseID })
-  // getStaff: id => dispatch({ type: GET_STAFF_BY_ID, id })
+const MapDispatchToProps = dispatch => ({
+  getAllMember: () => dispatch({ type: GET_MEMBER }),
+  deleteMember: memberID => dispatch({ type: DELETE_MEMBER, memberID })
 });
 
-const mapStatetoProps = state => ({
-  courses: getCoursesSelector(state)
-  // staff: getStaffNameSelector(state)
+const MapStateToProps = state => ({
+  members: getAllMemberSelector(state)
 });
 
-class Courses extends React.Component {
+class Members extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,16 +27,16 @@ class Courses extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.getAllCourse();
+    this.props.getAllMember();
   };
 
-  formatCourses(listOfCourses) {
-    const NewList = listOfCourses.map(item => {
-      const newCourseItem = {
+  formatMembers(listOfMembers) {
+    const NewList = listOfMembers.map(item => {
+      const newMemberItem = {
         ...item,
-        DurationDays: formatDuration(item.DurationDays),
-        ClassTypeID: setCourseType(item.ClassTypeID),
-        // courseID: this.getStaff(item.courseID),
+        Gender: formatGender(item.Gender),
+        BirthDate: formatDate(item.BirthDate),
+
         Action: (
           <div className="button">
             <button className="btn btn-link btn-dark">
@@ -46,59 +44,63 @@ class Courses extends React.Component {
             </button>
             <button
               className="btn btn-link btn-primary btn-lg"
-              onClick={() => history.push("courses/edit/" + item.ID)}
+              onClick={() => history.push("members/edit/" + item.ID)}
             >
               <i className="fa fa-edit"></i>
             </button>
             <button
               className="btn btn-link btn-danger"
-              onClick={() => this.deleteCourse(item.ID)}
+              onClick={() => this.deleteMember(item.ID)}
             >
               <i className="fa fa-times"></i>
             </button>
           </div>
         )
       };
-      return newCourseItem;
+      return newMemberItem;
     });
     return NewList;
   }
-  deleteCourse(courseID) {
-    this.props.deleteCourse(courseID);
+
+  deleteMember(memberID) {
+    this.props.deleteMember(memberID);
+    console.log(memberID);
   }
 
   render() {
-    let courses = this.props.courses;
-    courses = this.formatCourses(courses);
+    let members = this.props.members;
+    console.log(members);
+    members = this.formatMembers(members);
 
     const data = {
       columns: [
         {
-          label: "Tên gói tập",
-          field: "Name",
+          label: "Họ và tên",
+          field: "FullName",
           sort: "asc"
           // width: 600
         },
+        {
+          label: "Ngày sinh",
+          field: "BirthDate",
+          sort: "asc"
+          // width: 150
+        },
 
         {
-          label: "Loại gói tập",
-          field: "ClassTypeID"
+          label: "Giới tính",
+          field: "Gender"
+          // width: 100
+        },
+        {
+          label: "Số điện thoại",
+          field: "Phone"
+          // width: 100
+        },
+        {
+          label: "Địa chỉ",
+          field: "Address"
           // width: 200
-        },
-        {
-          label: "Trị giá",
-          field: "Price"
-          // width: 100
-        },
-        {
-          label: "Thời gian biểu",
-          field: "ScheduleString"
-          // width: 100
-        },
-        {
-          label: "Hạn khoá học",
-          field: "DurationDays"
-          // width: 100
         },
         {
           label: "Công cụ",
@@ -106,24 +108,24 @@ class Courses extends React.Component {
           // width: 100
         }
       ],
-      rows: courses
+      rows: members
     };
     return (
-      <div className="courses__container">
+      <div className="members__container">
         <MDBCard>
           <MDBCardBody>
             <MDBCardTitle>
               <div className="title__container">
-                <div className="title">Danh sách gói tập</div>
+                <div className="title">Danh sách hội viên</div>
                 <div className="button_Add">
                   <button
                     className="btn btn-primary"
-                    onClick={() => history.push("/courses/add")}
+                    onClick={() => history.push("/members/add")}
                   >
                     <span className="btn-label">
                       <i className="fa fa-plus mr-2"></i>
                     </span>
-                    Thêm gói tập
+                    Thêm hội viên mới
                   </button>
                 </div>
               </div>
@@ -139,4 +141,4 @@ class Courses extends React.Component {
   }
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Courses);
+export default connect(MapStateToProps, MapDispatchToProps)(Members);

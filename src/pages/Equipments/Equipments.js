@@ -144,7 +144,10 @@ class Equipment extends React.Component {
               <div className="title__container">
                 <div className="title">Danh sách thiết bị</div>
                 <div className="button_Add">
-                  <button className="btn btn-primary">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => history.push("/equiments/add")}
+                  >
                     <span className="btn-label">
                       <i className="fa fa-plus mr-2"></i>
                     </span>
