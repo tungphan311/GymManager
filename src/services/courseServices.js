@@ -11,3 +11,7 @@ export async function deleteCourse({ courseID }) {
 export async function getClassesService({ id, haspt }) {
   return await API.get(`/classes/classtype/${id}/${haspt}`);
 }
+
+export async function buyClasses({ classid, memberid, staffid }) {
+  return await API.post("/bills/buy", { classid, memberid, staffid });
+}

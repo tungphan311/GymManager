@@ -27,12 +27,14 @@ export function authReducer(state = initState, action = {}) {
       newState.token = token;
       return newState;
     }
+
     case LOGIN_FAIL: {
       newState.identity = null;
       newState.loginSuccess = false;
       return newState;
     }
 
+    case LOGOUT_SUCCESS:
     default:
       return newState;
   }

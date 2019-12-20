@@ -3,13 +3,15 @@ export const SIDEBAR_LIST = [
     id: "dashboard",
     icon: "fas fa-home",
     title: "Trang chủ",
-    href: "/"
+    href: "/",
+    roleids: [1, 2, 3, 4, 5]
   },
   {
     id: "seller",
     icon: "fas fa-coins",
     title: "Đăng ký gói tập",
-    href: "/sell-courses"
+    href: "/sell-courses",
+    roleids: [1, 3]
   },
   {
     id: "staff",
@@ -19,7 +21,8 @@ export const SIDEBAR_LIST = [
     sub: [
       { href: "/staffs/add", title: "Thêm nhân viên mới" },
       { href: "/staffs", title: "Danh sách nhân viên" }
-    ]
+    ],
+    roleids: [1]
   },
   {
     id: "member",
@@ -29,7 +32,8 @@ export const SIDEBAR_LIST = [
     sub: [
       { href: "/members/add", title: "Thêm hội viên mới" },
       { href: "/members", title: "Danh sách hội viên" }
-    ]
+    ],
+    roleids: [1, 3]
   },
   {
     id: "courses",
@@ -39,7 +43,8 @@ export const SIDEBAR_LIST = [
     sub: [
       { href: "/courses/add", title: "Thêm gói tập mới" },
       { href: "/courses", title: "Danh sách gói tập" }
-    ]
+    ],
+    roleids: [1]
   },
   {
     id: "equipment",
@@ -49,6 +54,7 @@ export const SIDEBAR_LIST = [
     sub: [
       { href: "/equipments/add", title: "Thêm thiế bị mới" },
       { href: "/equipments", title: "Danh sách thiết bị" }
-    ]
+    ],
+    roleids: [1, 5]
   }
 ];

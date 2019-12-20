@@ -5,7 +5,9 @@ import {
   DELETE_COURSE,
   DELETE_COURSE_SUCCESS,
   GET_CLASS,
-  GET_CLASS_SUCCESS
+  GET_CLASS_SUCCESS,
+  BUY_CLASS,
+  BUY_CLASS_SUCCESS
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
@@ -13,8 +15,12 @@ import { reset } from "redux-form";
 import {
   getAllCourse,
   deleteCourse,
-  getClassesService
+  getClassesService,
+  buyClasses
 } from "services/courseServices";
+import { getStaffId } from "state/selectors/index";
+import { getClassIdSelector } from "state/selectors/modalSelector";
+import { TOGGLE_MODAL } from "state/reducers/modalReducer";
 
 export function* getAllCourseSaga() {
   try {
@@ -58,8 +64,31 @@ export function* getClassesSaga({ id, haspt }) {
   }
 }
 
+export function* buyClassesSaga({ memberid }) {
+  try {
+    yield put({ type: SET_LOADING });
+
+    const staffid = yield select(state => getStaffId(state));
+
+    const classid = yield select(state => getClassIdSelector(state));
+
+    const result = yield call(buyClasses, { classid, memberid, staffid });
+
+    yield put({ type: BUY_CLASS_SUCCESS });
+
+    yield toast({ message: "Đăng ký gói tập thành công" });
+
+    yield put({ type: TOGGLE_MODAL });
+  } catch (err) {
+    yield toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* courseSaga() {
   yield takeEvery(GET_COURSE, getAllCourseSaga);
   yield takeEvery(DELETE_COURSE, deleteCourseSaga);
   yield takeEvery(GET_CLASS, getClassesSaga);
+  yield takeEvery(BUY_CLASS, buyClassesSaga);
 }

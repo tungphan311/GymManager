@@ -1,7 +1,9 @@
 import {
   LOGIN,
   LOGIN_SUCCESS,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  LOGOUT,
+  LOGOUT_SUCCESS
 } from "state/reducers/authReducer";
 import { login, changePassword } from "services/LoginServices";
 import { takeEvery, put, call, select } from "redux-saga/effects";
@@ -42,7 +44,7 @@ export function* loginSaga() {
       yield history.push("/");
     }
   } catch (err) {
-    yield toast({ type: "error", message: "Không thành công" });
+    yield toastErr(err);
   } finally {
     yield put({ type: SET_LOADING, status: false });
   }
@@ -73,7 +75,24 @@ export function* changePasswordSaga() {
   }
 }
 
+export function* logoutSaga() {
+  try {
+    yield put({ type: SET_LOADING });
+
+    yield put({ type: LOGOUT_SUCCESS });
+
+    localStorage.removeItem("identity");
+
+    yield toast({ message: "Đăng xuất khỏi hệ thống" });
+  } catch (err) {
+    yield toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
 export default function* authSaga() {
   yield takeEvery(LOGIN, loginSaga);
   yield takeEvery(CHANGE_PASSWORD, changePasswordSaga);
+  yield takeEvery(LOGOUT, logoutSaga);
 }

@@ -3,6 +3,7 @@ import {
   ADD_MEMBER,
   ADD_MEMBER_SUCCESS,
   GET_MEMBER,
+  GET_MEMBER_SUCCESS,
   GET_MEMBER_BY_ID,
   GET_MEMBER_BY_ID_SUCCESS
 } from "state/reducers/memberReducer";
@@ -60,7 +61,7 @@ export function* getMemberSaga() {
   try {
     const result = yield call(getMemberService);
 
-    console.log(result.data);
+    yield put({ type: GET_MEMBER_SUCCESS, payload: result.data });
   } catch (error) {
     yield toastErr(error);
   } finally {
