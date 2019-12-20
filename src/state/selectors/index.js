@@ -5,3 +5,4 @@ export * from "./staffSelector";
 export * from "./trainerSelector";
 export * from "./memberSelector";
 export * from "./equipmentSelector";
+export * from "./courseSelector";

@@ -20,6 +20,9 @@ export const ADD_COURSE = "course/ADD_COURSE";
 export const GET_CLASS_BY_ID = "course/GET_CLASS_BY_ID";
 export const GET_CLASS_BY_ID_SUCCESS = "course/GET_CLASS_BY_ID_SUCCESS";
 
+export const RESET_COURSE_DATA = "course/RESET_COURSE_DATA";
+
+export const EDIT_COURSE = "course/EDIT_COURSE";
 const initState = {
   courses: [],
   false1: [],
@@ -30,7 +33,8 @@ const initState = {
   true3: [],
   true4: [],
   topClasses: [],
-  dashboard: {}
+  dashboard: {},
+  courseDate: {}
 };
 
 export function courseReducer(state = initState, action = {}) {
@@ -74,7 +78,10 @@ export function courseReducer(state = initState, action = {}) {
       newState.courseData = results.data;
       return newState;
     }
-
+    case RESET_COURSE_DATA: {
+      newState.staffData = {};
+      return newState;
+    }
     default:
       return newState;
   }
