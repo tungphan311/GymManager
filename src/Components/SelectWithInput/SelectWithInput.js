@@ -28,6 +28,7 @@ class SelectWithInput extends Component {
           onBlur={onBlur}
           onChange={onChange}
           isDisabled={disabled}
+          menuPosition="fixed"
         />
       </div>
     );

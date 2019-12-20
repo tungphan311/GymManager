@@ -10,7 +10,7 @@ export const GET_MEMBER_BY_ID = "member/GET_MEMBER_BY_ID";
 export const GET_MEMBER_BY_ID_SUCCESS = "GET_MEMBER_BY_ID_SUCCESS";
 
 const initState = {
-  members: []
+  members: [{ value: 0, label: "Chọn hội viên" }]
 };
 
 export function memberReducer(state = initState, action = {}) {
@@ -27,7 +27,11 @@ export function memberReducer(state = initState, action = {}) {
     }
 
     case GET_MEMBER_SUCCESS: {
-      newState.members = action.payload;
+      const members = action.payload.map(item => ({
+        value: parseInt(item.ID),
+        label: item.FullName
+      }));
+      newState.members = [...newState.members, ...members];
       return newState;
     }
 
