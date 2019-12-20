@@ -45,6 +45,7 @@ class EditStaff extends Component {
 
   render() {
     const {
+      history,
       staffdata,
       match: {
         params: { id }
@@ -66,6 +67,7 @@ class EditStaff extends Component {
         <AddStaffForm
           type="edit"
           id={id}
+          history={history}
           onSubmit={() => this.props.editStaff(id)}
           staffdata={staffdata}
         />

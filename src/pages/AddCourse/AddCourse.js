@@ -10,10 +10,15 @@ const mapDispatchToProps = dispatch => ({
 
 class AddCourse extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="addcourse">
         <h1 className="text-center">THÊM GÓI TẬP MỚI</h1>
-        <AddCourseForm type="add" onSubmit={this.props.addCourse} />
+        <AddCourseForm
+          type="add"
+          history={history}
+          onSubmit={this.props.addCourse}
+        />
       </div>
     );
   }
