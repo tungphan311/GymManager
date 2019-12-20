@@ -7,3 +7,7 @@ export async function deleteCourse({ courseID }) {
   const url = "/classes/delete/" + courseID;
   return await API.get(url);
 }
+
+export async function getClassesService({ id, haspt }) {
+  return await API.get(`/classes/classtype/${id}/${haspt}`);
+}

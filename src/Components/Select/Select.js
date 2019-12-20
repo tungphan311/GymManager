@@ -11,7 +11,7 @@ const Select = ({
   meta = {}, //redux form
   input, //redux form
   selectlist = [],
-  onChange = {},
+  onChange,
   selectName
 }) => {
   const { touched, error } = meta;

@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 
 function AddCourseForm({ handleSubmit, trainer }) {
   return (
-    <form className="addStaffForm" onSubmit={handleSubmit} noValidate>
+    <form className="addCourseForm" onSubmit={handleSubmit} noValidate>
       <div className="container">
         <div className="displayRow">
           <Field
