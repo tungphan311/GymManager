@@ -18,6 +18,7 @@ const Select = ({
 
   const showError = touched && error;
   const { errCode } = error || {};
+
   return (
     <div className="input__container">
       <label>{label}</label>
@@ -26,7 +27,7 @@ const Select = ({
           {...input}
           className="select"
           name={selectName}
-          onChange={onChange}
+          // onChange={onChange}
         >
           {selectlist.map(({ value, label }) => (
             <option key={value} value={value}>

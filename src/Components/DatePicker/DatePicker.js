@@ -22,7 +22,7 @@ class DatePicker extends Component {
     const { touched, error } = meta;
     const showError = touched && error;
     const { errCode } = error || {};
-
+    const d = new Date();
     return (
       <div className={`md__date--picker--container input__container ${color}`}>
         <label>{label}</label>
