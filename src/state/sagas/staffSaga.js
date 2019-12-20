@@ -8,7 +8,11 @@ import {
   DELETE_STAFF,
   DELETE_STAFF_SUCCESS,
   FILTER_STAFF,
-  FILTER_STAFF_SUCCESS
+  FILTER_STAFF_SUCCESS,
+  EDIT_STAFF,
+  EDIT_STAFF_SUCCESS,
+  GET_STAFF_BY_ID,
+  GET_STAFF_BY_ID_SUCCESS
 } from "state/reducers/staffReducer";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
@@ -17,11 +21,14 @@ import {
   getMentor,
   getAllStaff,
   deleteStaff,
-  filterStaff
+  filterStaff,
+  getStaff,
+  editStaff
 } from "services/staffServices";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
+import history from "state/history";
 
 export function* addStaffSaga() {
   try {
@@ -65,12 +72,67 @@ export function* addStaffSaga() {
     yield put({ type: SET_LOADING, status: false });
   }
 }
+
+export function* getStaffSaga({ id }) {
+  try {
+    const results = yield call(getStaff, { id });
+
+    yield put({ type: GET_STAFF_BY_ID_SUCCESS, results });
+  } catch (error) {
+    toastErr(error);
+  }
+}
+
 export function* getMentorSaga() {
   try {
     const results = yield call(getMentor, {
       roleid: 1
     });
-  } catch (error) {}
+  } catch (error) {
+    toastErr(error);
+  }
+}
+
+export function* editStaffSaga({ id }) {
+  try {
+    yield put({ type: SET_LOADING });
+    const {
+      fullname,
+      phone,
+      gender,
+      address,
+      roleid,
+      stafftypeid,
+      email,
+      beginday,
+      birthdate
+    } = yield select(state => getFormValues(state, FORM_KEY_ADDSTAFF));
+    const reqGender = parseInt(gender);
+    const reqRoleid = parseInt(roleid);
+    const reqstafftypei = parseInt(stafftypeid);
+
+    const reqBirthdate = formatDate(birthdate);
+    const reqBeginday = formatDate(beginday);
+
+    const results = yield call(editStaff, {
+      fullname,
+      phone,
+      roleid: reqRoleid,
+      address,
+      gender: reqGender,
+      stafftypeid: reqstafftypei,
+      email,
+      beginday: reqBeginday,
+      birthdate: reqBirthdate,
+      id
+    });
+    toast({ message: results.data });
+    history.push("/staffs");
+  } catch (error) {
+    toastErr(error);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
 }
 export function* getAllStaffSaga() {
   try {
@@ -118,4 +180,6 @@ export default function* staffSaga() {
   yield takeEvery(GET_MENTOR, getMentorSaga);
   yield takeEvery(DELETE_STAFF, deleteStaffSaga);
   yield takeEvery(FILTER_STAFF, filterStaffs);
+  yield takeEvery(GET_STAFF_BY_ID, getStaffSaga);
+  yield takeEvery(EDIT_STAFF, editStaffSaga);
 }

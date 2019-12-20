@@ -4,11 +4,13 @@ import { formReducer } from "state/reducers/formReducer";
 import { staffReducer } from "state/reducers/staffReducer";
 import { loadingReducer } from "state/reducers/loadingReducer";
 import { memberReducer } from "state/reducers/memberReducer";
+import { equipmentReducer } from "state/reducers/equipmentReducer";
 
 export default combineReducers({
   auth: authReducer,
   form: formReducer,
   staff: staffReducer,
   loading: loadingReducer,
-  member: memberReducer
+  member: memberReducer,
+  equipment: equipmentReducer
 });

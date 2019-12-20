@@ -1,11 +1,10 @@
 import React from "react";
-import "./Input.scss";
+import "./TextArea.scss";
 
-const Input = ({
+const TextArea = ({
   placeholder = "",
   className = "",
   label = "",
-  hoang = "",
   type = "text",
   meta = {}, // redux form
   input // redux form
@@ -16,13 +15,14 @@ const Input = ({
   const { errCode } = error || {};
 
   return (
-    <div className="input__container">
-      <label className={`${!label ? "d-none" : "input__label"}`}>{label}</label>
+    <div className="text__container">
+      <label className={`${!label ? "d-none" : "text__label"}`}>{label}</label>
       <div>
-        <input
+        <textarea
+          rows={5}
           {...input}
           placeholder={placeholder}
-          className={`input__field ${className}`}
+          className={`text__field ${className}`}
           type={type}
         />
         {showError && <span className="error">{errCode}</span>}
@@ -31,4 +31,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default TextArea;

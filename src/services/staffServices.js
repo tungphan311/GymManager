@@ -44,3 +44,33 @@ export async function deleteStaff({ staffID }) {
   const url = "/staffs/delete/" + staffID;
   return await API.get(url);
 }
+export async function getStaff({ id }) {
+  // console.log(id);
+  return await API.get(`/staffs/${id}`);
+}
+
+export async function editStaff({
+  fullname,
+  phone,
+  gender,
+  address,
+  roleid,
+  stafftypeid,
+  email,
+  beginday,
+  birthdate,
+  ID
+}) {
+  return await API.put("/staffs", {
+    fullname,
+    phone,
+    gender,
+    address,
+    roleid,
+    stafftypeid,
+    email,
+    beginday,
+    birthdate,
+    ID
+  });
+}

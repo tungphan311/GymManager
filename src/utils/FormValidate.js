@@ -5,7 +5,9 @@ import {
   maxLength15,
   validString,
   validNumber,
-  validDob
+  validDob,
+  validID,
+  requiredSelect
 } from "utils/validate";
 import { buildErr } from "utils/utils";
 
@@ -41,3 +43,11 @@ export const matchPassword = (value, allValues) =>
   value !== allValues.password
     ? buildErr("Mật khẩu không trùng khớp. Vui lòng nhập lại")
     : undefined;
+
+export const idValid = value =>
+  validID(value) ? undefined : buildErr("Vui lòng nhập số CMND hợp lệ");
+
+export const requireSelect = value =>
+  requiredSelect(value)
+    ? undefined
+    : buildErr("Đây là trường bắt buộc, vui lòng không bỏ trống");

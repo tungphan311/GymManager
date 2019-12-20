@@ -14,10 +14,10 @@ import {
 } from "utils/FormValidate";
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { getTrainers } from "state/selectors/trainerSelector";
+import { getTrainersSelector } from "state/selectors/trainerSelector";
 
 const mapStateToProps = state => ({
-  trainer: getTrainers(state)
+  trainer: getTrainersSelector(state)
 });
 
 function AddCourseForm({ handleSubmit, trainer }) {

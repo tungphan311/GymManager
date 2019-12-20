@@ -57,7 +57,7 @@ class Staffs extends React.Component {
             </button>
             <button
               className="btn btn-link btn-primary btn-lg"
-              onClick={() => history.push("/" + item.ID)}
+              onClick={() => history.push("/staffs/edit/" + item.ID)}
             >
               <i className="fa fa-edit"></i>
             </button>

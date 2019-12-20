@@ -33,7 +33,10 @@ export const validNumber = string =>
   );
 export const validDob = string => {
   const today = new Date().getFullYear();
-  return (
-    today - string.getFullYear() >= 18 && today - string.getFullYear() <= 50
-  );
+  const temp = new Date(string);
+  return today - temp.getFullYear() >= 18 && today - temp.getFullYear() <= 50;
 };
+
+export const validID = value => /([0-0]{9})/.test(value);
+
+export const requiredSelect = value => (value === "0" ? false : true);

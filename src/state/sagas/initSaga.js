@@ -3,6 +3,7 @@ import { INIT_DATA } from "state/reducers/initReducer";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { getMentor } from "services/staffServices";
 import { GET_MENTOR_SUCCESS } from "state/reducers/staffReducer";
+import { toastErr } from "utils/utils";
 
 export function* initDataSaga() {
   try {
@@ -22,6 +23,7 @@ export function* initDataSaga() {
 
     yield put({ type: GET_MENTOR_SUCCESS, response });
   } catch (error) {
+    toastErr(error);
   } finally {
     yield put({ type: SET_LOADING, status: false });
   }
