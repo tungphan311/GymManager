@@ -11,7 +11,8 @@ import {
   validName,
   validPhone,
   validD,
-  email
+  email,
+  requireSelect
 } from "utils/FormValidate";
 import { connect } from "react-redux";
 import { getStaffNameSelector } from "state/selectors/index";
@@ -99,7 +100,7 @@ class AddStaffForm extends Component {
               name="gender"
               component={Select}
               selectlist={GENDERS}
-              validate={require}
+              validate={requireSelect}
             />
           </div>
           <Field
@@ -122,7 +123,7 @@ class AddStaffForm extends Component {
               name="roleid"
               component={Select}
               selectlist={ROLE}
-              validate={require}
+              validate={requireSelect}
             />
           </div>
           <div className="displayRow">

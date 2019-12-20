@@ -38,3 +38,5 @@ export const validDob = string => {
 };
 
 export const validID = value => /([0-0]{9})/.test(value);
+
+export const requiredSelect = value => (value === "0" ? false : true);
