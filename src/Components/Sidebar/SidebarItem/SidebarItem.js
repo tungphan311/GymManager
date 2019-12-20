@@ -1,14 +1,24 @@
 import React from "react";
 import SubItem from "Components/Sidebar/SubItem/SubItem";
 import { getPathname } from "utils/utils";
+import { getStaffRoleIdSelector } from "state/selectors/index";
+import { connect } from "react-redux";
 
-function SidebarItem({ item }) {
-  const { id, icon, title, href, sub } = item;
+const mapStateToProps = state => ({
+  roleid: getStaffRoleIdSelector(state)
+});
+
+function SidebarItem({ item, roleid }) {
+  const { id, icon, title, href, sub, roleids } = item;
 
   const pathname = getPathname(window.location.pathname);
 
   return (
-    <li className={`nav-item${pathname === href ? " active" : ""}`}>
+    <li
+      className={`nav-item${pathname === href ? " active" : ""} ${
+        roleids.includes(roleid) ? "" : "d-none"
+      }`}
+    >
       {sub ? (
         <>
           <a data-toggle="collapse" href={`#${id}`}>
@@ -34,4 +44,4 @@ function SidebarItem({ item }) {
   );
 }
 
-export default SidebarItem;
+export default connect(mapStateToProps, null)(SidebarItem);

@@ -4,9 +4,11 @@ import SelectWithInput from "Components/SelectWithInput/SelectWithInput";
 import { GET_MEMBER } from "state/reducers/memberReducer";
 import { connect } from "react-redux";
 import { getMembersSelector } from "state/selectors/index";
+import { BUY_CLASS } from "state/reducers/courseReducer";
 
 const mapDispatchToProps = dispatch => ({
-  getMembers: () => dispatch({ type: GET_MEMBER })
+  getMembers: () => dispatch({ type: GET_MEMBER }),
+  buyClass: memberid => dispatch({ type: BUY_CLASS, memberid })
 });
 
 const mapStateToProps = state => ({
@@ -26,7 +28,9 @@ class SellCourseModal extends Component {
     this.props.getMembers();
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    this.props.buyClass(this.state.selected.value);
+  };
 
   render() {
     const { isOpen, toggleModal, members } = this.props;

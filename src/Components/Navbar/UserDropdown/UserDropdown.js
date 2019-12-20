@@ -2,12 +2,26 @@
 import React from "react";
 import { LOGOUT } from "state/reducers/authReducer";
 import { connect } from "react-redux";
+import {
+  getStaffNameSelector,
+  getStaffUsernameSelector
+} from "state/selectors/index";
+
+const mapStateToProps = state => ({
+  name: getStaffNameSelector(state),
+  username: getStaffUsernameSelector(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({ type: LOGOUT })
 });
 
-function UserDropdown({ ava = "/assets/img/profile.jpg", logout }) {
+function UserDropdown({
+  ava = "/assets/img/profile.png",
+  logout,
+  name,
+  username
+}) {
   return (
     <li className="nav-item dropdown hidden-caret">
       <a
@@ -25,36 +39,26 @@ function UserDropdown({ ava = "/assets/img/profile.jpg", logout }) {
           <li>
             <div className="user-box">
               <div className="avatar-lg">
-                <img
-                  src="/assets/img/profile.jpg"
-                  alt="profile"
-                  className="avatar-img rounded"
-                />
+                <img src={ava} alt="profile" className="avatar-img rounded" />
               </div>
               <div className="u-text">
-                <h4>Hizrian</h4>
-                <p className="text-muted">hello@example.com</p>
+                <h4>{name}</h4>
+                <p className="text-muted">{username}</p>
               </div>
             </div>
           </li>
           <li>
             <div className="dropdown-divider"></div>
             <a className="dropdown-item" href="#">
-              My Profile
-            </a>
-            <a className="dropdown-item" href="#">
-              My Balance
-            </a>
-            <a className="dropdown-item" href="#">
-              Inbox
+              Tài khoản của tôi
             </a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
-              Account Setting
+            <a className="dropdown-item" href="change-password">
+              Đổi mật khẩu
             </a>
             <div className="dropdown-divider"></div>
             <a className="dropdown-item" href="#" onClick={logout}>
-              Logout
+              Đăng xuất
             </a>
           </li>
         </div>
@@ -63,4 +67,4 @@ function UserDropdown({ ava = "/assets/img/profile.jpg", logout }) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(UserDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);

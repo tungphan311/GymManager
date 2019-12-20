@@ -7,6 +7,9 @@ export const DELETE_COURSE_SUCCESS = "cours/DELETE_COURSE_SUCCESS";
 export const GET_CLASS = "course/GET_CLASS";
 export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
 
+export const BUY_CLASS = "course/BUY_CLASS";
+export const BUY_CLASS_SUCCESS = "course/BUY_CLASS_SUCCESS";
+
 const initState = {
   courses: [],
   false1: [],
