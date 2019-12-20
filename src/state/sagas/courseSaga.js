@@ -9,7 +9,8 @@ import {
   BUY_CLASS,
   BUY_CLASS_SUCCESS,
   GET_TOP_CLASSES,
-  GET_TOP_CLASSES_SUCCESS
+  GET_TOP_CLASSES_SUCCESS,
+  GET_DASHBOARD
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
@@ -26,6 +27,7 @@ import { getClassIdSelector } from "state/selectors/modalSelector";
 import { TOGGLE_MODAL } from "state/reducers/modalReducer";
 import { getRecentMemberService } from "services/memberServices";
 import { GET_MEMBER_RECENTLY } from "state/reducers/memberReducer";
+import { getDashboard } from "services/billServices";
 
 export function* getAllCourseSaga() {
   try {
@@ -100,6 +102,10 @@ export function* getTopClassSaga() {
     const recent = yield call(getRecentMemberService);
 
     yield put({ type: GET_MEMBER_RECENTLY, payload: recent.data });
+
+    const dashboard = yield call(getDashboard);
+
+    yield put({ type: GET_DASHBOARD, payload: dashboard.data });
   } catch (err) {
     yield toastErr(err);
   }

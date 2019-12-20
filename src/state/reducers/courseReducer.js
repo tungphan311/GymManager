@@ -13,6 +13,8 @@ export const BUY_CLASS_SUCCESS = "course/BUY_CLASS_SUCCESS";
 export const GET_TOP_CLASSES = "course/GET_TOP_CLASSES";
 export const GET_TOP_CLASSES_SUCCESS = "course/GET_TOP_CLASSES_SUCCESS";
 
+export const GET_DASHBOARD = "course/GET_DASHBOARD";
+
 const initState = {
   courses: [],
   false1: [],
@@ -22,7 +24,8 @@ const initState = {
   true2: [],
   true3: [],
   true4: [],
-  topClasses: []
+  topClasses: [],
+  dashboard: {}
 };
 
 export function courseReducer(state = initState, action = {}) {
@@ -53,6 +56,11 @@ export function courseReducer(state = initState, action = {}) {
 
     case GET_TOP_CLASSES_SUCCESS: {
       newState.topClasses = action.payload;
+      return newState;
+    }
+
+    case GET_DASHBOARD: {
+      newState.dashboard = action.payload;
       return newState;
     }
 

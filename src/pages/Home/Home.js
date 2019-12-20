@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import "./Home.scss";
 import { GET_TOP_CLASSES } from "state/reducers/courseReducer";
 import { connect } from "react-redux";
-import { getTopClassesSelector } from "state/selectors/courseSelector";
+import {
+  getTopClassesSelector,
+  getDashboardSelector
+} from "state/selectors/courseSelector";
 import { formatCurrenccy } from "utils/utils";
 import { getRecentMembersSelector } from "state/selectors/index";
 
 const mapStateToProps = state => ({
   topClasses: getTopClassesSelector(state),
-  recenly: getRecentMembersSelector(state)
+  recenly: getRecentMembersSelector(state),
+  dashboard: getDashboardSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,7 +24,22 @@ class Home extends Component {
     this.props.getTopClass();
   };
 
+  formatCurrency = money => {
+    const current = (money / 1000000).toFixed(1);
+
+    return `${current} M`;
+  };
+
   render() {
+    const {
+      MonthMember,
+      MonthBillsCount,
+      TotalMoney,
+      IncreaseMonthMoney
+    } = this.props.dashboard;
+
+    const today = new Date();
+    const month = today.getMonth() + 1;
     return (
       <div className="home__container">
         <div className="row">
@@ -28,10 +47,11 @@ class Home extends Component {
             <div className="card">
               <div className="card-body p-3 text-center">
                 <div className="text-right text-success">
-                  6% <i className="fa fa-chevron-up"></i>
+                  <i className="fa fa-chevron-up"></i>
                 </div>
-                <div className="h1 m-0">43</div>
-                <div className="text-muted mb-3">Thành viên mới</div>
+                <div className="h1 m-0">{MonthMember}</div>
+                <div className="text-muted">Thành viên mới</div>
+                <div className="text-muted">{`Tháng ${month}`}</div>
               </div>
             </div>
           </div>
@@ -39,10 +59,11 @@ class Home extends Component {
             <div className="card">
               <div className="card-body p-3 text-center">
                 <div className="text-right text-success">
-                  6% <i className="fa fa-chevron-up"></i>
+                  <i className="fa fa-chevron-up"></i>
                 </div>
-                <div className="h1 m-0">43</div>
-                <div className="text-muted mb-3">Giao dịch mới</div>
+                <div className="h1 m-0">{MonthBillsCount}</div>
+                <div className="text-muted">Giao dịch mới</div>
+                <div className="text-muted">{`Tháng ${month}`}</div>
               </div>
             </div>
           </div>
@@ -50,10 +71,11 @@ class Home extends Component {
             <div className="card">
               <div className="card-body p-3 text-center">
                 <div className="text-right text-success">
-                  6% <i className="fa fa-chevron-up"></i>
+                  <i className="fa fa-chevron-up"></i>
                 </div>
-                <div className="h1 m-0">43</div>
-                <div className="text-muted mb-3">Tổng doanh thu</div>
+                <div className="h1 m-0">{this.formatCurrency(TotalMoney)}</div>
+                <div className="text-muted">Tổng doanh thu</div>
+                <div style={{ color: "white" }}>Tổng doanh thu</div>
               </div>
             </div>
           </div>
@@ -61,10 +83,13 @@ class Home extends Component {
             <div className="card">
               <div className="card-body p-3 text-center">
                 <div className="text-right text-success">
-                  6% <i className="fa fa-chevron-up"></i>
+                  <i className="fa fa-chevron-up"></i>
                 </div>
-                <div className="h1 m-0">43</div>
-                <div className="text-muted mb-3">Doanh thu ngày</div>
+                <div className="h1 m-0">
+                  {this.formatCurrency(IncreaseMonthMoney)}
+                </div>
+                <div className="text-muted">Doanh thu tháng</div>
+                <div className="text-muted">{`Tháng ${month}`}</div>
               </div>
             </div>
           </div>
@@ -77,22 +102,27 @@ class Home extends Component {
               </div>
               <div className="card-body">
                 {this.props.topClasses.map(
-                  ({ Class: { Name, Price }, TotalMoney }) => (
-                    <Row name={Name} price={Price} total={TotalMoney} />
+                  ({ Class: { Name, Price }, TotalMoney }, index) => (
+                    <Row
+                      key={index}
+                      name={Name}
+                      price={Price}
+                      total={TotalMoney}
+                    />
                   )
                 )}
               </div>
             </div>
           </div>
           <div className="col-md-6">
-            <div class="card">
+            <div className="card">
               <div className="card-header">
                 <div className="card-title">Hội viên mới </div>
               </div>
-              <div class="card-body">
-                <div class="card-list">
-                  {this.props.recenly.map(({ FullName, Email }) => (
-                    <User name={FullName} email={Email} />
+              <div className="card-body">
+                <div className="card-list">
+                  {this.props.recenly.map(({ FullName, Email }, index) => (
+                    <User key={index} name={FullName} email={Email} />
                   ))}
                 </div>
               </div>
@@ -122,20 +152,20 @@ const Row = ({ name, price, total }) => (
 );
 
 const User = ({ name, email }) => (
-  <div class="item-list">
-    <div class="avatar">
+  <div className="item-list">
+    <div className="avatar">
       <img
         src="/assets/img/profile.png"
         alt="..."
-        class="avatar-img rounded-circle"
+        className="avatar-img rounded-circle"
       />
     </div>
-    <div class="info-user ml-3">
-      <div class="username">{name}</div>
-      <div class="status">{email}</div>
+    <div className="info-user ml-3">
+      <div className="username">{name}</div>
+      <div className="status">{email}</div>
     </div>
-    <button class="btn btn-icon btn-primary btn-round btn-xs">
-      <i class="fa fa-plus"></i>
+    <button className="btn btn-icon btn-primary btn-round btn-xs">
+      <i className="fa fa-plus"></i>
     </button>
   </div>
 );

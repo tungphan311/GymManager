@@ -8,4 +8,8 @@ export const getClassesWithId = (state, id, haspt) => {
   return course[`${haspt}${id}`];
 };
 
-export const getTopClassesSelector = state => get(state, "course.topClasses");
+export const getTopClassesSelector = state =>
+  get(state, "course.topClasses") || [];
+
+export const getDashboardSelector = state =>
+  get(state, "course.dashboard") || {};
