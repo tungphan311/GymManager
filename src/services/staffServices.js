@@ -29,3 +29,18 @@ export async function getMentor(param) {
   const url = "/staffs?" + queryString.stringify(param);
   return await API.get(url);
 }
+
+export async function filterStaff({ gender, roleid, stafftypeid }) {
+  const url = "/staffs/filter";
+  // console.log(gender, roleid, stafftypeid);
+  return await API.post(url, { gender, roleid, stafftypeid });
+}
+
+export async function getAllStaff() {
+  return await API.get("/staffs");
+}
+
+export async function deleteStaff({ staffID }) {
+  const url = "/staffs/delete/" + staffID;
+  return await API.get(url);
+}

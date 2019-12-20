@@ -2,11 +2,23 @@ import { takeEvery, put, call, select } from "redux-saga/effects";
 import {
   ADD_STAFF,
   ADD_STAFF_SUCCESS,
-  GET_MENTOR
+  GET_MENTOR,
+  GET_STAFF,
+  GET_STAFF_SUCCESS,
+  DELETE_STAFF,
+  DELETE_STAFF_SUCCESS,
+  FILTER_STAFF,
+  FILTER_STAFF_SUCCESS
 } from "state/reducers/staffReducer";
 import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
-import { addStaff, getMentor } from "services/staffServices";
+import {
+  addStaff,
+  getMentor,
+  getAllStaff,
+  deleteStaff,
+  filterStaff
+} from "services/staffServices";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
@@ -58,11 +70,52 @@ export function* getMentorSaga() {
     const results = yield call(getMentor, {
       roleid: 1
     });
-    console.log(results.data);
   } catch (error) {}
+}
+export function* getAllStaffSaga() {
+  try {
+    yield put({ type: SET_LOADING });
+    const results = yield call(getAllStaff);
+
+    yield toast({ message: "Lấy danh sách nhân viên thành công" });
+    const staffs = results.data;
+    yield put({ type: GET_STAFF_SUCCESS, staffs });
+  } catch (err) {
+    toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
+export function* deleteStaffSaga({ staffID }) {
+  try {
+    yield put({ type: SET_LOADING });
+    yield call(deleteStaff, { staffID });
+    yield toast({ message: "Xoá nhân viên thành công" });
+    yield put({ type: DELETE_STAFF_SUCCESS, staffID });
+  } catch (err) {
+    toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
+}
+
+export function* filterStaffs({ gender, roleid, stafftypeid }) {
+  try {
+    yield put({ type: SET_LOADING });
+    const results = yield call(filterStaff, { gender, roleid, stafftypeid });
+    yield put({ type: FILTER_STAFF_SUCCESS, response: results.data });
+  } catch (err) {
+    toastErr(err);
+  } finally {
+    yield put({ type: SET_LOADING, status: false });
+  }
 }
 
 export default function* staffSaga() {
   yield takeEvery(ADD_STAFF, addStaffSaga);
+  yield takeEvery(GET_STAFF, getAllStaffSaga);
   yield takeEvery(GET_MENTOR, getMentorSaga);
+  yield takeEvery(DELETE_STAFF, deleteStaffSaga);
+  yield takeEvery(FILTER_STAFF, filterStaffs);
 }
