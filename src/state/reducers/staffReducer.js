@@ -11,7 +11,6 @@ export const FILTER_STAFF = "staff/FILTER_STAFF";
 export const FILTER_STAFF_SUCCESS = "staff/FILTER_STAFF_SUCCESS";
 
 export const EDIT_STAFF = "staff/EDIT_STAFF";
-
 const initState = {
   trainer: [
     {

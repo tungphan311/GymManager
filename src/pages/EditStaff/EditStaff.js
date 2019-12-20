@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editStaff: () => dispatch({ type: EDIT_STAFF }),
+  editStaff: id => dispatch({ type: EDIT_STAFF, id }),
   getStaff: id => dispatch({ type: GET_STAFF, id })
 });
 
@@ -36,7 +36,11 @@ class EditStaff extends Component {
         >
           CẬP NHẬT THÔNG TIN NHÂN VIÊN
         </h1>
-        <AddStaffForm onSubmit={this.props.addStaff} staffdata={staffdata} />
+        <AddStaffForm
+          type="edit"
+          onSubmit={this.props.editStaff}
+          staffdata={staffdata}
+        />
       </div>
     );
   }

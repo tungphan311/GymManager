@@ -25,38 +25,41 @@ class AddStaffForm extends Component {
       defaultFN: ""
     };
   }
-  componentDidUpdate = () => {
-    const {
-      initialize,
-      staffdata: {
-        FullName,
-        BirthDate,
-        Address,
-        Phone,
-        Gender,
-        Email,
-        BegiDay,
-        RoleID,
-        StaffTypeID
-      },
-      dispatch
-    } = this.props;
-    const { defaultFN } = this.state;
 
-    if (!defaultFN && FullName) {
-      initialize({
-        fullname: FullName,
-        phone: Phone,
-        address: Address,
-        gender: Gender,
-        email: Email,
-        roleid: RoleID,
-        stafftypeid: StaffTypeID
-        // beginday: BegiDay,
-        // birthdate: BirthDate
-      });
-      // dispatch(change(FORM_KEY_ADDSTAFF, "fullname", FullName));
-      this.setState({ defaultFN: FullName });
+  componentDidUpdate = () => {
+    if (this.props.type === "edit") {
+      const {
+        initialize,
+        staffdata: {
+          FullName,
+          BirthDate,
+          Address,
+          Phone,
+          Gender,
+          Email,
+          BegiDay,
+          RoleID,
+          StaffTypeID
+        },
+        dispatch
+      } = this.props;
+      const { defaultFN } = this.state;
+
+      if (!defaultFN && FullName) {
+        initialize({
+          fullname: FullName,
+          phone: Phone,
+          address: Address,
+          gender: Gender,
+          email: Email,
+          roleid: RoleID,
+          stafftypeid: StaffTypeID
+          // beginday: BegiDay,
+          // birthdate: BirthDate
+        });
+
+        this.setState({ defaultFN: FullName });
+      }
     }
   };
 
@@ -146,7 +149,7 @@ class AddStaffForm extends Component {
               Trở về
             </button>
             <button type="submit" className="groupBtn btn btn-primary mr-0">
-              Thêm nhân viên
+              {this.props.type === "edit" ? "Cập nhật" : "Thêm nhân viên"}
             </button>
           </div>
         </div>

@@ -18,7 +18,7 @@ class AddStaff extends Component {
         >
           THÊM NHÂN VIÊN MỚI
         </h1>
-        <AddStaffForm onSubmit={this.props.addStaff} />
+        <AddStaffForm type="add" onSubmit={this.props.addStaff} />
       </div>
     );
   }

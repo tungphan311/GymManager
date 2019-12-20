@@ -48,7 +48,7 @@ class Routes extends Component {
             "/courses/add",
             "/equipments/add",
             "/members/add",
-            "/staffs/:id"
+            "/staffs/edit/:id"
           ]}
         >
           <DefaultLayout>
@@ -91,7 +91,7 @@ class Routes extends Component {
             />
             <AuthorizedRoute
               exact
-              path="/staffs/:id"
+              path="/staffs/edit/:id"
               component={EditStaff}
               isUser={isUser}
             />
