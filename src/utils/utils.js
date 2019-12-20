@@ -2,6 +2,7 @@ import Toaster from "Components/Toastify/Toaster";
 import { toast as toaster } from "react-toastify";
 import React from "react";
 import { get } from "lodash";
+import { getStaff } from "services/staffServices";
 
 export function getToken(key) {
   return localStorage.getItem(key);
@@ -109,4 +110,8 @@ export function formatDuration(duration) {
 export function setCourseType(id) {
   if (id == 0) return "Cá nhân";
   else if (id == 1) return "Theo lớp";
+}
+
+export function getStaffByID(id) {
+  console.log(getStaff(id));
 }

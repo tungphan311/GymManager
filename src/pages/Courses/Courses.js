@@ -4,18 +4,21 @@ import TableItem from "Components/TableItem/TableItem";
 import { MDBCard, MDBCardBody, MDBCardTitle } from "mdbreact";
 import { connect } from "react-redux";
 import history from "state/history";
-import Select from "Components/Select/Select";
 import { GET_COURSE, DELETE_COURSE } from "state/reducers/courseReducer";
 import { getCoursesSelector } from "state/selectors/courseSelector";
-import { formatDuration, setCourseType } from "utils/utils";
+import { formatDuration, setCourseType, getStaffByID } from "utils/utils";
+import { GET_STAFF_BY_ID } from "state/reducers/staffReducer";
+import { getStaffNameSelector } from "state/selectors/index";
 
 const mapDispatchToProps = dispatch => ({
   getAllCourse: () => dispatch({ type: GET_COURSE }),
   deleteCourse: courseID => dispatch({ type: DELETE_COURSE, courseID })
+  // getStaff: id => dispatch({ type: GET_STAFF_BY_ID, id })
 });
 
 const mapStatetoProps = state => ({
   courses: getCoursesSelector(state)
+  // staff: getStaffNameSelector(state)
 });
 
 class Courses extends React.Component {
@@ -33,11 +36,11 @@ class Courses extends React.Component {
 
   formatCourses(listOfCourses) {
     const NewList = listOfCourses.map(item => {
-      console.log(listOfCourses);
       const newCourseItem = {
         ...item,
         DurationDays: formatDuration(item.DurationDays),
         ClassTypeID: setCourseType(item.ClassTypeID),
+        // StaffID: this.getStaff(item.StaffID),
         Action: (
           <div className="button">
             <button className="btn btn-link btn-dark">
@@ -45,7 +48,7 @@ class Courses extends React.Component {
             </button>
             <button
               className="btn btn-link btn-primary btn-lg"
-              onClick={() => history.push("/" + item.ID)}
+              onClick={() => history.push("/edit/" + item.ID)}
             >
               <i className="fa fa-edit"></i>
             </button>
@@ -65,6 +68,9 @@ class Courses extends React.Component {
   deleteCourse(staffID) {
     this.props.deleteCourse(staffID);
   }
+  // getStaff(id) {
+  //   this.props.getStaff(id);
+  // }
   render() {
     let courses = this.props.courses;
     courses = this.formatCourses(courses);
