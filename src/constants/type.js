@@ -5,10 +5,10 @@ export const TYPE = [
   },
   {
     value: 1,
-    label: "Bán thời gian"
+    label: "Toàn thời gian"
   },
   {
     value: 2,
-    label: "Toàn thời gian"
+    label: "Bán thời gian"
   }
 ];
