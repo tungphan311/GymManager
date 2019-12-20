@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { formatGender, setStaffType, setRole, formatDate } from "utils/utils";
 import history from "state/history";
 import Select from "Components/Select/Select";
+import FilterSelector from "Components/FilterSelector/FilterSelector";
 
 const mapDispatchToProps = dispatch => ({
   getAllStaff: () => dispatch({ type: GET_STAFF }),
@@ -153,24 +154,24 @@ class Staffs extends React.Component {
               </div>
             </MDBCardTitle>
             <div className="filter__container">
-              <Select
+              <FilterSelector
                 className="selectRole"
                 selectlist={ROLE}
                 selectName="roleid"
                 onChange={this._handleChange}
               />
-              <Select
+              <FilterSelector
                 className="selectGender"
                 selectName="gender"
                 selectlist={GENDERS}
                 onChange={this._handleChange}
-              ></Select>
-              <Select
+              />
+              <FilterSelector
                 className="selectType"
                 selectlist={TYPE}
                 selectName="stafftypeid"
                 onChange={this._handleChange}
-              ></Select>
+              />
             </div>
             <TableItem dataSource={data} />
           </MDBCardBody>

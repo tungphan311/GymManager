@@ -6,6 +6,7 @@ import equipmentSaga from "state/sagas/equipmentSaga";
 import courseSaga from "state/sagas/courseSaga";
 import memberSaga from "state/sagas/memberSaga";
 import billSaga from "state/sagas/billSaga";
+import equipmentsTypeSaga from "state/sagas/equipmentTypeSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -15,7 +16,9 @@ export default function* rootSaga() {
     courseSaga(),
     equipmentSaga(),
     memberSaga(),
-    billSaga()
+    billSaga(),
+    courseSaga(),
+    equipmentsTypeSaga()
   ]);
 }
 

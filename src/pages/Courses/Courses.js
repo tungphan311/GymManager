@@ -40,7 +40,7 @@ class Courses extends React.Component {
         ...item,
         DurationDays: formatDuration(item.DurationDays),
         ClassTypeID: setCourseType(item.ClassTypeID),
-        // StaffID: this.getStaff(item.StaffID),
+        // courseID: this.getStaff(item.courseID),
         Action: (
           <div className="button">
             <button className="btn btn-link btn-dark">
@@ -48,7 +48,7 @@ class Courses extends React.Component {
             </button>
             <button
               className="btn btn-link btn-primary btn-lg"
-              onClick={() => history.push("/edit/" + item.ID)}
+              onClick={() => history.push("courses/edit/" + item.ID)}
             >
               <i className="fa fa-edit"></i>
             </button>
@@ -65,12 +65,10 @@ class Courses extends React.Component {
     });
     return NewList;
   }
-  deleteCourse(staffID) {
-    this.props.deleteCourse(staffID);
+  deleteCourse(courseID) {
+    this.props.deleteCourse(courseID);
   }
-  // getStaff(id) {
-  //   this.props.getStaff(id);
-  // }
+
   render() {
     let courses = this.props.courses;
     courses = this.formatCourses(courses);
@@ -83,12 +81,7 @@ class Courses extends React.Component {
           sort: "asc"
           // width: 600
         },
-        {
-          label: "Nhân viên",
-          field: "StaffID",
-          sort: "asc"
-          // width: 150
-        },
+
         {
           label: "Loại gói tập",
           field: "ClassTypeID"
