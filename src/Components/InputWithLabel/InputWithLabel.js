@@ -16,17 +16,20 @@ const InputWithLabel = ({
   const { errCode } = error || {};
 
   return (
-    <div className="inputwlabel__container">
-      <label className={`${!label ? "d-none" : "inputwlabel__label"}`}>
-        {label}
-      </label>
+    <div className="inputlabel__container">
+      <label className={`${!label ? "d-none" : "input__label"}`}>{label}</label>
       <div>
-        <input
-          {...input}
-          placeholder={placeholder}
-          className={`inputwlabel__field ${className}`}
-          type={type}
-        />
+        <div className="input-group mb-3">
+          <input
+            {...input}
+            placeholder={placeholder}
+            className="form-control"
+            type={type}
+          />
+          <div className="input-group-append">
+            <span className="input-group-text">VNĐ</span>
+          </div>
+        </div>
 
         <div>{showError && <span className="error">{errCode}</span>}</div>
       </div>
