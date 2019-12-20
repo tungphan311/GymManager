@@ -1,4 +1,4 @@
-import { COURSETYPE } from "constants/index";
+import { COURSETYPE, HASPT } from "constants/index";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import "./AddCourseForm.scss";
@@ -7,14 +7,15 @@ import Input from "Components/Input/Input";
 import Select from "Components/Select/Select";
 import {
   require,
-  validName,
-  validPhone,
-  validD,
-  email
+  validName
+  // validPhone,
+  // validD,
+  // email
 } from "utils/FormValidate";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { getTrainersSelector } from "state/selectors/trainerSelector";
+import InputWithLabel from "Components/InputWithLabel/InputWithLabel";
 
 const mapStateToProps = state => ({
   trainer: getTrainersSelector(state)
@@ -36,7 +37,7 @@ function AddCourseForm({ handleSubmit, trainer }) {
             label="Hình thức tập: *"
             name="haspt"
             component={Select}
-            selectlist={trainer}
+            selectlist={HASPT}
             validate={require}
           />
         </div>
@@ -51,8 +52,7 @@ function AddCourseForm({ handleSubmit, trainer }) {
           <Field
             label="Hạn khóa học: *"
             name="durationdays"
-            component={Select}
-            // selectlist={GENDERS}
+            component={Input}
             validate={require}
           />
         </div>
@@ -61,16 +61,9 @@ function AddCourseForm({ handleSubmit, trainer }) {
             label="Trị giá: *"
             name="price"
             placeholder="Trị giá"
-            component={Input}
-            validate={[require, validName]}
+            component={InputWithLabel}
+            validate={[require]}
           />
-          {/* <Field
-            label="Thời khóa biểu: *"
-            name="gender"
-            component={Select}
-            // selectlist={GENDERS}
-            validate={require}
-          /> */}
         </div>
         <div className="group">
           <button type="button" className="groupBtn btn btn-primary btn-border">
