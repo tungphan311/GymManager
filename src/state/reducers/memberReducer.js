@@ -9,7 +9,9 @@ export const EDIT_MEMBER_SUCCESS = "member/EDIT_MEMBER_SUCCESS";
 export const GET_MEMBER_BY_ID = "member/GET_MEMBER_BY_ID";
 export const GET_MEMBER_BY_ID_SUCCESS = "GET_MEMBER_BY_ID_SUCCESS";
 
-const initState = {};
+const initState = {
+  members: []
+};
 
 export function memberReducer(state = initState, action = {}) {
   const newState = { ...state };
@@ -17,11 +19,18 @@ export function memberReducer(state = initState, action = {}) {
   switch (action.type) {
     case ADD_MEMBER_SUCCESS:
       return null;
+
     case GET_MEMBER_BY_ID_SUCCESS: {
       const { results } = action;
       newState.memberData = results.data;
       return newState;
     }
+
+    case GET_MEMBER_SUCCESS: {
+      newState.members = action.payload;
+      return newState;
+    }
+
     default:
       return newState;
   }
