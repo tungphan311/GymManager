@@ -10,6 +10,9 @@ export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
 export const BUY_CLASS = "course/BUY_CLASS";
 export const BUY_CLASS_SUCCESS = "course/BUY_CLASS_SUCCESS";
 
+export const GET_TOP_CLASSES = "course/GET_TOP_CLASSES";
+export const GET_TOP_CLASSES_SUCCESS = "course/GET_TOP_CLASSES_SUCCESS";
+
 const initState = {
   courses: [],
   false1: [],
@@ -18,7 +21,8 @@ const initState = {
   false4: [],
   true2: [],
   true3: [],
-  true4: []
+  true4: [],
+  topClasses: []
 };
 
 export function courseReducer(state = initState, action = {}) {
@@ -30,6 +34,7 @@ export function courseReducer(state = initState, action = {}) {
       newState.courses = courses;
       return newState;
     }
+
     case DELETE_COURSE_SUCCESS: {
       const { courseID } = action;
       newState.courses = newState.courses.filter(
@@ -37,11 +42,17 @@ export function courseReducer(state = initState, action = {}) {
       );
       return newState;
     }
+
     case GET_CLASS_SUCCESS: {
       const { payload, id, haspt } = action;
 
       newState[`${haspt}${id}`] = payload;
 
+      return newState;
+    }
+
+    case GET_TOP_CLASSES_SUCCESS: {
+      newState.topClasses = action.payload;
       return newState;
     }
 

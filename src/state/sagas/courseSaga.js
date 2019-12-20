@@ -7,7 +7,9 @@ import {
   GET_CLASS,
   GET_CLASS_SUCCESS,
   BUY_CLASS,
-  BUY_CLASS_SUCCESS
+  BUY_CLASS_SUCCESS,
+  GET_TOP_CLASSES,
+  GET_TOP_CLASSES_SUCCESS
 } from "state/reducers/courseReducer";
 import { formatDate, toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
@@ -16,11 +18,14 @@ import {
   getAllCourse,
   deleteCourse,
   getClassesService,
-  buyClasses
+  buyClasses,
+  getTopClassesService
 } from "services/courseServices";
 import { getStaffId } from "state/selectors/index";
 import { getClassIdSelector } from "state/selectors/modalSelector";
 import { TOGGLE_MODAL } from "state/reducers/modalReducer";
+import { getRecentMemberService } from "services/memberServices";
+import { GET_MEMBER_RECENTLY } from "state/reducers/memberReducer";
 
 export function* getAllCourseSaga() {
   try {
@@ -72,7 +77,7 @@ export function* buyClassesSaga({ memberid }) {
 
     const classid = yield select(state => getClassIdSelector(state));
 
-    const result = yield call(buyClasses, { classid, memberid, staffid });
+    yield call(buyClasses, { classid, memberid, staffid });
 
     yield put({ type: BUY_CLASS_SUCCESS });
 
@@ -86,9 +91,24 @@ export function* buyClassesSaga({ memberid }) {
   }
 }
 
+export function* getTopClassSaga() {
+  try {
+    const result = yield call(getTopClassesService);
+
+    yield put({ type: GET_TOP_CLASSES_SUCCESS, payload: result.data });
+
+    const recent = yield call(getRecentMemberService);
+
+    yield put({ type: GET_MEMBER_RECENTLY, payload: recent.data });
+  } catch (err) {
+    yield toastErr(err);
+  }
+}
+
 export default function* courseSaga() {
   yield takeEvery(GET_COURSE, getAllCourseSaga);
   yield takeEvery(DELETE_COURSE, deleteCourseSaga);
   yield takeEvery(GET_CLASS, getClassesSaga);
   yield takeEvery(BUY_CLASS, buyClassesSaga);
+  yield takeEvery(GET_TOP_CLASSES, getTopClassSaga);
 }

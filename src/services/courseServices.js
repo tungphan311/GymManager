@@ -15,3 +15,7 @@ export async function getClassesService({ id, haspt }) {
 export async function buyClasses({ classid, memberid, staffid }) {
   return await API.post("/bills/buy", { classid, memberid, staffid });
 }
+
+export async function getTopClassesService() {
+  return await API.get("/stats/topclasses");
+}

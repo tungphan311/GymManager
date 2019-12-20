@@ -25,6 +25,10 @@ export async function addMember({
 export async function getMemberService() {
   return await API.get("/members");
 }
+
+export async function getRecentMemberService() {
+  return await API.get("/members/recently");
+}
 export async function getMember({ id }) {
   return await API.get(`/members/${id}`);
 }

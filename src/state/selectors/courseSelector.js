@@ -7,3 +7,5 @@ export const getClassesWithId = (state, id, haspt) => {
 
   return course[`${haspt}${id}`];
 };
+
+export const getTopClassesSelector = state => get(state, "course.topClasses");

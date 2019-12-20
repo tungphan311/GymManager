@@ -9,8 +9,11 @@ export const EDIT_MEMBER_SUCCESS = "member/EDIT_MEMBER_SUCCESS";
 export const GET_MEMBER_BY_ID = "member/GET_MEMBER_BY_ID";
 export const GET_MEMBER_BY_ID_SUCCESS = "GET_MEMBER_BY_ID_SUCCESS";
 
+export const GET_MEMBER_RECENTLY = "member/GET_MEMBER_RECENTLY";
+
 const initState = {
-  members: [{ value: 0, label: "Chọn hội viên" }]
+  members: [{ value: 0, label: "Chọn hội viên" }],
+  recently: []
 };
 
 export function memberReducer(state = initState, action = {}) {
@@ -32,6 +35,11 @@ export function memberReducer(state = initState, action = {}) {
         label: item.FullName
       }));
       newState.members = [...newState.members, ...members];
+      return newState;
+    }
+
+    case GET_MEMBER_RECENTLY: {
+      newState.recently = action.payload;
       return newState;
     }
 
