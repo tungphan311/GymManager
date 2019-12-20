@@ -73,42 +73,43 @@ class AddStaffForm extends Component {
   };
 
   render() {
-    const { handleSubmit, staffdata, initialize } = this.props;
-    const { init } = this.state;
+    const { handleSubmit, staffdata, initialize, type } = this.props;
 
-    console.log(staffdata);
+    if (type === "edit") {
+      const { init } = this.state;
 
-    if (this.isEmpty(staffdata)) return null;
+      if (this.isEmpty(staffdata)) return null;
 
-    if (!init && !this.isEmpty(staffdata)) {
-      this.setState({ init: true }, () => {
-        const {
-          FullName,
-          BirthDate,
-          Address,
-          Phone,
-          Gender,
-          Email,
-          BeginDay,
-          RoleID,
-          StaffTypeID
-        } = staffdata;
+      if (!init && !this.isEmpty(staffdata)) {
+        this.setState({ init: true }, () => {
+          const {
+            FullName,
+            BirthDate,
+            Address,
+            Phone,
+            Gender,
+            Email,
+            BeginDay,
+            RoleID,
+            StaffTypeID
+          } = staffdata;
 
-        const dob = new Date(BirthDate);
-        const bgd = new Date(BeginDay);
+          const dob = new Date(BirthDate);
+          const bgd = new Date(BeginDay);
 
-        initialize({
-          fullname: FullName,
-          phone: Phone,
-          address: Address,
-          gender: Gender,
-          email: Email,
-          roleid: RoleID,
-          stafftypeid: StaffTypeID,
-          beginday: bgd,
-          birthdate: dob
+          initialize({
+            fullname: FullName,
+            phone: Phone,
+            address: Address,
+            gender: Gender,
+            email: Email,
+            roleid: RoleID,
+            stafftypeid: StaffTypeID,
+            beginday: bgd,
+            birthdate: dob
+          });
         });
-      });
+      }
     }
 
     return (

@@ -37,9 +37,7 @@ class AddMemberForm extends Component {
           Phone,
           Gender,
           Email,
-          IdentityCard,
-          StaffID,
-          StaffTypeID
+          IdentityCard
         }
       } = this.props;
       const { defaultF } = this.state;
