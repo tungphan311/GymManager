@@ -18,32 +18,19 @@ class SellCourseModal extends Component {
     super(props);
 
     this.state = {
-      options: [{ value: 0, label: "Chọn hội viên" }]
+      selected: { value: 0, label: "Chọn hội viên" }
     };
   }
-  componentDidMount = async () => {
-    await this.props.getMembers();
 
-    await this.setOptions(this.state.options);
+  componentDidMount = () => {
+    this.props.getMembers();
   };
 
-  setOptions = options => {
-    console.log(this.props.members);
-    let newOpt =
-      this.props.members &&
-      this.props.members.map(member => ({
-        value: member.ID,
-        label: member.FullName
-      }));
-    newOpt = [...options, ...newOpt];
-
-    this.setState({ options: newOpt });
-  };
+  handleSubmit = () => {};
 
   render() {
-    const { isOpen, toggleModal } = this.props;
-
-    const { options } = this.state;
+    const { isOpen, toggleModal, members } = this.props;
+    const { selected } = this.state;
 
     return (
       <Modal size="lg" isOpen={isOpen} toggleModal={toggleModal}>
@@ -51,10 +38,14 @@ class SellCourseModal extends Component {
           <p className="md__login__modal__title">ĐĂNG KÝ GÓI TẬP</p>
 
           <p>Hội viên đăng ký</p>
-          <SelectWithInput options={options} selectedOption={options[0]} />
+          <SelectWithInput
+            options={members}
+            selectedOption={selected}
+            onChange={selected => this.setState({ selected })}
+          />
 
           <div style={{ marginTop: "20px" }} className="text-center">
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" onClick={this.handleSubmit}>
               <span className="btn-label">
                 <i className="fa fa-plus"></i>
               </span>

@@ -5,7 +5,7 @@ export const GET_MEMBER = "member/GET_MEMBER";
 export const GET_MEMBER_SUCCESS = "member/GET_MEMBER_SUCCESS";
 
 const initState = {
-  members: []
+  members: [{ value: 0, label: "Chọn hội viên" }]
 };
 
 export function memberReducer(state = initState, action = {}) {
@@ -16,7 +16,11 @@ export function memberReducer(state = initState, action = {}) {
       return null;
 
     case GET_MEMBER_SUCCESS: {
-      newState.members = action.payload;
+      const members = action.payload.map(item => ({
+        value: parseInt(item.ID),
+        label: item.FullName
+      }));
+      newState.members = [...newState.members, ...members];
       return newState;
     }
 

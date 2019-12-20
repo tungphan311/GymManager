@@ -5,13 +5,17 @@
     width: 100%;
   }
   .hara__select {
+    &__menu {
+      z-index: 1000;
+    }
+
     &__indicator-separator {
       width: 0;
     }
 
     &__single-value {
       font-size: 1rem;
-      color: #495057;
+      color: #000;
     }
 
     &__control {
