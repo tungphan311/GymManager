@@ -45,6 +45,7 @@ class EditMember extends Component {
 
   render() {
     const {
+      history,
       memberdata,
       match: {
         params: { id }
@@ -54,7 +55,7 @@ class EditMember extends Component {
     if (id !== this.state.id) {
       this.setState({ id });
     }
-    console.log(this.props);
+
     return (
       <div className="addmember">
         <h1
@@ -65,6 +66,7 @@ class EditMember extends Component {
         </h1>
         <AddMemberForm
           type="edit"
+          history={history}
           onSubmit={() => this.props.editMember(id)}
           memberdata={memberdata}
         />

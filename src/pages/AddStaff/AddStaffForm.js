@@ -27,44 +27,6 @@ class AddStaffForm extends Component {
     };
   }
 
-  // componentDidUpdate = () => {
-  //   if (this.props.type === "edit") {
-  //     const {
-  //       initialize,
-  //       staffdata: {
-  //         FullName,
-  //         BirthDate,
-  //         Address,
-  //         Phone,
-  //         Gender,
-  //         Email,
-  //         BeginDay,
-  //         RoleID,
-  //         StaffTypeID
-  //       }
-  //     } = this.props;
-  //     const { defaultF } = this.state;
-  //     const dob = new Date(BirthDate);
-  //     const bgd = new Date(BeginDay);
-
-  //     if (!defaultF && FullName) {
-  //       initialize({
-  //         fullname: FullName,
-  //         phone: Phone,
-  //         address: Address,
-  //         gender: Gender,
-  //         email: Email,
-  //         roleid: RoleID,
-  //         stafftypeid: StaffTypeID,
-  //         beginday: bgd,
-  //         birthdate: dob
-  //       });
-
-  //       this.setState({ defaultF: FullName });
-  //     }
-  //   }
-  // };
-
   isEmpty = obj => {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) return false;
@@ -73,7 +35,9 @@ class AddStaffForm extends Component {
   };
 
   render() {
-    const { handleSubmit, staffdata, initialize, type } = this.props;
+    const { handleSubmit, staffdata, initialize, type, history } = this.props;
+
+    console.log(history);
 
     if (type === "edit") {
       const { init } = this.state;
@@ -190,12 +154,13 @@ class AddStaffForm extends Component {
           <div className="group">
             <button
               type="button"
+              onClick={() => history.goBack()}
               className="groupBtn btn btn-primary btn-border"
             >
               Trở về
             </button>
             <button type="submit" className="groupBtn btn btn-primary mr-0">
-              {this.props.type === "edit" ? "Cập nhật" : "Thêm nhân viên"}
+              Câp nhật
             </button>
           </div>
         </div>

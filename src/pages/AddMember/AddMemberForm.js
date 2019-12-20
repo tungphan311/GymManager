@@ -60,7 +60,7 @@ class AddMemberForm extends Component {
   };
 
   render() {
-    const { handleSubmit, type } = this.props;
+    const { handleSubmit, type, history } = this.props;
 
     return (
       <form className="addEquipmentForm" onSubmit={handleSubmit} noValidate>
@@ -123,12 +123,13 @@ class AddMemberForm extends Component {
           <div className="group">
             <button
               type="button"
+              onClick={() => history.goBack()}
               className="groupBtn btn btn-primary btn-border"
             >
               Trở về
             </button>
             <button type="submit" className="groupBtn btn btn-primary mr-0">
-              {type === "edit" ? "Cập nhật hội viên" : "Thêm hội viên"}
+              Cập nhật
             </button>
           </div>
         </div>

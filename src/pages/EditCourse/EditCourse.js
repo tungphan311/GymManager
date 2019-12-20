@@ -44,6 +44,7 @@ class EditCourse extends Component {
 
   render() {
     const {
+      history,
       coursedata,
       match: {
         params: { id }
@@ -60,10 +61,11 @@ class EditCourse extends Component {
           className="text-center"
           style={{ padding: "20px 0", marginBottom: "24px" }}
         >
-          CẬP NHẬT THÔNG TIN HỘI VIÊN
+          CẬP NHẬT THÔNG TIN GÓI TẬP
         </h1>
         <AddCourseForm
           type="edit"
+          history={history}
           onSubmit={() => this.props.editCourse(id)}
           coursedata={coursedata}
         />

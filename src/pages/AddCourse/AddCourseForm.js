@@ -49,7 +49,7 @@ class AddCourseForm extends Component {
     }
   };
   render() {
-    const { handleSubmit, type } = this.props;
+    const { handleSubmit, type, history } = this.props;
     return (
       <form className="addCourseForm" onSubmit={handleSubmit} noValidate>
         <div className="container">
@@ -95,12 +95,13 @@ class AddCourseForm extends Component {
           <div className="group">
             <button
               type="button"
+              onClick={() => history.goBack()}
               className="groupBtn btn btn-primary btn-border"
             >
               Trở về
             </button>
             <button type="submit" className="groupBtn btn btn-primary mr-0">
-              {type === "edit" ? "Cập nhật gói tâp" : "Thêm gói tập"}
+              Cập nhật
             </button>
           </div>
         </div>
