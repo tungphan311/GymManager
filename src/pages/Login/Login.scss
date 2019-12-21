@@ -1,65 +1,66 @@
-.loginForm {
-  max-width: 500px;
-  width: 90%;
-  background-color: #242424;
-  padding: 40px;
-  border-radius: 4px;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: #fff;
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
-}
-
 .login__container {
   width: 100vw;
   height: 100vh;
   background-image: url("/assets/img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-}
 
-.illustration {
-  text-align: center;
-  padding: 15px 0 20px;
-  font-size: 100px;
-  color: #2980ef;
-}
-.loginpage .btn-primary {
-  background: #214a80 !important;
-  border: none;
-  border-radius: 4px;
-  padding: 11px;
-  box-shadow: none;
-  margin-top: 26px;
-  text-shadow: none;
-  outline: none;
+  .loginForm {
+    max-width: 500px;
+    width: 90%;
+    background-color: #242424;
+    padding: 40px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+  }
 
-  &:hover,
-  &:active {
-    background: #214a80;
+  .illustration {
+    text-align: center;
+    padding: 15px 0 20px;
+    font-size: 100px;
+    color: #2980ef;
+  }
+  .loginpage .btn-primary {
+    background: #214a80 !important;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 26px;
+    text-shadow: none;
     outline: none;
-  }
-  &:active {
-    transform: translateY(1px);
-  }
-}
 
-.forgot {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: $white;
-  opacity: 0.9;
-  text-decoration: none;
-  &:hover,
-  &:active {
-    opacity: 1;
+    &:hover,
+    &:active {
+      background: #214a80;
+      outline: none;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .forgot {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: $white;
+    opacity: 0.9;
     text-decoration: none;
+    &:hover,
+    &:active {
+      opacity: 1;
+      text-decoration: none;
+    }
   }
-}
 
-input {
-  height: 45px;
+  input {
+    height: 45px;
+    background-color: white;
+  }
 }

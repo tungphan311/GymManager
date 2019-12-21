@@ -4,14 +4,13 @@ import {
   GET_EQUIPMENT_TYPE
 } from "state/reducers/equipmentTypeReducer";
 import { SET_LOADING } from "state/reducers/loadingReducer";
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import { toastErr } from "utils/utils";
 export function* getAllEquipmentTypeSaga() {
   try {
     yield put({ type: SET_LOADING });
     const results = yield call(getAllEquipmentType);
 
-    // yield toast({ message: "Lấy danh sách trang thiết bị thành công" });
     const equipmentTypes = results.data;
     yield put({ type: GET_EQUIPMENT_TYPE_SUCCESS, equipmentTypes });
   } catch (err) {

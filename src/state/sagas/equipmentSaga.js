@@ -1,7 +1,5 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import {
-  ADD_EQUIPMENT,
-  ADD_EQUIPMENT_SUCCESS,
   GET_EQUIPMENT_SUCCESS,
   DELETE_EQUIPMENT_SUCCESS,
   GET_EQUIPMENT,
@@ -9,17 +7,13 @@ import {
   FILTER_EQUIPMENT_SUCCESS,
   FILTER_EQUIPMENT
 } from "state/reducers/equipmentReducer";
-import { FORM_KEY_ADDEQUIPMENT } from "state/reducers/formReducer";
-import { getFormValues } from "state/selectors/index";
 import {
-  addEquipment,
   deleteEquipment,
   getAllEquipment,
   filterDeviceService
 } from "services/equipmentServices";
-import { formatDate, toast, toastErr } from "utils/utils";
+import { toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
-import { reset } from "redux-form";
 
 // export function* addEquipmentSaga() {
 //   try {
@@ -68,9 +62,8 @@ export function* getAllEquipmentSaga() {
     yield put({ type: SET_LOADING });
     const results = yield call(getAllEquipment);
 
-    yield toast({ message: "Lấy danh sách trang thiết bị thành công" });
     const equipments = results.data;
-    console.log(equipments);
+
     yield put({ type: GET_EQUIPMENT_SUCCESS, equipments });
   } catch (err) {
     toastErr(err);
@@ -82,8 +75,11 @@ export function* getAllEquipmentSaga() {
 export function* deleteEquipmentSaga({ equipmentID }) {
   try {
     yield put({ type: SET_LOADING });
+
     yield call(deleteEquipment, { equipmentID });
+
     yield toast({ message: "Xoá thiết bị thành công" });
+
     yield put({ type: DELETE_EQUIPMENT_SUCCESS, equipmentID });
   } catch (err) {
     toastErr(err);

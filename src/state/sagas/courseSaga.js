@@ -7,7 +7,6 @@ import {
   GET_CLASS,
   GET_CLASS_SUCCESS,
   BUY_CLASS,
-  BUY_CLASS_SUCCESS,
   GET_TOP_CLASSES,
   GET_TOP_CLASSES_SUCCESS,
   GET_DASHBOARD,
@@ -16,7 +15,7 @@ import {
   GET_CLASS_BY_ID,
   EDIT_COURSE
 } from "state/reducers/courseReducer";
-import { formatDate, toast, toastErr } from "utils/utils";
+import { toast, toastErr } from "utils/utils";
 import { SET_LOADING } from "state/reducers/loadingReducer";
 import { reset } from "redux-form";
 import {
@@ -44,7 +43,6 @@ export function* getAllCourseSaga() {
     yield put({ type: SET_LOADING });
     const results = yield call(getAllCourse);
 
-    yield toast({ message: "Lấy danh sách gói tập thành công" });
     const courses = results.data;
     yield put({ type: GET_COURSE_SUCCESS, courses });
   } catch (err) {
@@ -57,8 +55,11 @@ export function* getAllCourseSaga() {
 export function* deleteCourseSaga({ courseID }) {
   try {
     yield put({ type: SET_LOADING });
+
     yield call(deleteCourse, { courseID });
+
     yield toast({ message: "Xoá gói tập thành công" });
+
     yield put({ type: DELETE_COURSE_SUCCESS, courseID });
   } catch (err) {
     toastErr(err);
@@ -91,8 +92,6 @@ export function* buyClassesSaga({ memberid }) {
 
     yield call(buyClasses, { classid, memberid, staffid });
 
-    yield put({ type: BUY_CLASS_SUCCESS });
-
     yield toast({ message: "Đăng ký gói tập thành công" });
 
     yield put({ type: TOGGLE_MODAL });
@@ -120,7 +119,6 @@ export function* addCourseSaga() {
     const reqdurationdays = parseFloat(durationdays);
 
     if (!reqhaspt && reqclasstypeid === 1) {
-      console.log("aa");
       toast({
         type: "error",
         message: "Gói tập theo ngày không khả dụng với hình thức tập cá nhân"

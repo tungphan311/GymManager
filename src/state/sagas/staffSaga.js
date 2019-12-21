@@ -2,7 +2,6 @@ import { takeEvery, put, call, select } from "redux-saga/effects";
 import {
   ADD_STAFF,
   ADD_STAFF_SUCCESS,
-  GET_MENTOR,
   GET_STAFF,
   GET_STAFF_SUCCESS,
   DELETE_STAFF,
@@ -10,7 +9,6 @@ import {
   FILTER_STAFF,
   FILTER_STAFF_SUCCESS,
   EDIT_STAFF,
-  EDIT_STAFF_SUCCESS,
   GET_STAFF_BY_ID,
   GET_STAFF_BY_ID_SUCCESS
 } from "state/reducers/staffReducer";
@@ -18,7 +16,6 @@ import { FORM_KEY_ADDSTAFF } from "state/reducers/formReducer";
 import { getFormValues } from "state/selectors/index";
 import {
   addStaff,
-  getMentor,
   getAllStaff,
   deleteStaff,
   filterStaff,
@@ -83,16 +80,6 @@ export function* getStaffSaga({ id }) {
   }
 }
 
-export function* getMentorSaga() {
-  try {
-    const results = yield call(getMentor, {
-      roleid: 1
-    });
-  } catch (error) {
-    toastErr(error);
-  }
-}
-
 export function* editStaffSaga({ id }) {
   try {
     yield put({ type: SET_LOADING });
@@ -107,7 +94,7 @@ export function* editStaffSaga({ id }) {
       beginday,
       birthdate
     } = yield select(state => getFormValues(state, FORM_KEY_ADDSTAFF));
-    console.log(id);
+
     const reqGender = parseInt(gender);
     const reqRoleid = parseInt(roleid);
     const reqstafftypei = parseInt(stafftypeid);
@@ -140,7 +127,6 @@ export function* getAllStaffSaga() {
     yield put({ type: SET_LOADING });
     const results = yield call(getAllStaff);
 
-    yield toast({ message: "Lấy danh sách nhân viên thành công" });
     const staffs = results.data;
     yield put({ type: GET_STAFF_SUCCESS, staffs });
   } catch (err) {
@@ -153,8 +139,11 @@ export function* getAllStaffSaga() {
 export function* deleteStaffSaga({ staffID }) {
   try {
     yield put({ type: SET_LOADING });
+
     yield call(deleteStaff, { staffID });
+
     yield toast({ message: "Xoá nhân viên thành công" });
+
     yield put({ type: DELETE_STAFF_SUCCESS, staffID });
   } catch (err) {
     toastErr(err);
@@ -178,7 +167,6 @@ export function* filterStaffs({ gender, roleid, stafftypeid }) {
 export default function* staffSaga() {
   yield takeEvery(ADD_STAFF, addStaffSaga);
   yield takeEvery(GET_STAFF, getAllStaffSaga);
-  yield takeEvery(GET_MENTOR, getMentorSaga);
   yield takeEvery(DELETE_STAFF, deleteStaffSaga);
   yield takeEvery(FILTER_STAFF, filterStaffs);
   yield takeEvery(GET_STAFF_BY_ID, getStaffSaga);
