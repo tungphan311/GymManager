@@ -57,15 +57,3 @@ export async function editCourse({
     id: parseInt(id)
   });
 }
-
-//  }) {
-//    return await API.put("/classes", {
-//     name,
-//    haspt,
-// classtypeid,
-// durationdays,
-// price,
-//      id: parseInt(id)
-//    }
-//   })
-// }

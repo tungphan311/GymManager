@@ -7,7 +7,7 @@ import Select from "Components/Select/Select";
 function DashboardForm({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit} noValidate className="col-12">
-      <div className="row">
+      <div className="row filter">
         <div className="col-3">
           <Field
             label="Từ ngày"

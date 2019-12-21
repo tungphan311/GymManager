@@ -88,8 +88,11 @@ export function* getMemberByIdSaga({ id }) {
 export function* deleteMemberSaga({ memberID }) {
   try {
     yield put({ type: SET_LOADING });
+
     yield call(deleteMember, { memberID });
+
     yield toast({ message: "Xoá hội viên thành công" });
+
     yield put({ type: DELETE_MEMBER_SUCCESS, memberID });
   } catch (err) {
     toastErr(err);
@@ -114,7 +117,7 @@ export function* editMemberSaga({ id }) {
 
     const reqBirthdate = formatDate(birthdate);
     const staffidNew = getStaffId();
-    console.log(id);
+
     const results = yield call(editMember, {
       fullname,
       phone,

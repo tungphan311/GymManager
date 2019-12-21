@@ -8,7 +8,6 @@ export const GET_CLASS = "course/GET_CLASS";
 export const GET_CLASS_SUCCESS = "course/GET_CLASS_SUCCESS";
 
 export const BUY_CLASS = "course/BUY_CLASS";
-export const BUY_CLASS_SUCCESS = "course/BUY_CLASS_SUCCESS";
 
 export const GET_TOP_CLASSES = "course/GET_TOP_CLASSES";
 export const GET_TOP_CLASSES_SUCCESS = "course/GET_TOP_CLASSES_SUCCESS";
@@ -78,10 +77,12 @@ export function courseReducer(state = initState, action = {}) {
       newState.courseData = results.data;
       return newState;
     }
+
     case RESET_COURSE_DATA: {
       newState.staffData = {};
       return newState;
     }
+
     default:
       return newState;
   }

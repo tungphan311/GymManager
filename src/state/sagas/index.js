@@ -17,7 +17,6 @@ export default function* rootSaga() {
     equipmentSaga(),
     memberSaga(),
     billSaga(),
-    courseSaga(),
     equipmentsTypeSaga()
   ]);
 }
