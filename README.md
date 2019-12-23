@@ -25,7 +25,7 @@ Here are the commands you'll need to run to install the project:
 ```shell
 git clone https://github.com/tungphan311/GymManager.git
 cd /GymManager
-code .
+code . (if you're using VS Code)
 ```
 
 Create new file, name as ".env" (if this file isn't created yet) and paste line below to this file.
