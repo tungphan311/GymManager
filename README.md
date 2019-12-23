@@ -22,9 +22,11 @@ yarn -v
 
 Here are the commands you'll need to run to install the project:
 
+```shell
 git clone https://github.com/tungphan311/GymManager.git
-cd /GymManager/gym-client
+cd /GymManager
 code .
+```
 
 Create new file, name as ".env" (if this file isn't created yet) and paste line below to this file.
 
@@ -34,8 +36,10 @@ NODE_PATH=src/
 
 After that, continue with commands below:
 
+```shell
 yarn
 yarn start
+```
 
 ## Setup your code editor
 
