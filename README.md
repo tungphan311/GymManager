@@ -1,3 +1,5 @@
+This is just frontend ver of our app. Click [here](https://github.com/tungphan311/gym-backend) to see our backend
+
 # Getting started
 
 ## Environment requirements
