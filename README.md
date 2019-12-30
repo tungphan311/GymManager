@@ -30,12 +30,6 @@ cd /GymManager
 code . (if you're using VS Code)
 ```
 
-Create new file, name as ".env" (if this file isn't created yet) and paste line below to this file.
-
-```shell
-NODE_PATH=src/
-```
-
 After that, continue with commands below:
 
 ```shell
