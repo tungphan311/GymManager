@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6e1015e41553a8e40e4f5100a3c60dc6",
+    "revision": "1881d490452332a18edc388f67eaaf5d",
     "url": "/GymManager/index.html"
   },
   {
