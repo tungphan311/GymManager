@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/GymManager/public/static/css/main.cfa57d83.chunk.css",
-    "main.js": "/GymManager/public/static/js/main.0c6619e4.chunk.js",
-    "main.js.map": "/GymManager/public/static/js/main.0c6619e4.chunk.js.map",
-    "runtime-main.js": "/GymManager/public/static/js/runtime-main.0b9008ff.js",
-    "runtime-main.js.map": "/GymManager/public/static/js/runtime-main.0b9008ff.js.map",
-    "static/css/2.e34a9976.chunk.css": "/GymManager/public/static/css/2.e34a9976.chunk.css",
-    "static/js/2.a0aaba55.chunk.js": "/GymManager/public/static/js/2.a0aaba55.chunk.js",
-    "static/js/2.a0aaba55.chunk.js.map": "/GymManager/public/static/js/2.a0aaba55.chunk.js.map",
-    "index.html": "/GymManager/public/index.html",
-    "precache-manifest.0c8842ad9154726d1bd30381aae297a0.js": "/GymManager/public/precache-manifest.0c8842ad9154726d1bd30381aae297a0.js",
-    "service-worker.js": "/GymManager/public/service-worker.js",
-    "static/css/2.e34a9976.chunk.css.map": "/GymManager/public/static/css/2.e34a9976.chunk.css.map",
-    "static/css/main.cfa57d83.chunk.css.map": "/GymManager/public/static/css/main.cfa57d83.chunk.css.map"
+    "main.css": "/static/css/main.cfa57d83.chunk.css",
+    "main.js": "/static/js/main.767bcad5.chunk.js",
+    "main.js.map": "/static/js/main.767bcad5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fcebb44f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fcebb44f.js.map",
+    "static/css/2.e34a9976.chunk.css": "/static/css/2.e34a9976.chunk.css",
+    "static/js/2.a0aaba55.chunk.js": "/static/js/2.a0aaba55.chunk.js",
+    "static/js/2.a0aaba55.chunk.js.map": "/static/js/2.a0aaba55.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8151cec9ed79cea09874141617ffa166.js": "/precache-manifest.8151cec9ed79cea09874141617ffa166.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.e34a9976.chunk.css.map": "/static/css/2.e34a9976.chunk.css.map",
+    "static/css/main.cfa57d83.chunk.css.map": "/static/css/main.cfa57d83.chunk.css.map"
   }
 }
