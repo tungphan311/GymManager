@@ -2,7 +2,7 @@
   "name": "gym-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tungphan311.github.io/",
+  "homepage": "https://tungphan311.github.io/GymManager/",
   "dependencies": {
     "@babel/core": "7.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
